@@ -63,6 +63,15 @@ div {
     font-size: 12px;
     list-style: square; } }
 
+#outer {
+	width:750px;
+	margin:0 auto;
+}
+
+#menu {
+	float:left;
+}
+
 .menu_top {
 	height: 20px;
 	padding-left: 0;
@@ -82,4 +91,12 @@ div {
 			}
 		}
 	}
+}
+
+#login {
+	float:right;
+}
+
+#main {
+	padding-top:30px;
 }

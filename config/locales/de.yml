@@ -157,4 +157,8 @@ de:
   description: Beschreibung
   name: Name
   first_nmae: Vorname
-  
+  signed_in_as: "Angemeldet als"
+  sign_in: Anmelden
+  sign_out: Abmelden
+  sign_up: Registrieren
+  or: oder

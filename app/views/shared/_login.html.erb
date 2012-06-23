@@ -1,0 +1,6 @@
+<% if user_signed_in? %>
+<%=current_user.email %>
+<%= link_to t('sign_out'), destroy_user_session_path, :method => :delete %>
+<% else %>
+<%= (link_to t('sign_up'), new_user_registration_path) + ' ' + t('or') + ' ' + (link_to t('sign_in') ,new_user_session_path) %>
+<% end %>

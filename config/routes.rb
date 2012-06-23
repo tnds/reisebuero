@@ -1,4 +1,6 @@
 Reisebuero::Application.routes.draw do
+  devise_for :users
+
   resources :categories
 
   resources :events do
@@ -8,6 +10,7 @@ Reisebuero::Application.routes.draw do
     end
   end
 
+#  resources :users
   resources :users do
     resources :event_orgas
     resources :event_helpers

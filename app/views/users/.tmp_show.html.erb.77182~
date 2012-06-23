@@ -16,6 +16,11 @@
 </p>
 
 <p>
+  <b>Password:</b>
+  <%= @user.password %>
+</p>
+
+<p>
   <b>Email:</b>
   <%= @user.email %>
 </p>

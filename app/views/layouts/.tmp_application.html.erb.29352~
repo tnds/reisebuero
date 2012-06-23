@@ -7,17 +7,12 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
-	<div id="outer">
-		<div id="menu">
-			<%= render 'shared/menu' %>
-		</div>	
-		<div id="login">
-			<%= render 'shared/login' %>
-		</div>
+	
+<%= render 'shared/menu' %>
 
-		<div id="main">
-			<%= yield %>
-		</div>
-	</div>
+<div class="main">
+	<%= yield %>
+</div>
+
 </body>
 </html>

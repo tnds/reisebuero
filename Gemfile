@@ -39,3 +39,4 @@ gem 'jquery-rails'
 
 gem 'event-calendar', :require => 'event_calendar'
 gem 'jquery-rails'
+gem 'devise'
