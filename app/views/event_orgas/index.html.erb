@@ -1,0 +1,27 @@
+<h1>Listing event_orgas</h1>
+
+<table>
+  <tr>
+    <th>Event</th>
+    <th>User</th>
+    <th>Category</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @event_orgas.each do |event_orga| %>
+  <tr>
+    <td><%= event_orga.event %></td>
+    <td><%= event_orga.user %></td>
+    <td><%= event_orga.category %></td>
+    <td><%= link_to 'Show', event_orga %></td>
+    <td><%= link_to 'Edit', edit_event_orga_path(event_orga) %></td>
+    <td><%= link_to 'Destroy', event_orga, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Event orga', new_event_orga_path %>

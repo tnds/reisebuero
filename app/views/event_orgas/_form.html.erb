@@ -1,0 +1,29 @@
+<%= form_for(@event_orga) do |f| %>
+  <% if @event_orga.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@event_orga.errors.count, "error") %> prohibited this event_orga from being saved:</h2>
+
+      <ul>
+      <% @event_orga.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :event %><br />
+    <%= f.text_field :event %>
+  </div>
+  <div class="field">
+    <%= f.label :user %><br />
+    <%= f.text_field :user %>
+  </div>
+  <div class="field">
+    <%= f.label :category %><br />
+    <%= f.text_field :category %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

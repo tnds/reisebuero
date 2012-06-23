@@ -1,0 +1,20 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Event:</b>
+  <%= @event_helper.event %>
+</p>
+
+<p>
+  <b>User:</b>
+  <%= @event_helper.user %>
+</p>
+
+<p>
+  <b>Category:</b>
+  <%= @event_helper.category %>
+</p>
+
+
+<%= link_to 'Edit', edit_event_helper_path(@event_helper) %> |
+<%= link_to 'Back', event_helpers_path %>

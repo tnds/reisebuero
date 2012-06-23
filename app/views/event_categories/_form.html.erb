@@ -1,0 +1,29 @@
+<%= form_for(@event_category) do |f| %>
+  <% if @event_category.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@event_category.errors.count, "error") %> prohibited this event_category from being saved:</h2>
+
+      <ul>
+      <% @event_category.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :event %><br />
+    <%= f.text_field :event %>
+  </div>
+  <div class="field">
+    <%= f.label :category %><br />
+    <%= f.text_field :category %>
+  </div>
+  <div class="field">
+    <%= f.label :number_required %><br />
+    <%= f.number_field :number_required %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

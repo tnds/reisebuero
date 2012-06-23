@@ -1,0 +1,27 @@
+<h1>Listing event_helpers</h1>
+
+<table>
+  <tr>
+    <th>Event</th>
+    <th>User</th>
+    <th>Category</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @event_helpers.each do |event_helper| %>
+  <tr>
+    <td><%= event_helper.event %></td>
+    <td><%= event_helper.user %></td>
+    <td><%= event_helper.category %></td>
+    <td><%= link_to 'Show', event_helper %></td>
+    <td><%= link_to 'Edit', edit_event_helper_path(event_helper) %></td>
+    <td><%= link_to 'Destroy', event_helper, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Event helper', new_event_helper_path %>

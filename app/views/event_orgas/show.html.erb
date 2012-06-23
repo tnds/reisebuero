@@ -1,0 +1,20 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Event:</b>
+  <%= @event_orga.event %>
+</p>
+
+<p>
+  <b>User:</b>
+  <%= @event_orga.user %>
+</p>
+
+<p>
+  <b>Category:</b>
+  <%= @event_orga.category %>
+</p>
+
+
+<%= link_to 'Edit', edit_event_orga_path(@event_orga) %> |
+<%= link_to 'Back', event_orgas_path %>

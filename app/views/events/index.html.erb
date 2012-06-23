@@ -1,0 +1,10 @@
+<h1><%=t('events')%></h1>
+
+<ul>
+
+<%= render :partial => "list", :collection => @events, :as => :event %>
+
+</ul>
+<br />
+
+<%= link_to t('new_event'), new_event_path %>

@@ -1,0 +1,24 @@
+<p id="notice"><%= notice %></p>
+
+<h1><%=t('event') %></h1>
+
+<h2><%= @event.name %></h2>
+<p>
+	<%= raw(display_time(@event)) %> 
+	<% if @event.all_day %>
+	(<%=t('all_day')%>)
+	<% end %>
+</p>
+
+<p>
+  <b><%=t('location')%>:</b>
+  <%= @event.location %>
+</p>
+
+<p>
+  <b><%=t('description')%>:</b>
+  <%= @event.description %>
+</p>
+
+<%= link_to t('edit'), edit_event_path(@event) %> |
+<%= link_to t('back'), events_path %>

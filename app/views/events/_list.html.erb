@@ -1,0 +1,6 @@
+<li>
+	<%= link_to event.name, event %>, 
+	<%= raw(display_time(event)) %> 
+    <%= link_to t('edit'), edit_event_path(event) %> - 
+	<%= link_to t('destroy'), event, method: :delete, data: { confirm: 'Are you sure?' } %>
+</li>
