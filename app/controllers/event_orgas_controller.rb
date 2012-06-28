@@ -1,4 +1,6 @@
 class EventOrgasController < ApplicationController
+  before_filter :authenticate_user!, :except => [:show, :index]
+
   # GET /event_orgas
   # GET /event_orgas.json
   def index
@@ -40,17 +42,21 @@ class EventOrgasController < ApplicationController
   # POST /event_orgas
   # POST /event_orgas.json
   def create
-    @event_orga = EventOrga.new(params[:event_orga])
+    @event = Event.find(params[:event_id])
+    @event_orga = @event.event_orgas.create(params[:event_orga])
+    @event_orga.user = current_user
+    @event_orga.save
+    redirect_to event_path(@event)
 
-    respond_to do |format|
-      if @event_orga.save
-        format.html { redirect_to @event_orga, notice: 'Event orga was successfully created.' }
-        format.json { render json: @event_orga, status: :created, location: @event_orga }
-      else
-        format.html { render action: "new" }
-        format.json { render json: @event_orga.errors, status: :unprocessable_entity }
-      end
-    end
+#    respond_to do |format|
+#      if @event_orga.save
+#        format.html { redirect_to @event_orga, notice: 'Event orga was successfully created.' }
+#        format.json { render json: @event_orga, status: :created, location: @event_orga }
+#      else
+#        format.html { render action: "new" }
+#        format.json { render json: @event_orga.errors, status: :unprocessable_entity }
+#      end
+#    end
   end
 
   # PUT /event_orgas/1

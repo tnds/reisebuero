@@ -1,4 +1,6 @@
 class EventHelpersController < ApplicationController
+  before_filter :authenticate_user!, :except => [:show, :index]
+
   # GET /event_helpers
   # GET /event_helpers.json
   def index
@@ -40,17 +42,21 @@ class EventHelpersController < ApplicationController
   # POST /event_helpers
   # POST /event_helpers.json
   def create
-    @event_helper = EventHelper.new(params[:event_helper])
+    @event = Event.find(params[:event_id])
+    @event_helper = @event.event_helpers.create(params[:event_helper])
+    @event_helper.user = current_user
+    @event_helper.save
+    redirect_to event_path(@event)
 
-    respond_to do |format|
-      if @event_helper.save
-        format.html { redirect_to @event_helper, notice: 'Event helper was successfully created.' }
-        format.json { render json: @event_helper, status: :created, location: @event_helper }
-      else
-        format.html { render action: "new" }
-        format.json { render json: @event_helper.errors, status: :unprocessable_entity }
-      end
-    end
+#    respond_to do |format|
+#      if @event_helper.save
+#        format.html { redirect_to @event_helper, notice: 'Event helper was successfully created.' }
+#        format.json { render json: @event_helper, status: :created, location: @event_helper }
+#      else
+#        format.html { render action: "new" }
+#        format.json { render json: @event_helper.errors, status: :unprocessable_entity }
+#      end
+#    end
   end
 
   # PUT /event_helpers/1

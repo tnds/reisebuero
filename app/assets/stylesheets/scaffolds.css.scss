@@ -1,20 +1,9 @@
-
-$main-color: #FF8800;
-$background: #e3e8e8;
-$dark:		 #272828;
-$white:		 #ffffff;
-$width:		 750px;
-
 body {
-  background-color: $background;
-  color: $dark;
+  background-color: #fff;
+  color: #333;
   font-family: verdana, arial, helvetica, sans-serif;
   font-size: 13px;
   line-height: 18px; }
-
-h1 {
-	text-align: center;
-}
 
 p, ol, ul, td {
   font-family: verdana, arial, helvetica, sans-serif;
@@ -31,28 +20,15 @@ a {
   &:visited {
     color: #666; }
   &:hover {
-    color: #fff; } }
+    color: #fff;
+    background-color: #000; } }
 
 div {
   &.field, &.actions {
     margin-bottom: 10px; } }
 
-.message {
-  color: green; 
-  background-color: $white;
-  width:$width;
-  margin:0 auto;
-  text-align:center;
-}
-
-.close_button {
-	float:right;
-	a {
-		&:hover {
-			color:$main-color;
-		}
-	}
-}
+#notice {
+  color: green; }
 
 .field_with_errors {
   padding: 2px;
@@ -78,41 +54,3 @@ div {
   ul li {
     font-size: 12px;
     list-style: square; } }
-
-#outer {
-	width:$width;
-	margin:0 auto;
-}
-
-#menu {
-	float:left;
-}
-
-.menu_top {
-	height: 20px;
-	padding-left: 0;
-	li {
-		text-decoration: none;
-		display: block;
-		float: left;
-		a {
-			font-weight:bold;
-			text-decoration: none;
-			margin: 2px;
-			background-color: $main-color;
-			padding: 3px 5px;
-			&:hover {
-				background-color:
-					darken($main-color, 10%);
-			}
-		}
-	}
-}
-
-#login {
-	float:right;
-}
-
-#main {
-	padding-top:35px;
-}

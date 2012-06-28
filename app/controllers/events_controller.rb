@@ -1,4 +1,6 @@
 class EventsController < ApplicationController
+  before_filter :authenticate_user!, :except => [:show, :index]
+  
   # GET /events
   # GET /events.json
   def index
@@ -51,6 +53,9 @@ class EventsController < ApplicationController
   # POST /events.json
   def create
     @event = Event.new(params[:event])
+    @event_orga = @event.event_orgas.build
+    @event_orga.user = current_user
+    @event_orga.save
 
     respond_to do |format|
       if @event.save

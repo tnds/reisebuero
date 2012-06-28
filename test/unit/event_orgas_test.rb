@@ -1,6 +1,6 @@
 require 'test_helper'
 
-class CategroyTest < ActiveSupport::TestCase
+class EventOrgasTest < ActiveSupport::TestCase
   # test "the truth" do
   #   assert true
   # end

@@ -2,12 +2,16 @@
 
 <p>
   <b>Event:</b>
-  <%= @event_orga.event %>
+  <% if @event_orga.event %>
+    <%= @event_orga.event.name %>
+  <% end %>
 </p>
 
 <p>
   <b>User:</b>
-  <%= @event_orga.user %>
+  <% if @event_orga.user %>
+    <%= @event_orga.user.email %>
+  <% end %>
 </p>
 
 <p>

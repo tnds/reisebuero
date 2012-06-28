@@ -1,20 +1,30 @@
 Reisebuero::Application.routes.draw do
+  resources :event_helpers
+
+#  resources :event_orgas
+
+  get "event_orgas/create"
+
+  get "event_orgas/destroy"
+
   devise_for :users
 
   resources :categories
 
   resources :events do
-    resources :event_orgas
-    resources :event_categories do
-      resources :event_helpers
-    end
-  end
-
-#  resources :users
-  resources :users do
+#    resources :orgas
     resources :event_orgas
     resources :event_helpers
+#    resources :event_categories do
+#      resources :event_helpers
+#    end
   end
+
+  resources :users
+#  resources :users do
+#    resources :event_orgas
+#    resources :event_helpers
+#  end
 
   match '/calendar(/:year(/:month))' => 'calendar#index', :as => :calendar, :constraints => {:year => /\d{4}/, :month => /\d{1,2}/}
 

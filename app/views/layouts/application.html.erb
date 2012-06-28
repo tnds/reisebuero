@@ -7,6 +7,18 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
+	<% flash.each do |key, msg| %>
+		<div class="<%=key%> message" id="notice_<%=key%>">
+			<%=msg%>
+			<div class="close_button">
+				<%= link_to "x", "#", :class => "close" %>
+			</div>
+		</div>
+		<%= content_tag :script, :type => "text/javascript" do -%>
+			noticesTimer = setTimeout(function(){ $('#notice_<%=key%>').slideUp("slow")}, 5000);
+			$('#notice_<%=key%> .close').click(function(){$('#notice_<%=key%>').slideUp("slow"); return false; });
+		<% end %> 
+	<% end %>
 	<div id="outer">
 		<div id="menu">
 			<%= render 'shared/menu' %>
@@ -14,7 +26,7 @@
 		<div id="login">
 			<%= render 'shared/login' %>
 		</div>
-
+		
 		<div id="main">
 			<%= yield %>
 		</div>

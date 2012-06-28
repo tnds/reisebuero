@@ -140,6 +140,15 @@ de:
           trillion: Billion(en)
           quadrillion: Billiarde(n)
   
+  activerecord:
+    errors:
+      models:
+        user:
+          attributes:
+            email:
+              blank: "Bitte gib eine gültige Email-Adresse an"
+            password:
+              too_short: "Das Passwort muss mindestens 6 Zeichen lang sein"
 
 
 
@@ -148,6 +157,10 @@ de:
   events: Events
   categories: Kategorien
   users: Benutzer
+  event_orgas: Organisatoren
+  orga_submit: "Organisator eintragen"
+  event_helpers: Helfer
+  helper_submit: "Als Helfer eintragen"
   new_event: "Neues Event"
   edit: Bearbeiten
   destroy: Löschen
@@ -162,3 +175,4 @@ de:
   sign_out: Abmelden
   sign_up: Registrieren
   or: oder
+  

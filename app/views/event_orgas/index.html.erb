@@ -12,9 +12,21 @@
 
 <% @event_orgas.each do |event_orga| %>
   <tr>
-    <td><%= event_orga.event %></td>
-    <td><%= event_orga.user %></td>
-    <td><%= event_orga.category %></td>
+    <td>
+      <% if event_orga.event %>
+        <%= event_orga.event.name %>
+      <% end %>
+    </td>
+    <td>
+      <% if event_orga.user %>
+        <%= event_orga.user.email %>
+      <% end %>
+    </td>
+    <td>
+      <% if event_orga.category %>
+        <%= event_orga.category.name %>
+      <% end %>
+    </td>
     <td><%= link_to 'Show', event_orga %></td>
     <td><%= link_to 'Edit', edit_event_orga_path(event_orga) %></td>
     <td><%= link_to 'Destroy', event_orga, method: :delete, data: { confirm: 'Are you sure?' } %></td>
