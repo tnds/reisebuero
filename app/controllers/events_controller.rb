@@ -26,6 +26,8 @@ class EventsController < ApplicationController
   # GET /events/1.json
   def show
     @event = Event.find(params[:id])
+    @helpers = @event.event_helpers.find_all_by_orga(false,nil)
+    @orgas = @event.event_helpers.find_all_by_orga(true)
 
     respond_to do |format|
       format.html # show.html.erb
@@ -53,9 +55,10 @@ class EventsController < ApplicationController
   # POST /events.json
   def create
     @event = Event.new(params[:event])
-    @event_orga = @event.event_orgas.build
-    @event_orga.user = current_user
-    @event_orga.save
+    @event_helper = @event.event_helpers.build
+    @event_helper.user = current_user
+    @event_helper.orga = true
+    @event_helper.save
 
     respond_to do |format|
       if @event.save

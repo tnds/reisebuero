@@ -3,7 +3,5 @@ class Event < ActiveRecord::Base
   attr_accessible :all_day, :description, :end_at, :location, :name, :start_at
   has_many :event_categories, :dependent => :destroy
   has_many :categories, :through => :event_categories
-  has_many :event_orgas, :dependent => :destroy
   has_many :event_helpers, :dependent => :destroy
-  accepts_nested_attributes_for :event_orgas
 end

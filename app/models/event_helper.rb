@@ -2,5 +2,5 @@ class EventHelper < ActiveRecord::Base
   belongs_to :event
   belongs_to :user
   belongs_to :category
-  # attr_accessible :title, :body
+  attr_accessible :category
 end

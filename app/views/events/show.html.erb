@@ -23,19 +23,14 @@
 <div id="event_orgas">
   <h3><%= t('event_orgas') %></h3>
   <ul>
-    <%= render @event.event_orgas %>
+    <%= render @orgas %>
   </ul>
-  <%= form_for([@event, @event.event_orgas.build]) do |orga_form| %>
-    <div class="action">
-      <%= orga_form.submit t('orga_submit') %>
-    </div>
-  <% end %>
 </div>
 
 <div id="event_helpers">
   <h3><%= t('event_helpers') %></h3>
   <ul>
-    <%= render @event.event_helpers %>
+    <%= render @helpers %>
   </ul>
   <%= form_for([@event, @event.event_helpers.build]) do |helper_form| %>
     <div class="action">

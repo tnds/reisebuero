@@ -1,23 +1,14 @@
 Reisebuero::Application.routes.draw do
-  resources :event_helpers
-
-#  resources :event_orgas
-
-  get "event_orgas/create"
-
-  get "event_orgas/destroy"
+#  resources :event_helpers
 
   devise_for :users
 
   resources :categories
 
   resources :events do
-#    resources :orgas
-    resources :event_orgas
-    resources :event_helpers
-#    resources :event_categories do
-#      resources :event_helpers
-#    end
+    resources :event_helpers do
+        get 'promote', :on => :member
+    end
   end
 
   resources :users

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120628202934) do
+ActiveRecord::Schema.define(:version => 20120629161009) do
 
   create_table "categories", :force => true do |t|
     t.string   "name"
@@ -37,19 +37,12 @@ ActiveRecord::Schema.define(:version => 20120628202934) do
     t.integer  "category_id"
     t.datetime "created_at",  :null => false
     t.datetime "updated_at",  :null => false
+    t.boolean  "orga", :default => false
   end
 
   add_index "event_helpers", ["category_id"], :name => "index_event_helpers_on_category_id"
   add_index "event_helpers", ["event_id"], :name => "index_event_helpers_on_event_id"
   add_index "event_helpers", ["user_id"], :name => "index_event_helpers_on_user_id"
-
-  create_table "event_orgas", :force => true do |t|
-    t.integer  "event_id"
-    t.integer  "user_id"
-    t.integer  "category_id"
-    t.datetime "created_at",  :null => false
-    t.datetime "updated_at",  :null => false
-  end
 
   add_index "event_orgas", ["category_id"], :name => "index_event_orgas_on_category_id"
   add_index "event_orgas", ["event_id"], :name => "index_event_orgas_on_event_id"

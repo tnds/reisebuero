@@ -86,4 +86,11 @@ class EventHelpersController < ApplicationController
       format.json { head :no_content }
     end
   end
+  
+  def promote
+     @event_helper = EventHelper.find(params[:id])
+     @event_helper.orga = true
+     @event_helper.save
+     redirect_to event_path(@event)
+ end
 end
