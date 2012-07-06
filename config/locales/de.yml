@@ -11,7 +11,7 @@ de:
       short: "%d. %b"
       long: "%d. %B %Y"
 
-    day_names: [Montat, Dienstag, Mittwoch, Donnerstag, Freitag, Samstag, Sonntag]
+    day_names: [Monat, Dienstag, Mittwoch, Donnerstag, Freitag, Samstag, Sonntag]
     abbr_day_names: [Mo, Di, Mi, Do, Fr, Sa, So]
 
     # Don't forget the nil at the beginning; there's no such thing as a 0th month
