@@ -1,5 +1,7 @@
 class EventHelpersController < ApplicationController
   before_filter :authenticate_user!, :except => [:show, :index]
+  before_filter :orga_filter, :only => [:promote]
+  before_filter :self?, :except => [:show, :index, :promote, :create, :new]
 
   # GET /event_helpers
   # GET /event_helpers.json
@@ -91,6 +93,6 @@ class EventHelpersController < ApplicationController
      @event_helper = EventHelper.find(params[:id])
      @event_helper.orga = true
      @event_helper.save
-     redirect_to event_path(@event)
+     redirect_to event_path(@event_helper.event)
  end
 end

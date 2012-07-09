@@ -12,7 +12,6 @@ Reisebuero::Application.routes.draw do
 
   resources :users
 #  resources :users do
-#    resources :event_orgas
 #    resources :event_helpers
 #  end
 

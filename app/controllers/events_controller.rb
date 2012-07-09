@@ -1,5 +1,6 @@
 class EventsController < ApplicationController
   before_filter :authenticate_user!, :except => [:show, :index]
+  before_filter :orga_filter, :except => [:show,:index,:new,:create]
   
   # GET /events
   # GET /events.json
@@ -13,8 +14,8 @@ class EventsController < ApplicationController
     @shown_month = Date.civil(@year, @month)
 
 #    @events = Event.all
-#    @events = Event.where("start_at >= :month_start", :month_start).order("start_at")
     @events = Event.where(:end_at => (@month_start)..(@month_end))
+    @events = Event.where("end_at BETWEEN :month_start AND :month_end OR start_at BETWEEN :month_start AND :month_end", {:month_start => @month_start, :month_end => @month_end})
 
     respond_to do |format|
       format.html # index.html.erb
@@ -28,6 +29,7 @@ class EventsController < ApplicationController
     @event = Event.find(params[:id])
     @helpers = @event.event_helpers.find_all_by_orga(false,nil)
     @orgas = @event.event_helpers.find_all_by_orga(true)
+    @show_promote = orga?
 
     respond_to do |format|
       format.html # show.html.erb

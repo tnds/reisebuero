@@ -23,14 +23,14 @@
 <div id="event_orgas">
   <h3><%= t('event_orgas') %></h3>
   <ul>
-    <%= render @orgas %>
+    <%= render :partial => 'event_helpers/event_helper', :collection => @orgas, :locals => { :show_promote => false} %>
   </ul>
 </div>
 
 <div id="event_helpers">
   <h3><%= t('event_helpers') %></h3>
   <ul>
-    <%= render @helpers %>
+    <%= render :partial => 'event_helpers/event_helper', :collection => @helpers, :locals => { :show_promote => @show_promote} %>
   </ul>
   <%= form_for([@event, @event.event_helpers.build]) do |helper_form| %>
     <div class="action">
@@ -40,4 +40,4 @@
 </div>
 
 <%= link_to t('edit'), edit_event_path(@event) %> |
-<%= link_to t('back'), events_path %>
+<%= link_to t('events'), events_path %>
