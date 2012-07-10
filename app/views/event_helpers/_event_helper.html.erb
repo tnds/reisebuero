@@ -1,6 +1,7 @@
 <li>
   <% if event_helper.user %>
     <%= event_helper.user.username %>
-    <%= link_to t('promote_to_orga'), promote_event_event_helper_path(event_helper.event, event_helper) if show_promote %>
+    <%= link_to t('promote_to_orga'), promote_event_event_helper_path(event_helper.event, event_helper), data: { confirm: t('confirm_promote_helper')} if show_promote %>
+    <%= link_to t('destroy_short'), event_event_helper_path(event_helper.event, event_helper), method: :delete, data: { confirm: t('confirm_delete_helper') } %>
   <% end %>
 </li>

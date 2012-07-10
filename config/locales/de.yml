@@ -149,7 +149,14 @@ de:
               blank: "Bitte gib eine gültige Email-Adresse an"
             password:
               too_short: "Das Passwort muss mindestens 6 Zeichen lang sein"
-
+        event:
+          attributes:
+            name:
+              blank: "Bitte gib einen Namen für das Event an"
+            event_helpers:
+              invalid: ""
+      messages:
+        record_invalid: "Der Eintrag ist ungültig"
 
 
 
@@ -175,4 +182,10 @@ de:
   sign_out: Abmelden
   sign_up: Registrieren
   or: oder
-  
+  promote_to_orga: "O"
+  destroy_short: "X"
+  confirm_delete_helper: "Helfer löschen?"
+  confirm_promote_helper: "Helfer zum Orga befördern?"
+  must_have_orga: "Es muss mindestens einen Orga geben"
+  must_be_orga: "Du musst Orga sein um diese Funktion nutzen zu können"
+  user_already_helper: "Du bist bereits als Helfer oder Orga eingetragen"
