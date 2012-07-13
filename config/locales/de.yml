@@ -165,13 +165,14 @@ de:
   events: Events
   categories: Kategorien
   users: Benutzer
-  event_orgas: Organisatoren
+  event_orgas: Orga
   orga_submit: "Organisator eintragen"
   event_helpers: Helfer
   helper_submit: "Als Helfer eintragen"
   new_event: "Neues Event"
   edit: Bearbeiten
   destroy: Löschen
+  destroy_short: "X"
   back: Zurück
   all_day: ganztägig
   location: Ort
@@ -183,10 +184,13 @@ de:
   sign_out: Abmelden
   sign_up: Registrieren
   or: oder
-  promote_to_orga: "O"
-  destroy_short: "X"
-  confirm_delete_helper: "Helfer löschen?"
+  promote_helper_short: "O"
+  promote_helper: "Befördern"
   confirm_promote_helper: "Helfer zum Orga befördern?"
+  demote_orga_short: "H"
+  demote_orga: "Zurücktufen"
+  confirm_demote_orga: "Orga zum Helfer zurückstufen?"
+  confirm_delete_helper: "Helfer löschen?"
   must_have_orga: "Es muss mindestens einen Orga geben"
   must_be_orga: "Du musst Orga sein um diese Funktion nutzen zu können"
   user_already_helper: "Du bist bereits als Helfer oder Orga eingetragen"

@@ -7,6 +7,7 @@ Reisebuero::Application.routes.draw do
   resources :events do
     resources :event_helpers do
         get 'promote', :on => :member
+        get 'demote', :on => :member
     end
   end
 
