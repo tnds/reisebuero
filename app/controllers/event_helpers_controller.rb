@@ -1,6 +1,6 @@
 class EventHelpersController < ApplicationController
   before_filter :authenticate_user!, :except => [:show, :index]
-  before_filter :orga_filter, :only => [:promote]
+  before_filter :orga_filter, :only => [:promote, :demote]
   before_filter :self_filter, :except => [:show, :index, :promote, :create, :new]
   before_filter :keep_last_orga, :only => [:demote, :destroy]
 
@@ -98,6 +98,13 @@ class EventHelpersController < ApplicationController
   def promote
      @event_helper = EventHelper.find(params[:id])
      @event_helper.orga = true
+     @event_helper.save
+     redirect_to event_path(@event_helper.event)
+ end
+
+ def demote
+     @event_helper = EventHelper.find(params[:id])
+     @event_helper.orga = false
      @event_helper.save
      redirect_to event_path(@event_helper.event)
  end
