@@ -18,7 +18,7 @@ Reisebuero::Application.routes.draw do
 
   match '/calendar(/:year(/:month))' => 'calendar#index', :as => :calendar, :constraints => {:year => /\d{4}/, :month => /\d{1,2}/}
 
-  match '/events(/:year(/:month(/:day)))' => 'event#index', :as => :event, :constraints => {:year => /\d{4}/, :month => /\d{1,2}/, :day => /\d{1,2}/}
+  match '/events(/:year(/:month(/:day)))' => 'events#index', :as => :event, :constraints => {:year => /\d{4}/, :month => /\d{1,2}/, :day => /\d{1,2}/}
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
