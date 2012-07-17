@@ -9,4 +9,5 @@ class User < ActiveRecord::Base
   attr_accessible :email, :username, :first_name, :name ,:password, :password_confirmation, :remember_me
 #  has_many :helpers
   has_many :event_helpers, :dependent => :destroy
+	belongs_to :role
 end

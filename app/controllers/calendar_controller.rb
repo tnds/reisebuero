@@ -9,5 +9,4 @@ class CalendarController < ApplicationController
 
     @event_strips = Event.event_strips_for_month(@shown_month, @first_day_of_week)
   end
-  
 end

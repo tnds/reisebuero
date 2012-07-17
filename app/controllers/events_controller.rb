@@ -13,13 +13,17 @@ class EventsController < ApplicationController
 
     @shown_month = Date.civil(@year, @month)
 
-#    @events = Event.all
-    @events = Event.where(:end_at => (@month_start)..(@month_end))
     @events = Event.where("end_at BETWEEN :month_start AND :month_end OR start_at BETWEEN :month_start AND :month_end", {:month_start => @month_start, :month_end => @month_end})
 
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @events }
+	  	format.ics do
+				send_data(	export_ical(@month_start,@month_end).export,
+										:filename=>"reisebuero_events.ics",
+										:disposition=>"inline; filename=reisebuero_events.ics",
+										:type=>"text/calendar")
+			end
     end
   end
 
@@ -57,10 +61,6 @@ class EventsController < ApplicationController
   # POST /events.json
   def create
     @event = Event.new(params[:event])
-    @event_helper = @event.event_helpers.build
-    @event_helper.user = current_user
-    @event_helper.orga = true
-    @event_helper.save
 
     respond_to do |format|
       if @event.save
@@ -100,4 +100,23 @@ class EventsController < ApplicationController
       format.json { head :no_content }
     end
   end
+
+	def export_ical(start_date, end_date)
+		ical = RiCal.Calendar do
+			events = Event.where("end_at BETWEEN :month_start AND :month_end OR start_at BETWEEN :month_start AND :month_end", {:month_start => start_date, :month_end => end_date})
+			events.each do |the_event|
+				event do
+					summary the_event.name
+					uid the_event.uid
+					description the_event.description
+					dtstart the_event.start_at.to_datetime
+					dtend the_event.end_at.to_datetime
+					location the_event.location
+					the_event.event_helpers.each do |event_helper|
+						add_attendee event_helper.user.username
+					end
+				end
+			end
+		end
+	end
 end
