@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120629161009) do
+ActiveRecord::Schema.define(:version => 20120717195442) do
 
   create_table "categories", :force => true do |t|
     t.string   "name"
@@ -35,18 +35,14 @@ ActiveRecord::Schema.define(:version => 20120629161009) do
     t.integer  "event_id"
     t.integer  "user_id"
     t.integer  "category_id"
-    t.datetime "created_at",  :null => false
-    t.datetime "updated_at",  :null => false
-    t.boolean  "orga", :default => false
+    t.datetime "created_at",                     :null => false
+    t.datetime "updated_at",                     :null => false
+    t.boolean  "orga",        :default => false
   end
 
   add_index "event_helpers", ["category_id"], :name => "index_event_helpers_on_category_id"
   add_index "event_helpers", ["event_id"], :name => "index_event_helpers_on_event_id"
   add_index "event_helpers", ["user_id"], :name => "index_event_helpers_on_user_id"
-
-  add_index "event_orgas", ["category_id"], :name => "index_event_orgas_on_category_id"
-  add_index "event_orgas", ["event_id"], :name => "index_event_orgas_on_event_id"
-  add_index "event_orgas", ["user_id"], :name => "index_event_orgas_on_user_id"
 
   create_table "events", :force => true do |t|
     t.string   "name"
@@ -57,21 +53,28 @@ ActiveRecord::Schema.define(:version => 20120629161009) do
     t.boolean  "all_day"
     t.datetime "created_at",  :null => false
     t.datetime "updated_at",  :null => false
+    t.string   "uid"
+  end
+
+  create_table "roles", :force => true do |t|
+    t.string   "name"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
   end
 
   create_table "users", :force => true do |t|
     t.string   "name"
     t.string   "first_name"
-    t.string   "login"
+    t.string   "username"
     t.string   "password"
     t.string   "email"
-    t.datetime "created_at",                                            :null => false
-    t.datetime "updated_at",                                            :null => false
-    t.string   "encrypted_password",                    :default => "", :null => false
+    t.datetime "created_at",                             :null => false
+    t.datetime "updated_at",                             :null => false
+    t.string   "encrypted_password",     :default => "", :null => false
     t.string   "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
-    t.integer  "sign_in_count",                         :default => 0
+    t.integer  "sign_in_count",          :default => 0
     t.datetime "current_sign_in_at"
     t.datetime "last_sign_in_at"
     t.string   "current_sign_in_ip"
@@ -80,15 +83,16 @@ ActiveRecord::Schema.define(:version => 20120629161009) do
     t.datetime "confirmed_at"
     t.datetime "confirmation_sent_at"
     t.string   "unconfirmed_email"
-    t.integer  "failed_attempts",                       :default => 0
+    t.integer  "failed_attempts",        :default => 0
     t.string   "unlock_token"
     t.datetime "locked_at"
-    t.string   "username",               :limit => nil
+    t.integer  "role_id"
   end
 
   add_index "users", ["confirmation_token"], :name => "index_users_on_confirmation_token", :unique => true
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true
   add_index "users", ["reset_password_token"], :name => "index_users_on_reset_password_token", :unique => true
+  add_index "users", ["role_id"], :name => "index_users_on_role_id"
   add_index "users", ["unlock_token"], :name => "index_users_on_unlock_token", :unique => true
 
 end
