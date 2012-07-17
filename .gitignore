@@ -15,3 +15,5 @@
 /tmp
 .tmp_*
 /nbproject/private/
+.DS_Store
+.rvmrc
