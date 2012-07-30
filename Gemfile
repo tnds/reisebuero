@@ -25,18 +25,18 @@ end
 gem "rails-erd", :group => :development
 
 group :test do
- # gem "factory_girl_rails"
-#	gem 'guard-cucumber'
-#	gem 'guard-livereload'
-#	gem "launchy"
-#	gem "cucumber-rails", :require => false
-#	gem "capybara"
-#	gem "capybara-webkit"
-#	gem "database_cleaner"
+  gem "factory_girl_rails"
+	gem 'guard-cucumber'
+	gem 'guard-livereload'
+	gem "launchy"
+	gem "cucumber-rails", :require => false
+	gem "capybara"
+	gem "capybara-webkit"
+	gem "database_cleaner"
 end
 
 gem "cancan"
 gem "jquery_datepicker"
 gem "ri_cal"
 gem "uuidtools"
-#gem "therubyracer"
+gem "therubyracer", :group => :linux
