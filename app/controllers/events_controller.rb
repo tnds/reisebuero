@@ -1,6 +1,7 @@
 class EventsController < ApplicationController
-  before_filter :authenticate_user!, :except => [:show, :index]
-  before_filter :orga_filter, :except => [:show,:index,:new,:create]
+#  before_filter :authenticate_user!, :except => [:show, :index]
+#  before_filter :orga_filter, :except => [:show,:index,:new,:create]
+  load_and_authorize_resource
   
   # GET /events
   # GET /events.json
@@ -61,6 +62,10 @@ class EventsController < ApplicationController
   # POST /events.json
   def create
     @event = Event.new(params[:event])
+		@event_helper = @event.event_helpers.build
+    @event_helper.user = current_user   # current_user not available in model
+    @event_helper.orga = true
+    @event_helper.save
 
     respond_to do |format|
       if @event.save
