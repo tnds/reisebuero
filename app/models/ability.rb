@@ -6,17 +6,24 @@ class Ability
     #
     user ||= User.new # guest user (not logged in)
     if !user.role.nil?
-			if user.role.name == "admin"
+			if user.role.name == "Admin"
 	      can :manage, :all
 	    end
-			if user.role.name == "moderator"
+			if user.role.name == "Moderator"
 				can :manage, Event
 			end
-			if user.role.name == "user"
+			if user.role.name == "User"
 				can :create, Event
 				can :read, Event
 				can :create, EventHelper
+				can :manage, EventHelper, :user_id => user.id
+        can [:manage, :promote, :demote], Event do |event|
+          EventHelper.where(:event_id => event.id, :user_id => user.id).exists?
+        end
 			end
+    else
+      can :read, [Event, EventHelper]
+      can :create, User
     end
 		#
     # The first argument to `can` is the action you are giving the user permission to do.

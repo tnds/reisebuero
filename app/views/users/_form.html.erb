@@ -11,6 +11,8 @@
     </div>
   <% end %>
 
+<h2>Username: <%= @user.username %></h2>
+
   <div class="field">
     <%= f.label :name %><br />
     <%= f.text_field :name %>
@@ -20,13 +22,12 @@
     <%= f.text_field :first_name %>
   </div>
   <div class="field">
-    <%= f.label :login %><br />
-    <%= f.text_field :login %>
-  </div>
-  <div class="field">
     <%= f.label :email %><br />
     <%= f.text_field :email %>
   </div>
+  <div class="field">
+    <%= f.label :role %><br />
+    <%= f.collection_select :role_id, @roles, :id, :name %>  </div>
   <div class="actions">
     <%= f.submit %>
   </div>

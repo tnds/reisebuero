@@ -20,6 +20,7 @@
   <%= @event.description %>
 </p>
 
+<%# if can? :read, EventHelper %>
 <div id="event_orgas">
   <h3><%= t('event_orgas') %></h3>
   <ul>
@@ -38,6 +39,7 @@
     </div>
   <% end %>
 </div>
+<%# end %>
 
 <%= link_to t('edit'), edit_event_path(@event) %> |
 <%= link_to t('events'), events_path %>

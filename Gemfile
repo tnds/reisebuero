@@ -39,3 +39,4 @@ gem "cancan"
 gem "jquery_datepicker"
 gem "ri_cal"
 gem "uuidtools"
+gem "therubyracer", :group => :linux
