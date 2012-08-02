@@ -9,8 +9,10 @@ class EventsController < ApplicationController
     @month = (params[:month] || (Time.zone || Time).now.month).to_i
     @year = (params[:year] || (Time.zone || Time).now.year).to_i
     @day = (params[:day] || (Time.zone || Time).now.day).to_i
+    @last_month_start = Date.new(@year, @month-1).to_time
     @month_start = Date.new(@year, @month).to_time
     @month_end = Date.new(@year, @month+1).to_time
+    @next_year_end = Date.new(@year+2, 1).to_time
 
     @shown_month = Date.civil(@year, @month)
 
@@ -20,7 +22,7 @@ class EventsController < ApplicationController
       format.html # index.html.erb
       format.json { render json: @events }
 	  	format.ics do
-				send_data(	export_ical(@month_start,@month_end).export,
+				send_data(	export_ical(@last_month_start,@next_year_end).export,
 										:filename=>"reisebuero_events.ics",
 										:disposition=>"inline; filename=reisebuero_events.ics",
 										:type=>"text/calendar")
