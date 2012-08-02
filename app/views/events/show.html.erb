@@ -44,3 +44,4 @@
 <% end %>
 
 <%= link_to t('edit'), edit_event_path(@event) if can? :update, @event %>
+<%= link_to t('ical_export_single'), params.merge(:format => :ics)  %>

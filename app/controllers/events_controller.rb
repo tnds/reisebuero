@@ -6,11 +6,15 @@ class EventsController < ApplicationController
   # GET /events
   # GET /events.json
   def index
+    @month_now = (Time.zone || Time).now.month.to_i
+    @year_now = (Time.zone || Time).now.year.to_i
     @month = (params[:month] || (Time.zone || Time).now.month).to_i
     @year = (params[:year] || (Time.zone || Time).now.year).to_i
     @day = (params[:day] || (Time.zone || Time).now.day).to_i
+    @last_month_start = Date.new(@year_now, @month_now-1).to_time
     @month_start = Date.new(@year, @month).to_time
     @month_end = Date.new(@year, @month+1).to_time
+    @next_year_end = Date.new(@year_now+2, 1).to_time
 
     @shown_month = Date.civil(@year, @month)
 
@@ -20,7 +24,7 @@ class EventsController < ApplicationController
       format.html # index.html.erb
       format.json { render json: @events }
 	  	format.ics do
-				send_data(	export_ical(@month_start,@month_end).export,
+				send_data(	export_ical_range(@last_month_start,@next_year_end).export,
 										:filename=>"reisebuero_events.ics",
 										:disposition=>"inline; filename=reisebuero_events.ics",
 										:type=>"text/calendar")
@@ -40,6 +44,12 @@ class EventsController < ApplicationController
     respond_to do |format|
       format.html # show.html.erb
       format.json { render json: @event }
+	  	format.ics do
+				send_data(	export_ical(@event).export,
+										:filename=>"reisebuero_event.ics",
+										:disposition=>"inline; filename=reisebuero_event.ics",
+										:type=>"text/calendar")
+			end
     end
   end
 
@@ -107,22 +117,28 @@ class EventsController < ApplicationController
     end
   end
 
-	def export_ical(start_date, end_date)
+	def export_ical_range(start_date, end_date)
 		ical = RiCal.Calendar do
 			events = Event.where("end_at BETWEEN :month_start AND :month_end OR start_at BETWEEN :month_start AND :month_end", {:month_start => start_date, :month_end => end_date})
 			events.each do |the_event|
-				event do
-					summary the_event.name
-					uid the_event.uid
-					description the_event.description
-					dtstart the_event.start_at.to_datetime
-					dtend the_event.end_at.to_datetime
-					location the_event.location
-					the_event.event_helpers.each do |event_helper|
-						add_attendee event_helper.user.username
-					end
-				end
+        export_ical(the_event)
 			end
 		end
 	end
+  
+  def export_ical(event)
+		ical = RiCal.Calendar do
+      event do
+        summary event.name
+        uid event.uid
+        description event.description
+        dtstart event.start_at.to_datetime
+        dtend event.end_at.to_datetime
+        location event.location
+        event.event_helpers.each do |event_helper|
+          add_attendee event_helper.user.username
+        end
+      end
+    end
+  end
 end

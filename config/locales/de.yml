@@ -194,3 +194,5 @@ de:
   must_have_orga: "Es muss mindestens einen Orga geben"
   must_be_orga: "Du musst Orga sein um diese Funktion nutzen zu können"
   user_already_helper: "Du bist bereits als Helfer oder Orga eingetragen"
+  ical_export_single: "iCal Export"
+  ical_export_default: "iCal Export (alle)"
