@@ -121,7 +121,17 @@ class EventsController < ApplicationController
 		ical = RiCal.Calendar do
 			events = Event.where("end_at BETWEEN :month_start AND :month_end OR start_at BETWEEN :month_start AND :month_end", {:month_start => start_date, :month_end => end_date})
 			events.each do |the_event|
-        export_ical(the_event)
+        event do
+          summary the_event.name
+          uid the_event.uid
+          description the_event.description
+          dtstart the_event.start_at.to_datetime
+          dtend the_event.end_at.to_datetime
+          location the_event.location
+          the_event.event_helpers.each do |event_helper|
+            add_attendee event_helper.user.username
+          end
+        end
 			end
 		end
 	end
