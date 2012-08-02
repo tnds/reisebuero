@@ -1,9 +1,9 @@
 class EventHelpersController < ApplicationController
-  before_filter :authenticate_user!, :except => [:show, :index]
-  before_filter :orga_filter, :only => [:promote, :demote]
+#  before_filter :authenticate_user!, :except => [:show, :index]
+#  before_filter :orga_filter, :only => [:promote, :demote]
   before_filter :self_filter, :except => [:show, :index, :promote, :create, :new]
   before_filter :keep_last_orga, :only => [:demote, :destroy]
-
+  load_and_authorize_resource
   # GET /event_helpers
   # GET /event_helpers.json
   def index
@@ -97,6 +97,7 @@ class EventHelpersController < ApplicationController
   
   def promote
      @event_helper = EventHelper.find(params[:id])
+     authorize! :promote, @event_helper
      @event_helper.orga = true
      @event_helper.save
      redirect_to event_path(@event_helper.event)

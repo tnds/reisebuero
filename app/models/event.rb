@@ -9,10 +9,6 @@ class Event < ActiveRecord::Base
 	validates :uid, :uniqueness => true
 	
 	before_create do |event|
-		event_helper = event.event_helpers.build
-    event_helper.user = current_user
-    event_helper.orga = true
-    event_helper.save
 		event.uid = UUIDTools::UUID.random_create.to_s
 	end
 end
