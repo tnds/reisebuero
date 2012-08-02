@@ -34,7 +34,8 @@ class EventsController < ApplicationController
     @event = Event.find(params[:id])
     @helpers = @event.event_helpers.find_all_by_orga(false,nil)
     @orgas = @event.event_helpers.find_all_by_orga(true)
-    @user_is_orga = orga?
+#    @user_is_orga = orga?
+    @user_is_helper = EventHelper.where(:event_id => @event , :user_id => current_user).exists?
 
     respond_to do |format|
       format.html # show.html.erb

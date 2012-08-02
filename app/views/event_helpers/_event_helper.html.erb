@@ -1,8 +1,8 @@
 <li>
   <% if event_helper.user %>
     <%= event_helper.user.username %>
-    <%= link_to t('promote_helper_short'), promote_event_event_helper_path(event_helper.event, event_helper), :title => t('promote_helper'), data: { confirm: t('confirm_promote_helper')} if user_is_orga and not event_helper.orga? %>
-    <%= link_to t('demote_orga_short'), demote_event_event_helper_path(event_helper.event, event_helper), :title => t('demote_orga'), data: { confirm: t('confirm_demote_orga')} if user_is_orga and event_helper.orga? %>
-    <%= link_to t('destroy_short'), event_event_helper_path(event_helper.event, event_helper), :title => t('destroy'), method: :delete, data: { confirm: t('confirm_delete_helper') } %>
+    <%= link_to t('promote_helper_short'), promote_event_event_helper_path(event_helper.event, event_helper), :title => t('promote_helper'), data: { confirm: t('confirm_promote_helper')} if can? :promote, event_helper and not event_helper.orga? %>
+    <%= link_to t('demote_orga_short'), demote_event_event_helper_path(event_helper.event, event_helper), :title => t('demote_orga'), data: { confirm: t('confirm_demote_orga')} if can? :demote, event_helper and event_helper.orga? %>
+    <%= link_to t('destroy_short'), event_event_helper_path(event_helper.event, event_helper), :title => t('destroy'), method: :delete, data: { confirm: t('confirm_delete_helper') } if can? :destroy, event_helper %>
   <% end %>
 </li>

@@ -14,7 +14,7 @@ class User < ActiveRecord::Base
   validates :username, :presence => true, :uniqueness => true
   
   after_create do |user|
-    if Users.any?
+    if User.any?
       user.role_id = Role.find_by_name('User').id
       user.save
     end

@@ -1,7 +1,7 @@
 class EventHelpersController < ApplicationController
 #  before_filter :authenticate_user!, :except => [:show, :index]
 #  before_filter :orga_filter, :only => [:promote, :demote]
-  before_filter :self_filter, :except => [:show, :index, :promote, :create, :new]
+  #before_filter :self_filter, :except => [:show, :index, :promote, :create, :new]
   before_filter :keep_last_orga, :only => [:demote, :destroy]
   load_and_authorize_resource
   # GET /event_helpers
@@ -109,18 +109,18 @@ class EventHelpersController < ApplicationController
      @event_helper.save
      redirect_to event_path(@event_helper.event)
  end
-
-  def self_filter
-    @event_helper = EventHelper.find(params[:id])
-    unless @event_helper.user_id = current_user.id
-      flash[:error] = t('cannot_edit_other_event_helper')
-      redirect_to event_url(@event_helper.event)
-    end
-  end
+#
+#  def self_filter
+#    @event_helper = EventHelper.find(params[:id])
+#    unless @event_helper.user_id = current_user.id
+#      flash[:error] = t('cannot_edit_other_event_helper')
+#      redirect_to event_url(@event_helper.event)
+#    end
+#  end
   
   def keep_last_orga
     @event_helper = EventHelper.find(params[:id])
-    unless EventHelper.where(:event_id => @event_helper.event, :orga => true).count() > 1
+    unless @event_helper.orga == false || EventHelper.where(:event_id => @event_helper.event, :orga => true).count() > 1
       flash[:error] = t('must_have_orga')
       redirect_to event_url(@event_helper.event)
     end
