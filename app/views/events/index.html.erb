@@ -18,4 +18,4 @@
 </ul>
 <br />
 
-<%= link_to t('new_event'), new_event_path %>
+<%= link_to t('new_event'), new_event_path if can? :create, Event %>

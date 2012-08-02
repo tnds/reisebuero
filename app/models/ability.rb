@@ -11,18 +11,25 @@ class Ability
 	    end
 			if user.role.name == "Moderator"
 				can :manage, Event
+        can :manage, EventHelper
 			end
 			if user.role.name == "User"
 				can :create, Event
 				can :read, Event
+        can :read, EventHelper
 				can :create, EventHelper
-				can :manage, EventHelper, :user_id => user.id
-        can [:manage, :promote, :demote], Event do |event|
-          EventHelper.where(:event_id => event.id, :user_id => user.id).exists?
+				can :destroy, EventHelper, :user_id => user.id
+        can :manage, Event do |event|
+          EventHelper.where(:event_id => event.id, :user_id => user.id, :orga => true).exists?
+        end
+        can [:manage, :promote, :demote], EventHelper do |event_helper|
+          event = event_helper.event
+          EventHelper.where(:event_id => event.id, :user_id => user.id, :orga => true).exists? unless event.nil?
         end
 			end
     else
-      can :read, [Event, EventHelper]
+#      can :read, [Event, EventHelper]
+      can :read, Event
       can :create, User
     end
 		#

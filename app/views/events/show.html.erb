@@ -20,7 +20,7 @@
   <%= @event.description %>
 </p>
 
-<%# if can? :read, EventHelper %>
+<% if can? :read, EventHelper %>
 <div id="event_orgas">
   <h3><%= t('event_orgas') %></h3>
   <ul>
@@ -33,13 +33,14 @@
   <ul>
     <%= render :partial => 'event_helpers/event_helper', :collection => @helpers, :locals => { :user_is_orga => @user_is_orga} %>
   </ul>
-  <%= form_for([@event, @event.event_helpers.build]) do |helper_form| %>
-    <div class="action">
-      <%= helper_form.submit t('helper_submit') %>
-    </div>
+  <% if can? :create, EventHelper and not @user_is_helper %>
+    <%= form_for([@event, @event.event_helpers.build]) do |helper_form| %>
+      <div class="action">
+        <%= helper_form.submit t('helper_submit') %>
+      </div>
+    <% end %>
   <% end %>
 </div>
-<%# end %>
+<% end %>
 
-<%= link_to t('edit'), edit_event_path(@event) %> |
-<%= link_to t('events'), events_path %>
+<%= link_to t('edit'), edit_event_path(@event) if can? :update, @event %>
