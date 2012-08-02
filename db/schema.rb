@@ -44,18 +44,6 @@ ActiveRecord::Schema.define(:version => 20120717195442) do
   add_index "event_helpers", ["event_id"], :name => "index_event_helpers_on_event_id"
   add_index "event_helpers", ["user_id"], :name => "index_event_helpers_on_user_id"
 
-  create_table "event_orgas", :force => true do |t|
-    t.integer  "event_id"
-    t.integer  "user_id"
-    t.integer  "category_id"
-    t.datetime "created_at",  :null => false
-    t.datetime "updated_at",  :null => false
-  end
-
-  add_index "event_orgas", ["category_id"], :name => "index_event_orgas_on_category_id"
-  add_index "event_orgas", ["event_id"], :name => "index_event_orgas_on_event_id"
-  add_index "event_orgas", ["user_id"], :name => "index_event_orgas_on_user_id"
-
   create_table "events", :force => true do |t|
     t.string   "name"
     t.datetime "start_at"
@@ -77,7 +65,7 @@ ActiveRecord::Schema.define(:version => 20120717195442) do
   create_table "users", :force => true do |t|
     t.string   "name"
     t.string   "first_name"
-    t.string   "login"
+    t.string   "username"
     t.string   "password"
     t.string   "email"
     t.datetime "created_at",                             :null => false
@@ -98,7 +86,6 @@ ActiveRecord::Schema.define(:version => 20120717195442) do
     t.integer  "failed_attempts",        :default => 0
     t.string   "unlock_token"
     t.datetime "locked_at"
-    t.string   "username"
     t.integer  "role_id"
   end
 
