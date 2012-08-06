@@ -42,6 +42,24 @@
   <% end %>
 </div>
 <% end %>
+<p>
+  <%= link_to t('edit'), edit_event_path(@event) if can? :update, @event %> <br/>
+  <%= link_to t('ical_export_single'), params.merge(:format => :ics)  %>
+</p>
 
-<%= link_to t('edit'), edit_event_path(@event) if can? :update, @event %>
-<%= link_to t('ical_export_single'), params.merge(:format => :ics)  %>
+<div id="lodgings" class="two-column column-1">
+  <h3><%= t('lodgings') %></h3>
+  <ul>
+    <%= render :partial => 'lodgings/lodging', :collection => @lodgings %>
+  </ul>
+  <p>
+    <%= link_to t('new_lodging'), new_event_lodging_path(@event) %>
+  </p>
+</div>
+
+<div id="lodging_requests" class="two-column column-2">
+  <h3><%= t('lodging_requests') %></h3>
+  <ul>
+    <%= render :partial => 'lodgings/lodging', :collection => @lodging_requests %>
+  </ul>
+</div>

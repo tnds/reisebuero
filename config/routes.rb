@@ -1,5 +1,9 @@
 Reisebuero::Application.routes.draw do
 
+#  resources :lodgings do
+#    resources :bookings
+#  end
+
   devise_for :users
 
   resources :categories
@@ -8,6 +12,9 @@ Reisebuero::Application.routes.draw do
     resources :event_helpers do
         get 'promote', :on => :member
         get 'demote', :on => :member
+    end
+    resources :lodgings do
+      resources :bookings
     end
   end
 

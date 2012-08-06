@@ -1,0 +1,46 @@
+<h1>Listing lodgings</h1>
+<% unless @event.nil? %>
+<h2>
+  <%= link_to t('event')+": "+@event.name, event_path(@event.id) %>
+</h2>
+<% end %>
+<table>
+  <tr>
+    <th>Event</th>
+    <th>Start at</th>
+    <th>End at</th>
+    <th>Description</th>
+    <th>Location</th>
+    <th>Max people</th>
+    <th>Accessible</th>
+    <th>Maplink</th>
+    <th>Request</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @lodgings.each do |lodging| %>
+  <tr>
+    <td><%= lodging.event.name unless lodging.event.nil? %></td>
+    <td><%= lodging.start_at %></td>
+    <td><%= lodging.end_at %></td>
+    <td><%= lodging.description %></td>
+    <td><%= lodging.location %></td>
+    <td><%= lodging.max_people %></td>
+    <td><%= lodging.accessible %></td>
+    <td><%= lodging.maplink %></td>
+    <td><%= lodging.request %></td>
+    <td><%= link_to 'Show', lodging %></td>
+    <td><%= link_to 'Edit', edit_lodging_path(lodging) %></td>
+    <td><%= link_to 'Destroy', lodging, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+<% if @event.nil? %>
+  <%= link_to t('new_lodging'), new_lodging_path %> <br/>
+<% else %>
+  <%= link_to t('new_lodging'), new_event_lodging_path(@event.id) %>
+<% end %>

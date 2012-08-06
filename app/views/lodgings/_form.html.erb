@@ -1,0 +1,49 @@
+<%= form_for(@lodging) do |f| %>
+  <% if @lodging.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@lodging.errors.count, "error") %> prohibited this lodging from being saved:</h2>
+
+      <ul>
+      <% @lodging.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :start_at %><br />
+    <%= f.date_select :start_at %>
+  </div>
+  <div class="field">
+    <%= f.label :end_at %><br />
+    <%= f.date_select :end_at %>
+  </div>
+  <div class="field">
+    <%= f.label :description %><br />
+    <%= f.text_area :description %>
+  </div>
+  <div class="field">
+    <%= f.label :location %><br />
+    <%= f.text_area :location %>
+  </div>
+  <div class="field">
+    <%= f.label :max_people %><br />
+    <%= f.number_field :max_people %>
+  </div>
+  <div class="field">
+    <%= f.label :accessible %><br />
+    <%= f.check_box :accessible %>
+  </div>
+  <div class="field">
+    <%= f.label :maplink %><br />
+    <%= f.text_area :maplink %>
+  </div>
+  <div class="field">
+    <%= f.label :request %><br />
+    <%= f.check_box :request %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

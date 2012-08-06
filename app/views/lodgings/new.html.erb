@@ -1,0 +1,10 @@
+<h1><%= t('new_lodging') %></h1>
+<% unless @event.nil? %>
+<h2>
+  <%= link_to t('event')+": "+@event.name, event_path(@event.id) %>
+</h2>
+<% end %>
+
+<%= render 'form' %>
+
+<%= link_to 'Back', lodgings_path %>

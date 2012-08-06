@@ -4,6 +4,7 @@ class Event < ActiveRecord::Base
   has_many :event_categories, :dependent => :destroy
   has_many :categories, :through => :event_categories
   has_many :event_helpers, :dependent => :destroy
+  has_many :lodgings, :dependent => :destroy
   
   validates :name, :start_at, :end_at, :presence => true
 	validates :uid, :uniqueness => true

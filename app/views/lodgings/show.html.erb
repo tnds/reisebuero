@@ -1,0 +1,50 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Event:</b>
+  <%= @event.name unless @event.nil? %>
+</p>
+
+<p>
+  <b>Start at:</b>
+  <%= @lodging.start_at %>
+</p>
+
+<p>
+  <b>End at:</b>
+  <%= @lodging.end_at %>
+</p>
+
+<p>
+  <b>Description:</b>
+  <%= @lodging.description %>
+</p>
+
+<p>
+  <b>Location:</b>
+  <%= @lodging.location %>
+</p>
+
+<p>
+  <b>Max people:</b>
+  <%= @lodging.max_people %>
+</p>
+
+<p>
+  <b>Accessible:</b>
+  <%= @lodging.accessible %>
+</p>
+
+<p>
+  <b>Maplink:</b>
+  <%= @lodging.maplink %>
+</p>
+
+<p>
+  <b>Request:</b>
+  <%= @lodging.request %>
+</p>
+
+
+<%= link_to 'Edit', edit_lodging_path(@lodging) %> |
+<%= link_to 'Back', lodgings_path %>
