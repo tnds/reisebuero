@@ -3,9 +3,9 @@ require 'spec_helper'
 describe "bookings/edit" do
   before(:each) do
     @booking = assign(:booking, stub_model(Booking,
-      :lodging => "",
+      :lodging => nil,
       :persons => 1,
-      :user => ""
+      :user => nil
     ))
   end
 

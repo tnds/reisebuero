@@ -12,6 +12,7 @@ class Ability
 			if user.role.name == "Moderator"
 				can :manage, Event
         can :manage, EventHelper
+        can :manage, Lodging
 			end
 			if user.role.name == "User"
 				can :create, Event
@@ -26,6 +27,15 @@ class Ability
           event = event_helper.event
           EventHelper.where(:event_id => event.id, :user_id => user.id, :orga => true).exists? unless event.nil?
         end
+        can :read, Lodging
+        can :read, Booking
+        can :manage, Lodging, :user_id => user.id
+        can :manage, Booking, :user_id => user.id
+        can :destroy, Booking do |booking|
+          Lodging.where(:id => booking.lodging_id, :user_id => user.id).exists?
+        end
+        cannot :index, Lodging
+        cannot :index, Booking
 			end
     else
 #      can :read, [Event, EventHelper]

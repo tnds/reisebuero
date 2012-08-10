@@ -1,50 +1,71 @@
-<p id="notice"><%= notice %></p>
-
+<h1>
+  <% if @lodging.request.nil? or @lodging.request == false  %>
+    <%= t('lodging') %>
+  <% else %>
+    <%= t('lodging_request_html') %>
+  <% end %>
+</h1>
 <p>
-  <b>Event:</b>
-  <%= @event.name unless @event.nil? %>
+  <b>
+    <%= t('event')+':' %>
+  </b>
+  <%= link_to @lodging.event.name, event_path(@lodging.event) unless @lodging.event.nil? %>
 </p>
 
 <p>
-  <b>Start at:</b>
+  <b>
+    <%= t('user')+':' %>
+  </b>
+  <%= @lodging.user.username %>
+</p>
+
+<p>
+  <b>
+    <%= t('start_at')+':' %>
+  </b>
   <%= @lodging.start_at %>
 </p>
 
 <p>
-  <b>End at:</b>
+  <b>
+    <%= t('end_at')+':' %>
+  </b>
   <%= @lodging.end_at %>
 </p>
 
 <p>
-  <b>Description:</b>
-  <%= @lodging.description %>
-</p>
-
-<p>
-  <b>Location:</b>
-  <%= @lodging.location %>
-</p>
-
-<p>
-  <b>Max people:</b>
+  <b>
+    <%= t('max_people')+':' %>
+  </b>
   <%= @lodging.max_people %>
 </p>
 
 <p>
-  <b>Accessible:</b>
+  <b>
+    <%= t('accessible')+':' %>
+  </b>
   <%= @lodging.accessible %>
 </p>
 
 <p>
-  <b>Maplink:</b>
-  <%= @lodging.maplink %>
+  <b>
+    <%= t('description')+':' %>
+  </b>
+  <%= @lodging.description %>
 </p>
 
 <p>
-  <b>Request:</b>
-  <%= @lodging.request %>
+  <b>
+    <%= t('location')+':' %>
+  </b>
+  <%= @lodging.location %>
 </p>
 
+<p>
+  <b>
+    <%= t('maplink')+':' %>
+  </b>
+  <%= link_to @lodging.maplink, @lodging.maplink %>
+</p>
 
-<%= link_to 'Edit', edit_lodging_path(@lodging) %> |
-<%= link_to 'Back', lodgings_path %>
+<%= link_to t('edit'), edit_lodging_path(@lodging) if can? :update, @lodging %>

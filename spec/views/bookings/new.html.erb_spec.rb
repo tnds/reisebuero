@@ -3,9 +3,9 @@ require 'spec_helper'
 describe "bookings/new" do
   before(:each) do
     assign(:booking, stub_model(Booking,
-      :lodging => "",
+      :lodging => nil,
       :persons => 1,
-      :user => ""
+      :user => nil
     ).as_new_record)
   end
 

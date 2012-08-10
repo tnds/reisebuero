@@ -1,6 +1,11 @@
-<h1>Editing lodging</h1>
+<h1>
+  <% if @lodging.request.nil? or @lodging.request == false  %>
+    <%= t('edit_lodging') %>
+  <% else %>
+    <%= t('edit_lodging_request_html') %>
+  <% end %>
+</h1>
 
 <%= render 'form' %>
 
-<%= link_to 'Show', @lodging %> |
-<%= link_to 'Back', lodgings_path %>
+<%= link_to t('show'), @lodging %>

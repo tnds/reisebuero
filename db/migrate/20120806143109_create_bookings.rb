@@ -7,5 +7,7 @@ class CreateBookings < ActiveRecord::Migration
 
       t.timestamps
     end
+    add_index :bookings, :lodging_id
+    add_index :bookings, :user_id
   end
 end

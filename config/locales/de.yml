@@ -11,7 +11,7 @@ de:
       short: "%d. %b"
       long: "%d. %B %Y"
 
-    day_names: [Monat, Dienstag, Mittwoch, Donnerstag, Freitag, Samstag, Sonntag]
+    day_names: [Montag, Dienstag, Mittwoch, Donnerstag, Freitag, Samstag, Sonntag]
     abbr_day_names: [Mo, Di, Mi, Do, Fr, Sa, So]
 
     # Don't forget the nil at the beginning; there's no such thing as a 0th month
@@ -141,8 +141,30 @@ de:
           quadrillion: Billiarde(n)
   
   activerecord:
+    attributes:
+      event:
+        start_at: Beginn
+        end_at: Ende
+      lodging:
+        request: Gesuch
+        user: Benutzer
+        start_at: Beginn
+        end_at: Ende
+        accessible: Behindertengerecht
+        max_people: "Maximale Anzahl Personen"
+        maplink: "Map-Link"
+        description: Beschreibung
+        location: Ort
     errors:
       models:
+        lodging:
+          attributes:
+            max_people:
+              blank: "fehlt"
+            start_at:
+              blank: "fehlt"
+            end_at:
+              blank: "fehlt"
         user:
           attributes:
             email:
@@ -172,6 +194,7 @@ de:
   new_event: "Neues Event"
   edit: Bearbeiten
   destroy: Löschen
+  show: Anzeigen
   destroy_short: "X"
   back: Zurück
   all_day: ganztägig
@@ -196,6 +219,15 @@ de:
   user_already_helper: "Du bist bereits als Helfer oder Orga eingetragen"
   ical_export_single: "iCal Export"
   ical_export_default: "iCal Export (alle)"
-  people: Person(en)
+  people: "Person(en)"
+  lodging: Unterkunft
   lodgings: Unterkünfte
-  lodging_requests: Unterkunfts-Gesuche
+  lodging_requests: "Unterkunfts-Gesuche"
+  lodging_request: "Unterkunfts-Gesuch"
+  lodging_request_html: "Unterkunfts-<span class='red'>Gesuch</span>"
+  edit_lodging: "Unterkunft bearbeiten"
+  edit_lodging_request: "Unterkunfts-Gesuch bearbeiten"
+  edit_lodging_request_html: "Unterkunfts-<span class='red'>Gesuch</span> bearbeiten"
+  new_lodging: "Unterkunft melden"
+  new_lodging_request: "Unterkunfts-Gesuch melden"
+  new_lodging_request_html: "Unterkunfts-<span class='red'>Gesuch</span> melden"

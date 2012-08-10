@@ -13,14 +13,6 @@
 
 ActiveRecord::Schema.define(:version => 20120806123215) do
 
-  create_table "bookings", :force => true do |t|
-    t.integer  "lodging_id"
-    t.integer  "persons"
-    t.integer  "user_id"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
-  end
-
   create_table "categories", :force => true do |t|
     t.string   "name"
     t.text     "description"
@@ -74,21 +66,6 @@ ActiveRecord::Schema.define(:version => 20120806123215) do
     t.datetime "created_at",  :null => false
     t.datetime "updated_at",  :null => false
     t.string   "uid"
-  end
-
-  create_table "lodgings", :force => true do |t|
-    t.integer  "event_id"
-    t.date     "start_at"
-    t.date     "end_at"
-    t.text     "description"
-    t.text     "location"
-    t.integer  "max_people"
-    t.boolean  "accessible"
-    t.text     "maplink"
-    t.boolean  "request"
-    t.datetime "created_at",  :null => false
-    t.datetime "updated_at",  :null => false
-    t.integer  "user_id"
   end
 
   add_index "lodgings", ["event_id"], :name => "index_lodgings_on_event_id"
