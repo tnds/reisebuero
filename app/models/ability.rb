@@ -13,6 +13,8 @@ class Ability
 				can :manage, Event
         can :manage, EventHelper
         can :manage, Lodging
+        can :read, Contacttype
+        can :read, Contact, :public => true
 			end
 			if user.role.name == "User"
 				can :create, Event
@@ -36,6 +38,9 @@ class Ability
         end
         cannot :index, Lodging
         cannot :index, Booking
+        can :manage, Contact, :user_id => user.id
+        can :read, Contact, :public => true
+        can :read, Contacttype
 			end
     else
 #      can :read, [Event, EventHelper]

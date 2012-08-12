@@ -5,67 +5,74 @@
     <%= t('lodging_request_html') %>
   <% end %>
 </h1>
-<p>
-  <b>
-    <%= t('event')+':' %>
-  </b>
+<div class="lodging two-column column-1">
+<h2>
+  <%= Lodging.human_attribute_name('event')+':' %>
   <%= link_to @lodging.event.name, event_path(@lodging.event) unless @lodging.event.nil? %>
-</p>
+</h2>
 
 <p>
   <b>
-    <%= t('user')+':' %>
+    <%= Lodging.human_attribute_name("user")+':' %>
   </b>
   <%= @lodging.user.username %>
 </p>
 
 <p>
   <b>
-    <%= t('start_at')+':' %>
+    <%= Lodging.human_attribute_name(:start_at)+':' %>
   </b>
   <%= @lodging.start_at %>
 </p>
 
 <p>
   <b>
-    <%= t('end_at')+':' %>
+    <%= Lodging.human_attribute_name('end_at')+':' %>
   </b>
   <%= @lodging.end_at %>
 </p>
 
 <p>
   <b>
-    <%= t('max_people')+':' %>
+    <%= Lodging.human_attribute_name('max_people')+':' %>
   </b>
   <%= @lodging.max_people %>
 </p>
 
 <p>
   <b>
-    <%= t('accessible')+':' %>
+    <%= Lodging.human_attribute_name('accessible')+':' %>
   </b>
   <%= @lodging.accessible %>
 </p>
 
 <p>
   <b>
-    <%= t('description')+':' %>
+    <%= Lodging.human_attribute_name('description')+':' %>
   </b>
   <%= @lodging.description %>
 </p>
 
 <p>
   <b>
-    <%= t('location')+':' %>
+    <%= Lodging.human_attribute_name('location')+':' %>
   </b>
   <%= @lodging.location %>
 </p>
 
 <p>
   <b>
-    <%= t('maplink')+':' %>
+    <%= Lodging.human_attribute_name('maplink')+':' %>
   </b>
   <%= link_to @lodging.maplink, @lodging.maplink %>
 </p>
 
 <%= link_to t('edit'), edit_lodging_path(@lodging) if can? :update, @lodging %>
+</div>
+
+<div class="lodging two-column column-2">
+<h2>
+  <%= t('contact') %>
+</h2>
+<%= render :partial => 'contacts/contact', :collection => @contacts, :locals => {:readonly => true} %>
+</div>
