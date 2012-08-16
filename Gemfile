@@ -40,3 +40,9 @@ gem "jquery_datepicker"
 gem "ri_cal"
 gem "uuidtools"
 gem "therubyracer", :group => :linux
+
+
+  gem 'unicorn'
+  gem 'capistrano', :path => "../capistrano"
+	gem "rvm-capistrano", :require => false
+	gem 'capistrano-unicorn', :require => false

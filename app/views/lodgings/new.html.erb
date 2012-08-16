@@ -1,0 +1,10 @@
+<h1>
+  <% if @lodging.request.nil? or @lodging.request == false  %>
+    <%= t('new_lodging') %>
+  <% else %>
+    <%= t('new_lodging_request_html') %>
+  <% end %>
+</h1>
+
+<%= render 'form' %>
+
