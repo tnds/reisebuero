@@ -39,10 +39,12 @@ gem "cancan"
 gem "jquery_datepicker"
 gem "ri_cal"
 gem "uuidtools"
-gem "therubyracer", :group => :linux
 
-
+group :production do
+  gem "therubyracer"
   gem 'unicorn'
-  gem 'capistrano', :path => "../capistrano"
+end
+
+  gem 'capistrano'#, :path => "../capistrano"
 	gem "rvm-capistrano", :require => false
 	gem 'capistrano-unicorn', :require => false
