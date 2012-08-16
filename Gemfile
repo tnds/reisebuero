@@ -45,6 +45,6 @@ group :production do
   gem 'unicorn'
 end
 
-  gem 'capistrano'#, :path => "../capistrano"
+  gem 'capistrano'
 	gem "rvm-capistrano", :require => false
 	gem 'capistrano-unicorn', :require => false
