@@ -15,10 +15,12 @@ Reisebuero::Application.routes.draw do
     end
   end
 
-  resources :users
-#  resources :users do
-#    resources :event_helpers
-#  end
+#  resources :users
+  resources :users do
+    resources :contacts #do
+#      resources :contacttypes
+#    end
+  end
 
   match '/calendar(/:year(/:month))' => 'calendar#index', :as => :calendar, :constraints => {:year => /\d{4}/, :month => /\d{1,2}/}
 

@@ -11,6 +11,7 @@ class User < ActiveRecord::Base
   has_many :event_helpers, :dependent => :destroy
 	belongs_to :role
   has_many :lodgings, :dependent => :destroy
+  has_many :contacts, :dependent => :destroy
   
   validates :username, :presence => true, :uniqueness => true
   

@@ -12,6 +12,7 @@ class LodgingsController < ApplicationController
   # GET /lodgings/1
   def show
     @lodging = Lodging.find(params[:id])
+    @contacts = Contact.find_all_by_user_id_and_public(@lodging.user_id, true)
 
     respond_to do |format|
       format.html # show.html.erb
