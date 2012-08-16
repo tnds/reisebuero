@@ -2,6 +2,10 @@ Reisebuero::Application.routes.draw do
 
   devise_for :users
 
+  resources :lodgings do
+    resources :bookings
+  end
+
   resources :categories
 
   resources :events do
