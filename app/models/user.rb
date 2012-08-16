@@ -10,6 +10,7 @@ class User < ActiveRecord::Base
 #  has_many :helpers
   has_many :event_helpers, :dependent => :destroy
 	belongs_to :role
+  has_many :lodgings, :dependent => :destroy
   
   validates :username, :presence => true, :uniqueness => true
   
