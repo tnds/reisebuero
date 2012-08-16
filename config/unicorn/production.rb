@@ -25,7 +25,7 @@ if env == "production"
   working_directory "/home/deployer/apps/reisebuero/current"
 
   # feel free to point this anywhere accessible on the filesystem
-  user 'can', 'can'
+  user 'deployer', 'deployer'
   shared_path = "/home/deployer/apps/reisebuero/shared"
 
   stderr_path "#{shared_path}/log/unicorn.stderr.log"
