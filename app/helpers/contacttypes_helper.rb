@@ -1,0 +1,2 @@
+module ContacttypesHelper
+end

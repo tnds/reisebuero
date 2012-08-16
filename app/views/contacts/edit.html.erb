@@ -1,0 +1,6 @@
+<h1>Editing contact</h1>
+
+<%= render 'form' %>
+
+<%= link_to t('show'), user_contact_path(@user, @contact) %> |
+<%= link_to t('contacts'), user_contacts_path(@user) %>
