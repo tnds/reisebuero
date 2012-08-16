@@ -11,13 +11,42 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120806123215) do
+ActiveRecord::Schema.define(:version => 20120811124851) do
+
+  create_table "bookings", :force => true do |t|
+    t.integer  "lodging_id"
+    t.integer  "persons"
+    t.integer  "user_id"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  add_index "bookings", ["lodging_id"], :name => "index_bookings_on_lodging_id"
+  add_index "bookings", ["user_id"], :name => "index_bookings_on_user_id"
 
   create_table "categories", :force => true do |t|
     t.string   "name"
     t.text     "description"
     t.datetime "created_at",  :null => false
     t.datetime "updated_at",  :null => false
+  end
+
+  create_table "contacts", :force => true do |t|
+    t.integer  "user_id"
+    t.integer  "contacttype_id"
+    t.string   "address"
+    t.boolean  "public"
+    t.datetime "created_at",     :null => false
+    t.datetime "updated_at",     :null => false
+  end
+
+  add_index "contacts", ["contacttype_id"], :name => "index_contacts_on_contacttype_id"
+  add_index "contacts", ["user_id"], :name => "index_contacts_on_user_id"
+
+  create_table "contacttypes", :force => true do |t|
+    t.string   "name"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
   end
 
   create_table "event_categories", :force => true do |t|
@@ -44,18 +73,6 @@ ActiveRecord::Schema.define(:version => 20120806123215) do
   add_index "event_helpers", ["event_id"], :name => "index_event_helpers_on_event_id"
   add_index "event_helpers", ["user_id"], :name => "index_event_helpers_on_user_id"
 
-  create_table "event_orgas", :force => true do |t|
-    t.integer  "event_id"
-    t.integer  "user_id"
-    t.integer  "category_id"
-    t.datetime "created_at",  :null => false
-    t.datetime "updated_at",  :null => false
-  end
-
-  add_index "event_orgas", ["category_id"], :name => "index_event_orgas_on_category_id"
-  add_index "event_orgas", ["event_id"], :name => "index_event_orgas_on_event_id"
-  add_index "event_orgas", ["user_id"], :name => "index_event_orgas_on_user_id"
-
   create_table "events", :force => true do |t|
     t.string   "name"
     t.datetime "start_at"
@@ -68,7 +85,23 @@ ActiveRecord::Schema.define(:version => 20120806123215) do
     t.string   "uid"
   end
 
+  create_table "lodgings", :force => true do |t|
+    t.integer  "event_id"
+    t.integer  "user_id"
+    t.date     "start_at"
+    t.date     "end_at"
+    t.integer  "max_people"
+    t.boolean  "accessible"
+    t.text     "description"
+    t.text     "location"
+    t.text     "maplink"
+    t.boolean  "request"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
+  end
+
   add_index "lodgings", ["event_id"], :name => "index_lodgings_on_event_id"
+  add_index "lodgings", ["user_id"], :name => "index_lodgings_on_user_id"
 
   create_table "roles", :force => true do |t|
     t.string   "name"
@@ -79,7 +112,7 @@ ActiveRecord::Schema.define(:version => 20120806123215) do
   create_table "users", :force => true do |t|
     t.string   "name"
     t.string   "first_name"
-    t.string   "login"
+    t.string   "username"
     t.string   "password"
     t.string   "email"
     t.datetime "created_at",                             :null => false
@@ -100,7 +133,6 @@ ActiveRecord::Schema.define(:version => 20120806123215) do
     t.integer  "failed_attempts",        :default => 0
     t.string   "unlock_token"
     t.datetime "locked_at"
-    t.string   "username"
     t.integer  "role_id"
   end
 

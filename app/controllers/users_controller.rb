@@ -16,6 +16,8 @@ class UsersController < ApplicationController
   # GET /users/1.json
   def show
     @user = User.find(params[:id])
+    @contacts = @user.contacts
+    @public_contacts = @user.contacts.find_all_by_public(true)
 
     respond_to do |format|
       format.html # show.html.erb

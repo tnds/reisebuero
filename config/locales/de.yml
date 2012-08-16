@@ -231,3 +231,12 @@ de:
   new_lodging: "Unterkunft melden"
   new_lodging_request: "Unterkunfts-Gesuch melden"
   new_lodging_request_html: "Unterkunfts-<span class='red'>Gesuch</span> melden"
+  contact_public: (öffentlich)
+  contact_private: (nicht öffentlich)
+  contact: Kontakt
+  contacts: Kontakte
+  new_contact: Hinzufügen
+  twitter: Twitter
+  email: Email
+  phone: Festnetz
+  mobile: Handy
