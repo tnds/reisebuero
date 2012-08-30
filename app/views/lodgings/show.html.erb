@@ -12,24 +12,14 @@
 </h2>
 
 <p>
+	<%= raw(display_time_lodging(@lodging)) %> 
+</p>
+
+<p>
   <b>
     <%= Lodging.human_attribute_name("user")+':' %>
   </b>
   <%= @lodging.user.username %>
-</p>
-
-<p>
-  <b>
-    <%= Lodging.human_attribute_name(:start_at)+':' %>
-  </b>
-  <%= @lodging.start_at %>
-</p>
-
-<p>
-  <b>
-    <%= Lodging.human_attribute_name('end_at')+':' %>
-  </b>
-  <%= @lodging.end_at %>
 </p>
 
 <p>

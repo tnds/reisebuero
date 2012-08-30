@@ -186,6 +186,7 @@ de:
   calendar: Kalender
   events: Events
   categories: Kategorien
+  user: Benutzer
   users: Benutzer
   event_orgas: Orga
   orga_submit: "Organisator eintragen"
@@ -240,3 +241,5 @@ de:
   email: Email
   phone: Festnetz
   mobile: Handy
+  change_registration: "Benutzerdaten / Passwort ändern"
+  to_time: bis

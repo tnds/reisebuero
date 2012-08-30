@@ -41,9 +41,10 @@ gem "ri_cal"
 gem "uuidtools"
 
 group :production do
-  gem "therubyracer"
   gem 'unicorn'
 end
+
+gem "therubyracer"
 
   gem 'capistrano'
 	gem "rvm-capistrano", :require => false
