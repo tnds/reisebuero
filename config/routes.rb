@@ -21,6 +21,8 @@ Reisebuero::Application.routes.draw do
 #      resources :contacttypes
 #    end
   end
+  
+  match '/my_page' => 'my_page#index'
 
   match '/calendar(/:year(/:month))' => 'calendar#index', :as => :calendar, :constraints => {:year => /\d{4}/, :month => /\d{1,2}/}
 

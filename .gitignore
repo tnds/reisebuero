@@ -19,3 +19,5 @@
 .rvmrc
 ERD.png
 ERD.pdf
+/.settings/
+/config/database.yml

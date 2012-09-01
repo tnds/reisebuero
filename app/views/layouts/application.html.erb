@@ -20,16 +20,17 @@
 		<% end %> 
 	<% end %>
 	<div id="outer">
+          <div id="top">
 		<div id="menu">
 			<%= render 'shared/menu' %>
 		</div>	
 		<div id="login">
 			<%= render 'shared/login' %>
 		</div>
-		
-		<div id="main">
-			<%= yield %>
-		</div>
-	</div>
+          </div>
+          <div id="main">
+            <%= yield %>
+          </div>
+  	</div>
 </body>
 </html>

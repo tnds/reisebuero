@@ -24,6 +24,8 @@ class LodgingsController < ApplicationController
     @lodging = Lodging.new
     @lodging.event_id = Event.find(params[:event]).id unless params[:event].nil?
     @lodging.request = params[:request] || false
+    @lodging.start_at = params[:start_at] unless params[:start_at].nil?
+    @lodging.end_at = params[:end_at] unless params[:end_at].nil?
 
     respond_to do |format|
       format.html # new.html.erb

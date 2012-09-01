@@ -1,0 +1,7 @@
+<%= link_to(lodging_event) do %>
+  <%= lodging_event.event.name %>:
+  <%= lodging_event.max_people %>
+  <%= t('people') %>
+  <br/>
+<% end %>
+<%= raw(display_time_lodging(lodging_event)) %> 

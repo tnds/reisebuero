@@ -2,8 +2,6 @@ source 'https://rubygems.org'
 
 gem 'rails', '3.2.6'
 
-gem 'sqlite3'
-
 group :assets do
   gem 'sass-rails',   '~> 3.2.3'
   gem 'coffee-rails', '~> 3.2.1'
@@ -16,6 +14,7 @@ gem 'event-calendar', :require => 'event_calendar'
 gem 'devise'
 
 group :development, :test do
+  gem 'sqlite3'
 	gem "pry"
 	gem "pry-rails"
 	gem "rspec-rails"
@@ -41,9 +40,11 @@ gem "ri_cal"
 gem "uuidtools"
 
 group :production do
-  gem "therubyracer"
+  gem 'pg'
   gem 'unicorn'
 end
+
+gem "therubyracer"
 
   gem 'capistrano'
 	gem "rvm-capistrano", :require => false

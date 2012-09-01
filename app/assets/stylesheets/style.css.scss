@@ -10,7 +10,8 @@ body {
     color: $dark;
     font-family: verdana, arial, helvetica, sans-serif;
     font-size: 13px;
-line-height: 18px; }
+    line-height: 18px; 
+}
 
 h1 {
     text-align: center;
@@ -19,12 +20,14 @@ h1 {
 p, ol, ul, td {
     font-family: verdana, arial, helvetica, sans-serif;
     font-size: 13px;
-line-height: 18px; }
+    line-height: 18px; 
+}
 
 pre {
     background-color: #eee;
     padding: 10px;
-font-size: 11px; }
+    font-size: 11px; 
+}
 
 a {
     color: #000;
@@ -87,6 +90,10 @@ div {
     margin:0 auto;
 }
 
+#top {
+    height:50px;
+}
+
 #menu {
     float:left;
 }
@@ -117,7 +124,7 @@ div {
 }
 
 #main {
-    padding-top:35px;
+
 }
 
 .month-nav {
@@ -151,4 +158,8 @@ div {
 
 .red {
     color: #ff0000;
+}
+.event_name {
+    font-size: 14pt;
+    font-weight: bold;
 }

@@ -45,7 +45,7 @@ class Ability
     else
 #      can :read, [Event, EventHelper]
       can :read, Event
-      can :create, User
+#      can :create, User
     end
 		#
     # The first argument to `can` is the action you are giving the user permission to do.
