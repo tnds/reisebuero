@@ -19,8 +19,12 @@
 
 <%= link_to t('edit'), edit_user_path(@user) if can? :update, @user %>
 
+<h2>
+  <%= t('contact') %>
+</h2>
+
 <% if can? :read, @contacts %>
-  <%= render :partial => 'contacts/contact', :collection => @contacts, :locals => {:readonly => false} if can? :read, @contacts %> %>
+  <%= render :partial => 'contacts/contact', :collection => @contacts, :locals => {:readonly => false} %>
 <% elsif can? :read, @public_contacts %>
   <%= render :partial => 'contacts/contacts', :locals => { :contacts => @public_contacts, :user => @user, :readonly => false} %>
 <% end %>

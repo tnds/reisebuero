@@ -2,9 +2,9 @@
 
 <h2><%= @event.name %></h2>
 <p>
-	<%= raw(display_time(@event)) %> 
+	<%= raw(display_time_event(@event)) %> 
 	<% if @event.all_day %>
-	(<%=t('all_day')%>)
+          (<%=t('all_day')%>)
 	<% end %>
 </p>
 
@@ -51,7 +51,7 @@
     <%= render :partial => 'lodgings/lodging', :collection => @lodgings %>
   </ul>
   <p>
-    <%= link_to t('new_lodging'), new_lodging_path(:event => @event.id, :request => false) %>
+    <%= link_to t('new_lodging'), new_lodging_path(:event => @event.id, :request => false, :start_at => @event.start_at, :end_at => @event.end_at) %>
   </p>
 </div>
 
@@ -61,7 +61,7 @@
     <%= render :partial => 'lodgings/lodging', :collection => @lodging_requests %>
   </ul>
   <p>
-    <%= link_to t('new_lodging_request'), new_lodging_path(:event => @event.id, :request => true) %>
+    <%= link_to t('new_lodging_request'), new_lodging_path(:event => @event.id, :request => true, :start_at => @event.start_at, :end_at => @event.end_at) %>
   </p>
 </div>
 <% end %>

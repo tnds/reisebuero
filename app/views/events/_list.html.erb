@@ -1,6 +1,6 @@
 <li>
 	<%= link_to event.name, event %>, 
-	<%= raw(display_time(event)) %> 
+	<%= raw(display_time_event(event)) %> 
         <% if can? :update, event %>
     <%= link_to t('edit'), edit_event_path(event) %> - 
         <% end %>
