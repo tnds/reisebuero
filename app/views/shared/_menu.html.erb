@@ -2,7 +2,7 @@
 	<li><%= link_to t('calendar'), calendar_path %></li>
 	<li><%= link_to t('events'), events_path %></li>
         <li>
-          <%= link_to t('my_page'), :controller => 'my_page', :action => 'index' unless current_user.nil? %>
+          <%= link_to t('my_page'), :controller => '/my_page', :action => 'index' unless current_user.nil? %>
         </li>
 	<li><%= link_to t('users'), users_path if can? :manage, User %></li>
 </ul>
