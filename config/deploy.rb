@@ -33,3 +33,10 @@ namespace :config do
     run "ln -nfs #{shared_path}/database.yml #{latest_release}/config/database.yml"
   end
 end
+
+namespace :deploy do
+  desc "reload the database with seed data"
+  task :seed do
+    run "cd #{current_path}; bundle exec rake db:seed RAILS_ENF=#{rails_env}"
+  end
+end

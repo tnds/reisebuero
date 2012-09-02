@@ -1,6 +1,6 @@
 <% if user_signed_in? %>
-<%= link_to current_user.username, :controller => 'my_page' %>
-<%= link_to t('sign_out'), destroy_user_session_path %>
+  <%= link_to current_user.username, :controller => '/my_page', :action => "index" %>
+  <%= link_to t('sign_out'), destroy_user_session_path %>
 <% else %>
-<%= (link_to t('sign_up'), new_user_registration_path) + ' ' + t('or') + ' ' + (link_to t('sign_in') ,new_user_session_path) %>
+  <%= (link_to t('sign_up'), new_user_registration_path) + ' ' + t('or') + ' ' + (link_to t('sign_in') ,new_user_session_path) %>
 <% end %>
