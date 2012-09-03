@@ -3,6 +3,14 @@ module CalendarHelper
     link_to(I18n.localize(month_date, :format => "%B"), {:month => month_date.month, :year => month_date.year})
   end
   
+  def prev_month_link(month_date)
+    link_to(raw('&larr; ') + I18n.localize(month_date, :format => "%B"), {:month => month_date.month, :year => month_date.year})
+  end
+
+  def next_month_link(month_date)
+    link_to( raw(I18n.localize(month_date, :format => "%B") + ' &rarr;'), {:month => month_date.month, :year => month_date.year})
+  end
+  
   # custom options for this calendar
   def event_calendar_opts
     { 
@@ -11,8 +19,8 @@ module CalendarHelper
       :month => @month,
       :event_strips => @event_strips,
       :month_name_text => I18n.localize(@shown_month, :format => "%B %Y"),
-      :previous_month_text => "<< " + month_link(@shown_month.prev_month),
-      :next_month_text => month_link(@shown_month.next_month) + " >>",
+      :previous_month_text => '<ul class="pager"><li class="previous">' + prev_month_link(@shown_month.prev_month) +'</li></ul>',
+      :next_month_text =>  '<ul class="pager"><li class="next">' + next_month_link(@shown_month.next_month) +'</li></ul>',
       :use_all_day => true
     }
   end
