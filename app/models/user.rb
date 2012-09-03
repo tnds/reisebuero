@@ -15,10 +15,10 @@ class User < ActiveRecord::Base
   
   validates :username, :presence => true, :uniqueness => true
   
-#  after_create do |user|
-#    if user.id != 0
-#      user.role_id = Role.find_by_name('User').id
-#      user.save
-#    end
-#  end
+  after_create do |user|
+    if user.role_id.nil?
+      user.role_id = Role.find_by_name('User').id
+      user.save
+    end
+  end
 end
