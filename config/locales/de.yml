@@ -193,11 +193,11 @@ de:
   event_helpers: Helfer
   helper_submit: "Als Helfer eintragen"
   new_event: "Neues Event"
-  edit: Bearbeiten
-  destroy: Löschen
+  .edit: Bearbeiten
+  .destroy: Löschen
   show: Anzeigen
   destroy_short: "X"
-  back: Zurück
+  .back: Zurück
   all_day: ganztägig
   location: Ort
   description: Beschreibung

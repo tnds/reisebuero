@@ -1,46 +1,48 @@
-<div class="two-column column-1">
-  <div id="events">
-    <h2>
-      <%= t('events') %>
-    </h2>
-    <% @event_helpers.each do |event_helper| %>
-      <%= render :partial => 'events/event', :locals => {:event => event_helper.event} %>
-    <% end %>
-  </div>
-  
-  <div id="lodgings">
-    <h2><%= t('lodgings') %></h2>
-    <ul>
-      <%= render :partial => 'lodgings/lodging_event', :collection => @lodgings %>
-    </ul>
-  </div>
+<div class="row">
+  <div class="span6">
+    <div id="events">
+      <h3>
+        <%= t('events') %>
+      </h3>
+      <% @event_helpers.each do |event_helper| %>
+        <%= render :partial => 'events/event', :locals => {:event => event_helper.event} %>
+      <% end %>
+    </div>
 
-  <div id="lodging_requests">
-    <h2><%= t('lodging_requests') %></h2>
-    <ul>
-      <%= render :partial => 'lodgings/lodging_event', :collection => @lodging_requests %>
-    </ul>
-  </div>
-</div>
+    <div id="lodgings">
+      <h3><%= t('lodgings') %></h3>
+      <ul>
+        <%= render :partial => 'lodgings/lodging_event', :collection => @lodgings %>
+      </ul>
+    </div>
 
-<div class="two-column column-2">
-  <div id="user">
-    <h2>
-      <%= t('user') %>
-    </h2>
-    <%= @user.username %> <br/>
-    <%= @user.email %> <br/>
-    <%= link_to t('change_registration'), edit_user_registration_path %>
+    <div id="lodging_requests">
+      <h3><%= t('lodging_requests') %></h3>
+      <ul>
+        <%= render :partial => 'lodgings/lodging_event', :collection => @lodging_requests %>
+      </ul>
+    </div>
   </div>
+  <div class="span6">
+    <div id="user">
+      <h3>
+        <%= t('user') %>
+      </h3>
+      <%= @user.username %> <br/>
+      <%= @user.email %> <br/>
+      <%= link_to t('change_registration'), edit_user_registration_path %>
+    </div>
 
-  <div id="contacts">
-    <h2>
-      <%= t('contact') %>
-    </h2>
-    <%= render :partial => 'contacts/contact', :collection => @contacts, :locals => {:readonly => false} if can? :read, @contacts %>
-  <p>
-    <%= link_to t('new_contact'), new_user_contact_path(@user) if can? :manage, @user %>
-  </p>
+    <div id="contacts">
+      <h3>
+        <%= t('contact') %>
+      </h3>
+      <%= render :partial => 'contacts/contact', :collection => @contacts, :locals => {:readonly => false} if can? :read, @contacts %>
+    <p>
+      <%= link_to t('new_contact', :default => t("helpers.links.new")),
+            new_user_contact_path(@user),
+            :class => 'btn btn-primary' if can? :manage, @user %>
+    </p>
+    </div>
   </div>
-
 </div>

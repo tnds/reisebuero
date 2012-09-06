@@ -1,3 +1,5 @@
+<%- model_class = Lodging -%>
+<div class="page-header">
 <h1>
   <% if @lodging.request.nil? or @lodging.request == false  %>
     <%= t('lodging') %>
@@ -5,64 +7,80 @@
     <%= t('lodging_request_html') %>
   <% end %>
 </h1>
-<div class="lodging two-column column-1">
-<h2>
-  <%= Lodging.human_attribute_name('event')+':' %>
-  <%= link_to @lodging.event.name, event_path(@lodging.event) unless @lodging.event.nil? %>
-</h2>
-
-<p>
-	<%= raw(display_time_lodging(@lodging)) %> 
-</p>
-
-<p>
-  <b>
-    <%= Lodging.human_attribute_name("user")+':' %>
-  </b>
-  <%= @lodging.user.username %>
-</p>
-
-<p>
-  <b>
-    <%= Lodging.human_attribute_name('max_people')+':' %>
-  </b>
-  <%= @lodging.max_people %>
-</p>
-
-<p>
-  <b>
-    <%= Lodging.human_attribute_name('accessible')+':' %>
-  </b>
-  <%= @lodging.accessible %>
-</p>
-
-<p>
-  <b>
-    <%= Lodging.human_attribute_name('description')+':' %>
-  </b>
-  <%= @lodging.description %>
-</p>
-
-<p>
-  <b>
-    <%= Lodging.human_attribute_name('location')+':' %>
-  </b>
-  <%= @lodging.location %>
-</p>
-
-<p>
-  <b>
-    <%= Lodging.human_attribute_name('maplink')+':' %>
-  </b>
-  <%= link_to @lodging.maplink, @lodging.maplink %>
-</p>
-
-<%= link_to t('edit'), edit_lodging_path(@lodging) if can? :update, @lodging %>
 </div>
 
-<div class="lodging two-column column-2">
-<h2>
-  <%= t('contact') %>
-</h2>
-<%= render :partial => 'contacts/contact', :collection => @contacts, :locals => {:readonly => true} %>
+<div class="row">
+  <div class="span6">
+  <h2>
+    <%= Lodging.human_attribute_name('event')+':' %>
+    <%= link_to @lodging.event.name, event_path(@lodging.event) unless @lodging.event.nil? %>
+  </h2>
+
+  <p>
+          <%= raw(display_time_lodging(@lodging)) %> 
+  </p>
+
+  <p>
+    <b>
+      <%= Lodging.human_attribute_name("user")+':' %>
+    </b>
+    <%= @lodging.user.username %>
+  </p>
+
+  <p>
+    <b>
+      <%= Lodging.human_attribute_name('max_people')+':' %>
+    </b>
+    <%= @lodging.max_people %>
+  </p>
+
+  <p>
+    <b>
+      <%= Lodging.human_attribute_name('accessible')+':' %>
+    </b>
+    <%= @lodging.accessible %>
+  </p>
+
+  <p>
+    <b>
+      <%= Lodging.human_attribute_name('description')+':' %>
+    </b>
+    <%= @lodging.description %>
+  </p>
+
+  <p>
+    <b>
+      <%= Lodging.human_attribute_name('location')+':' %>
+    </b>
+    <%= @lodging.location %>
+  </p>
+
+  <p>
+    <b>
+      <%= Lodging.human_attribute_name('maplink')+':' %>
+    </b>
+    <%= link_to @lodging.maplink, @lodging.maplink %>
+  </p>
+
+  <%= link_to t('edit'), edit_lodging_path(@lodging) if can? :update, @lodging %>
+  </div>
+
+  <div class="span6">
+  <h2>
+    <%= t('contact') %>
+  </h2>
+  <%= render :partial => 'contacts/contact', :collection => @contacts, :locals => {:readonly => true} %>
+  </div>
+</div>
+
+<div class="form-actions">
+  <%= link_to t('.back', :default => t("helpers.links.back")),
+              lodgings_path, :class => 'btn'  %>
+  <%= link_to t('.edit', :default => t("helpers.links.edit")),
+              edit_lodging_path(@lodging), :class => 'btn' if can? :edit, @lodging %>
+  <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
+              lodging_path(@lodging),
+              :method => 'delete',
+              :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
+              :class => 'btn btn-danger' if can? :destroy, @lodging %>
 </div>

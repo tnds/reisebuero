@@ -38,6 +38,7 @@ class Ability
         end
         cannot :index, Lodging
         cannot :index, Booking
+        cannot :index, Contact
         can :manage, Contact, :user_id => user.id
         can :read, Contact, :public => true
         can :read, Contacttype

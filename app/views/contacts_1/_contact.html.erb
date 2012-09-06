@@ -17,13 +17,8 @@
     <% else %>
       <%= t('contact_private') %>
     <% end %>
-  <%= link_to t('.edit', :default => t("helpers.links.edit")),
-              edit_user_contact_path(contact.user, contact), :class => 'btn btn-mini' if can? :edit, contact %>
-  <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
-              user_contact_path(contact.user, contact),
-              :method => 'delete',
-              :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
-              :class => 'btn btn-mini btn-danger' if can? :destroy, contact %>
+    <%= link_to t('edit'), edit_user_contact_path(contact.user, contact) if can? :edit, contact %>
+    <%= link_to t('destroy'), user_contact_path(contact.user, contact), method: :delete, data: { confirm: 'Are you sure?' } if can? :destroy, contact %>
   <% end %>
 <% end %>
 </div>

@@ -3,4 +3,6 @@
 <h1><%=t("calendar")%></h1>
 
 <%= raw(event_calendar) %>
-<%= link_to t('new_event'), new_event_path if can? :create, Event %>
+<%= link_to t('new_event', :default => t("helpers.links.new")),
+            new_event_path,
+            :class => 'btn btn-primary' if can? :create, Event %>

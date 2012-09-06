@@ -1,41 +1,13 @@
-<%= form_for(@event) do |f| %>
-  <% if @event.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@event.errors.count, "error") %> prohibited this event from being saved:</h2>
+<%#= javascript_include_tag UiDatePickerRails3.ui_localizers :de %>
+<%= simple_form_for @event, :html => { :class => 'form-horizontal' } do |f| %>
+  <%= f.input :name %>
+  <%= f.input :start_at#, :as => :ui_date_time_picker %>
+  <%= f.input :end_at#, :as => :ui_date_time_picker %>
+  <%= f.input :location %>
+  <%= f.input :description %>
+  <%= f.input :all_day %>
+  <%= f.button :submit, :input_html => { :class => 'btn btn-primary' } %>
+  <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
+                events_path, :class => 'btn' %>
 
-      <ul>
-      <% @event.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
-
-  <div class="field">
-    <%= f.label :name %><br />
-    <%= f.text_field :name %>
-  </div>
-  <div class="field">
-    <%= f.label :start_at %><br />
-    <%= f.datetime_picker :start_at, :dateFormat => "dd.mm.yy" %>
-  </div>
-  <div class="field">
-    <%= f.label :end_at %><br />
-    <%= f.datetime_picker :end_at, :dateFormat => "dd.mm.yy" %>
-  </div>
-  <div class="field">
-    <%= f.label :location %><br />
-    <%= f.text_area :location %>
-  </div>
-  <div class="field">
-    <%= f.label :description %><br />
-    <%= f.text_area :description %>
-  </div>
-  <div class="field">
-    <%= f.label :all_day %><br />
-    <%= f.check_box :all_day %>
-  </div>
-  <div class="actions">
-    <%= f.submit %>
-  </div>
 <% end %>

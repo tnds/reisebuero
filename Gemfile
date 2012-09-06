@@ -13,6 +13,7 @@ gem 'jquery-rails'
 
 gem 'event-calendar', :require => 'event_calendar'
 gem 'devise'
+gem 'simple_form'
 
 group :development, :test do
   gem 'sqlite3'
@@ -36,7 +37,7 @@ group :test do
 end
 
 gem "cancan"
-gem "jquery_datepicker"
+gem "ui_datepicker-rails3"
 gem "ri_cal"
 gem "uuidtools"
 
