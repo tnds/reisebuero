@@ -41,7 +41,7 @@
     <p>
       <%= link_to t('new_contact', :default => t("helpers.links.new")),
             new_user_contact_path(@user),
-            :class => 'btn btn-primary' if can? :manage, @user %>
+            :class => 'btn btn-primary' %>
     </p>
     </div>
   </div>
