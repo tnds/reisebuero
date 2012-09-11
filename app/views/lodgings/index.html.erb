@@ -1,48 +1,37 @@
 <%- model_class = Lodging -%>
 <div class="page-header">
-  <h1><%=t '.title', :default => model_class.model_name.human.pluralize %></h1>
+  <h1><%=t 'lodgings' %></h1>
 </div>
-<table class="table table-striped">
+<table class="table table-striped table-centered">
   <thead>
     <tr>
-      <th><%= model_class.human_attribute_name(:id) %></th>
       <th><%= model_class.human_attribute_name(:event_id) %></th>
       <th><%= model_class.human_attribute_name(:user_id) %></th>
       <th><%= model_class.human_attribute_name(:start_at) %></th>
       <th><%= model_class.human_attribute_name(:end_at) %></th>
       <th><%= model_class.human_attribute_name(:max_people) %></th>
       <th><%= model_class.human_attribute_name(:accessible) %></th>
-      <th><%= model_class.human_attribute_name(:description) %></th>
-      <th><%= model_class.human_attribute_name(:location) %></th>
-      <th><%= model_class.human_attribute_name(:maplink) %></th>
       <th><%= model_class.human_attribute_name(:request) %></th>
-      <th><%= model_class.human_attribute_name(:created_at) %></th>
-      <th><%=t '.actions', :default => t("helpers.actions") %></th>
     </tr>
   </thead>
   <tbody>
     <% @lodgings.each do |lodging| %>
       <tr>
-        <td><%= link_to lodging.id, lodging_path(lodging) %></td>
-        <td><%= lodging.event_id %></td>
-        <td><%= lodging.user_id %></td>
+        <td>
+          <% unless lodging.event.nil? %>
+            <%= lodging.event_id %> - <%= link_to lodging.event.name, lodging.event %>
+          <% end %>
+        </td>
+        <td><%= link_to lodging.user.username, lodging.user unless lodging.user.nil? %></td>
         <td><%= lodging.start_at %></td>
         <td><%= lodging.end_at %></td>
         <td><%= lodging.max_people %></td>
-        <td><%= lodging.accessible %></td>
-        <td><%= lodging.description %></td>
-        <td><%= lodging.location %></td>
-        <td><%= lodging.maplink %></td>
-        <td><%= lodging.request %></td>
-        <td><%=l lodging.created_at %></td>
+        <td><%= icon_bool(lodging.accessible) %></td>
+        <td><%= icon_bool(lodging.request) %></td>
         <td>
-          <%= link_to t('.edit', :default => t("helpers.links.edit")),
-                      edit_lodging_path(lodging), :class => 'btn btn-mini' %>
-          <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
-                      lodging_path(lodging),
-                      :method => :delete,
-                      :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
-                      :class => 'btn btn-mini btn-danger' %>
+          <%= button_view(lodging) %>
+          <%= button_edit(edit_lodging_path(lodging)) if can? :edit, lodging %>
+          <%= button_destroy(lodging_path(lodging)) if can? :destroy, lodging %>
         </td>
       </tr>
     <% end %>

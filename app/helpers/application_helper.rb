@@ -51,4 +51,35 @@ module ApplicationHelper
 
     %(<span class="event-time">#{t_start}#{seperator}#{t_end}</span>)
   end
+  
+  # Return HTML for OK or Remove Glyphicon for boolean value
+  def icon_bool(bool)
+    icon(bool ? "ok" : "remove")
+  end
+  
+  # Return HTML for Glyphicon
+  def icon(icon_class)
+    raw("<i class='icon-"+ icon_class + "'></i>")
+  end
+  
+  def button_view(target, button_class='btn btn-mini', title=t('.show', :default => t("helpers.links.view")) )
+    link_to icon('eye-open'),
+            target, 
+            :class => button_class, 
+            :title => title
+  end
+  def button_edit(target, button_class='btn btn-mini', title=t('.edit', :default => t("helpers.links.edit")) )
+    link_to icon('pencil'),
+            target, 
+            :class => button_class, 
+            :title => title
+  end
+  def button_destroy(target, button_class='btn btn-mini btn-danger', title=t('.destroy', :default => t("helpers.links.destroy")), confirm=t('.confirm', :default => t("helpers.links.confirm")) )
+    link_to icon('trash'),
+            target, 
+            :method => :delete,
+            :data => { :confirm => confirm },
+            :class => button_class, 
+            :title => title
+  end
 end
