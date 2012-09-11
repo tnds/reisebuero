@@ -1,7 +1,0 @@
-<h2>
-  <%= t('contact') %>
-</h2>
-<%= render :partial => 'contacts/contact', :collection => contacts, :locals => {:readonly => readonly} if can? :read, contacts %>
-<p>
-  <%= link_to t('new_contact'), new_user_contact_path(user) if can? :manage, user %>
-</p>
