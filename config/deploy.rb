@@ -2,7 +2,7 @@ require 'bundler/capistrano'
 require 'rvm/capistrano'
 
 set :application, "reisebuero"
-set :repository,  "git@github.com:telepath/reisebuero.git"
+set :repository,  "git@github.com:tnds/reisebuero.git"
 
 set :branch,          "master"
 set :migrate_target,  :current
