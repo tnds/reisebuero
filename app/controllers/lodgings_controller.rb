@@ -40,7 +40,12 @@ class LodgingsController < ApplicationController
   # POST /lodgings
   def create
     @lodging = Lodging.create(params[:lodging])
-    @lodging.user_id = current_user.id
+    @anon = User.find_by_username("anon")
+    if @lodging.anonymous and can? :manage, Lodging
+      @lodging.user_id = @anon.id
+    else
+      @lodging.user_id = current_user.id
+    end
 
     respond_to do |format|
       if @lodging.save

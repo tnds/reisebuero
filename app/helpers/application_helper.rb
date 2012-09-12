@@ -58,21 +58,25 @@ module ApplicationHelper
   end
   
   # Return HTML for Glyphicon
-  def icon(icon_class)
-    raw("<i class='icon-"+ icon_class + "'></i>")
+  def icon(icon_class, title = nil)
+    raw("<i class='icon-"+ icon_class + "'" + (title.nil? ? "" : "title='" + title + "'") + "></i>")
   end
   
-  def button_view(target, button_class='btn btn-mini', title=t('.show', :default => t("helpers.links.view")) )
-    link_to icon('eye-open'),
+  def button(target, button_class, title, icon )
+    link_to icon(icon),
             target, 
             :class => button_class, 
             :title => title
   end
+  
+  def button_new(target, button_class='btn btn-primary btn-mini', title=t('.new', :default => t("helpers.links.new")) )
+    button(target, button_class, title, 'plus')
+  end
+  def button_view(target, button_class='btn btn-mini', title=t('.show', :default => t("helpers.links.view")) )
+    button(target, button_class, title, 'eye-open')
+  end
   def button_edit(target, button_class='btn btn-mini', title=t('.edit', :default => t("helpers.links.edit")) )
-    link_to icon('pencil'),
-            target, 
-            :class => button_class, 
-            :title => title
+    button(target, button_class, title, 'pencil')
   end
   def button_destroy(target, button_class='btn btn-mini btn-danger', title=t('.destroy', :default => t("helpers.links.destroy")), confirm=t('.confirm', :default => t("helpers.links.confirm")) )
     link_to icon('trash'),

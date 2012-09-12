@@ -1,29 +1,18 @@
 <div class="contact">
   <% if can? :read, contact %>
-  <b>
-    <%= t(contact.contacttype.name) unless contact.contacttype.nil? %>
-  </b>:
-  <% case contact.contacttype.name %>
-  <% when "email" %>
-    <%= link_to contact.address, "mailto://"+contact.address %>
-  <% when "twitter" %>
-    <%= link_to contact.address, "https://twitter.com/"+contact.address %>
-  <% else %>
-    <%= contact.address %>
-  <% end %>
-  <% unless readonly %>
-    <% if contact.public %>
-      <%= t('contact_public') %>
+    <b>
+      <%= t(contact.contacttype.name) unless contact.contacttype.nil? %>
+    </b>:
+    <% case contact.contacttype.name %>
+    <% when "email" %>
+      <%= link_to contact.address, "mailto://"+contact.address %>
+    <% when "twitter" %>
+      <%= link_to contact.address, "https://twitter.com/"+contact.address %>
     <% else %>
-      <%= t('contact_private') %>
+      <%= contact.address %>
     <% end %>
-  <%= link_to t('.edit', :default => t("helpers.links.edit")),
-              edit_user_contact_path(contact.user, contact), :class => 'btn btn-mini' if can? :edit, contact %>
-  <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
-              user_contact_path(contact.user, contact),
-              :method => 'delete',
-              :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
-              :class => 'btn btn-mini btn-danger' if can? :destroy, contact %>
+    <%= icon('lock',t('contact_private')) unless contact.public %>
+    <%= button_edit(edit_user_contact_path(contact.user, contact)) if can? :edit, contact %>
+    <%= button_destroy(user_contact_path(contact.user, contact)) if can? :destroy, contact %>
   <% end %>
-<% end %>
 </div>

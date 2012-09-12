@@ -24,7 +24,11 @@
     <b>
       <%= Lodging.human_attribute_name("user")+':' %>
     </b>
-    <%= @lodging.user.username %>
+    <% if can? :read, @lodging.user %>
+      <%= link_to @lodging.user.username, @lodging.user %>
+    <% else %>
+      <%= @lodging.user.username %>
+    <% end %>
   </p>
 
   <p>
@@ -38,7 +42,7 @@
     <b>
       <%= Lodging.human_attribute_name('accessible')+':' %>
     </b>
-    <%= @lodging.accessible %>
+    <%= icon_bool(@lodging.accessible) %>
   </p>
 
   <p>
@@ -67,18 +71,11 @@
   <h2>
     <%= t('contact') %>
   </h2>
-  <%= render :partial => 'contacts/contact', :collection => @contacts, :locals => {:readonly => true} %>
+  <%= render :partial => 'contacts/contact', :collection => @contacts %>
   </div>
 </div>
 
 <div class="form-actions">
-  <%= link_to t('.back', :default => t("helpers.links.back")),
-              lodgings_path, :class => 'btn'  %>
-  <%= link_to t('.edit', :default => t("helpers.links.edit")),
-              edit_lodging_path(@lodging), :class => 'btn' if can? :edit, @lodging %>
-  <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
-              lodging_path(@lodging),
-              :method => 'delete',
-              :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
-              :class => 'btn btn-danger' if can? :destroy, @lodging %>
+  <%= button_edit(edit_lodging_path(@lodging), 'btn') if can? :edit, @lodging %>
+  <%= button_destroy(lodging_path(@lodging), 'btn') if can? :destroy, @lodging %>
 </div>

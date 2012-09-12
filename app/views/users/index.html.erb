@@ -10,14 +10,11 @@
       <th><%= model_class.human_attribute_name(:first_name) %></th>
       <th><%= model_class.human_attribute_name(:username) %></th>
       <th><%= model_class.human_attribute_name(:email) %></th>
-      <th><%= model_class.human_attribute_name(:sign_in_count) %></th>
-      <th><%= model_class.human_attribute_name(:current_sign_in_at) %></th>
-      <th><%= model_class.human_attribute_name(:last_sign_in_at) %></th>
-      <th><%= model_class.human_attribute_name(:unconfirmed_email) %></th>
       <th><%= model_class.human_attribute_name(:failed_attempts) %></th>
       <th><%= model_class.human_attribute_name(:locked_at) %></th>
       <th><%= model_class.human_attribute_name(:role_id) %></th>
       <th><%= model_class.human_attribute_name(:created_at) %></th>
+      <th><%= model_class.human_attribute_name(:disabled) %></th>
       <th><%=t '.actions', :default => t("helpers.actions") %></th>
     </tr>
   </thead>
@@ -29,22 +26,14 @@
         <td><%= user.first_name %></td>
         <td><%= link_to user.username, user_path(user) %></td>
         <td><%= user.email %></td>
-        <td><%= user.sign_in_count %></td>
-        <td><%= user.current_sign_in_at %></td>
-        <td><%= user.last_sign_in_at %></td>
-        <td><%= user.unconfirmed_email %></td>
         <td><%= user.failed_attempts %></td>
         <td><%= user.locked_at %></td>
         <td><%= user.role.name unless user.role.nil? %></td>
         <td><%=l user.created_at %></td>
+        <td><%= icon_bool(user.disabled) unless user.disabled.nil? %></td>
         <td>
-          <%= link_to t('.edit', :default => t("helpers.links.edit")),
-                      edit_user_path(user), :class => 'btn btn-mini' %>
-          <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
-                      user_path(user),
-                      :method => :delete,
-                      :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
-                      :class => 'btn btn-mini btn-danger' %>
+          <%= button_edit(edit_user_path(user)) %>
+          <%= button_destroy(user_path(user)) %>
         </td>
       </tr>
     <% end %>

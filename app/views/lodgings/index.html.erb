@@ -22,7 +22,15 @@
             <%= lodging.event_id %> - <%= link_to lodging.event.name, lodging.event %>
           <% end %>
         </td>
-        <td><%= link_to lodging.user.username, lodging.user unless lodging.user.nil? %></td>
+        <td>
+          <% unless lodging.user.nil? %>
+            <% if can? :read, lodging.user %>
+              <%= link_to lodging.user.username, lodging.user %>
+            <% else %>
+              <%= lodging.user.username %>
+            <% end %>
+          <% end %>
+        </td>
         <td><%= lodging.start_at %></td>
         <td><%= lodging.end_at %></td>
         <td><%= lodging.max_people %></td>

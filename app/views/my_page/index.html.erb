@@ -30,18 +30,16 @@
       </h3>
       <%= @user.username %> <br/>
       <%= @user.email %> <br/>
-      <%= link_to t('change_registration'), edit_user_registration_path %>
+      <%= button_edit(edit_user_registration_path, 'btn btn-mini', t('change_registration')) %>
     </div>
 
     <div id="contacts">
       <h3>
         <%= t('contact') %>
       </h3>
-      <%= render :partial => 'contacts/contact', :collection => @contacts, :locals => {:readonly => false} if can? :read, @contacts %>
+      <%= render :partial => 'contacts/contact', :collection => @contacts %>
     <p>
-      <%= link_to t('new_contact', :default => t("helpers.links.new")),
-            new_user_contact_path(@user),
-            :class => 'btn btn-primary' %>
+      <%= button_new(new_user_contact_path(@user)) %>
     </p>
     </div>
   </div>

@@ -6,7 +6,7 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable
 
   # Setup accessible (or protected) attributes for your model
-  attr_accessible :email, :username, :first_name, :name ,:password, :password_confirmation, :remember_me, :role_id
+  attr_accessible :email, :username, :first_name, :name ,:password, :password_confirmation, :remember_me, :role_id, :disabled
 #  has_many :helpers
   has_many :event_helpers, :dependent => :destroy
 	belongs_to :role
@@ -21,4 +21,9 @@ class User < ActiveRecord::Base
       user.save
     end
   end
+  
+  def active_for_authentication?
+    super and not self.disabled?
+  end
+  
 end

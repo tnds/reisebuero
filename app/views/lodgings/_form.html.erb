@@ -11,6 +11,7 @@
     <%= link_to @lodging.event.name, event_path(@lodging.event) unless @lodging.event.nil? %>
   </div>
 </div>
+  <%= f.input :anonymous, :hint => t('lodging_anonymous_hint') if can? :manage, @lodging %>
   <%= f.input :start_at %>
   <%= f.input :end_at %>
   <%= f.input :max_people %>

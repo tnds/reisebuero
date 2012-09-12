@@ -2,15 +2,15 @@ class ContactsController < ApplicationController
   load_and_authorize_resource
   # GET /contacts
   # GET /contacts.json
-  def index
-    @user = User.find(params[:user_id])
-    @contacts = Contact.find_all_by_user_id(@user.id)
-
-    respond_to do |format|
-      format.html # index.html.erb
-      format.json { render json: @contacts }
-    end
-  end
+#  def index
+#    @user = User.find(params[:user_id])
+#    @contacts = Contact.find_all_by_user_id(@user.id)
+#
+#    respond_to do |format|
+#      format.html # index.html.erb
+#      format.json { render json: @contacts }
+#    end
+#  end
 
   # GET /contacts/1
   # GET /contacts/1.json

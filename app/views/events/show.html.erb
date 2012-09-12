@@ -5,13 +5,8 @@
 
 <h2>
   <%= @event.name %>
-  <%= link_to t('.edit', :default => t("helpers.links.edit")),
-              edit_event_path(@event), :class => 'btn btn-mini' if can? :edit, @event %>
-  <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
-              event_path(@event),
-              :method => 'delete',
-              :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
-              :class => 'btn btn-mini btn-danger' if can? :destroy, @event %>
+  <%= button_edit(edit_event_path(@event)) if can? :edit, @event %>
+  <%= button_destroy(event_path(@event)) if can? :destroy, @event %>
 </h2>
 <p>
 	<%= raw(display_time_event(@event)) %> 
@@ -62,7 +57,7 @@
       <%= render :partial => 'lodgings/lodging', :collection => @lodgings %>
     </ul>
     <p>
-      <%= link_to t('new_lodging'), new_lodging_path(:event => @event.id, :request => false, :start_at => @event.start_at, :end_at => @event.end_at) %>
+      <%= button_new(new_lodging_path(:event => @event.id, :request => false, :start_at => @event.start_at, :end_at => @event.end_at), 'btn btn-primary', t('new_lodging')) %>
     </p>
   </div>
 
@@ -72,7 +67,7 @@
       <%= render :partial => 'lodgings/lodging', :collection => @lodging_requests %>
     </ul>
     <p>
-      <%= link_to t('new_lodging_request'), new_lodging_path(:event => @event.id, :request => true, :start_at => @event.start_at, :end_at => @event.end_at) %>
+      <%= button_new(new_lodging_path(:event => @event.id, :request => true, :start_at => @event.start_at, :end_at => @event.end_at), 'btn btn-primary', t('new_lodging_request')) %>
     </p>
   </div>
 </div>
