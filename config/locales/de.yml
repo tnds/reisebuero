@@ -195,8 +195,10 @@ de:
   user: Benutzer
   users: Benutzer
   event_orgas: Orga
+  event_orga: Orga
   orga_submit: "Organisator eintragen"
   event_helpers: Helfer
+  event_helper: Helfer
   helper_submit: "Als Helfer eintragen"
   new_event: "Neues Event"
   edit: Bearbeiten
@@ -250,4 +252,4 @@ de:
   phone: Festnetz
   mobile: Handy
   change_registration: "Benutzerdaten / Passwort ändern"
-  to_time: bis
+  to_time: " bis "

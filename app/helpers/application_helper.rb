@@ -15,7 +15,7 @@ module ApplicationHelper
     day2 = end_time.to_date
     time1 = start_time - day1.to_time
     time2 = end_time - day2.to_time
-    seperator = " t('to_time') "
+    seperator = t('to_time')
     
     if all_day
       if day1 == day2

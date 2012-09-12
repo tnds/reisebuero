@@ -57,7 +57,7 @@
       <%= render :partial => 'lodgings/lodging', :collection => @lodgings %>
     </ul>
     <p>
-      <%= button_new(new_lodging_path(:event => @event.id, :request => false, :start_at => @event.start_at, :end_at => @event.end_at), 'btn btn-primary', t('new_lodging')) %>
+      <%= button_new(new_lodging_path(:event => @event.id, :request => false, :start_at => @event.start_at, :end_at => @event.end_at), 'btn btn-mini btn-primary', t('new_lodging')) %>
     </p>
   </div>
 
@@ -67,7 +67,7 @@
       <%= render :partial => 'lodgings/lodging', :collection => @lodging_requests %>
     </ul>
     <p>
-      <%= button_new(new_lodging_path(:event => @event.id, :request => true, :start_at => @event.start_at, :end_at => @event.end_at), 'btn btn-primary', t('new_lodging_request')) %>
+      <%= button_new(new_lodging_path(:event => @event.id, :request => true, :start_at => @event.start_at, :end_at => @event.end_at), 'btn btn-mini btn-primary', t('new_lodging_request')) %>
     </p>
   </div>
 </div>
