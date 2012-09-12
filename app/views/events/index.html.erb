@@ -1,22 +1,28 @@
-<h1><%=t('events')%></h1>
-<div class="month-nav">
-  <div class="e-month-nav e-previous-month">
-    <%= raw( "<< " +  month_link(@shown_month.prev_month)) %>
+<%- model_class = Event -%>
+<div class="page-header">
+  <h1><%=t '.title', :default => model_class.model_name.human.pluralize %></h1>
+</div>
+<div class="row">
+  <div class="span3">
+    <ul class="pager"><li class="previous"><%= prev_month_link(@shown_month.prev_month) %></li></ul>
   </div>
-  <div class="e-month-name">
-    <%= raw(I18n.localize(@shown_month, :format => "%B %Y")) %>
+  <div class="span6">
+    <center>
+      <h3><%= raw(I18n.localize(@shown_month, :format => "%B %Y")) %></h3>
+    </center>
   </div>
-  <div class="e-month-nav e-next-month">
-    <%= raw( month_link(@shown_month.next_month) + " >>" ) %>
+  <div class="span3">
+    <ul class="pager"><li class="next"> <%=  next_month_link(@shown_month.next_month) %></li></ul>
   </div>
 </div>
 
 <ul>
-
-<%= render :partial => "list", :collection => @events, :as => :event %>
-
+  <%= render :partial => "list", :collection => @events, :as => :event %>
 </ul>
-<br />
 
-<%= link_to t('new_event'), new_event_path if can? :create, Event %><br/>
-<%= link_to t('ical_export_default'), event_path(:format => :ics)  %>
+<%= link_to t('new_event', :default => t("helpers.links.new")),
+            new_event_path,
+            :class => 'btn btn-primary' if can? :create, Event %>
+<%= link_to t('ical_export_default'),
+            event_path(:format => :ics),
+            :class => 'btn btn-primary' %>

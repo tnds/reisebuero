@@ -6,12 +6,14 @@ group :assets do
   gem 'sass-rails',   '~> 3.2.3'
   gem 'coffee-rails', '~> 3.2.1'
   gem 'uglifier', '>= 1.0.3'
+  gem 'twitter-bootstrap-rails'
 end
 
 gem 'jquery-rails'
 
 gem 'event-calendar', :require => 'event_calendar'
 gem 'devise'
+gem 'simple_form'
 
 group :development, :test do
   gem 'sqlite3'
@@ -35,7 +37,7 @@ group :test do
 end
 
 gem "cancan"
-gem "jquery_datepicker"
+gem "ui_datepicker-rails3"
 gem "ri_cal"
 gem "uuidtools"
 

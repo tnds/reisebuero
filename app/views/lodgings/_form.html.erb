@@ -1,54 +1,27 @@
-<%= form_for(@lodging) do |f| %>
-  <% if @lodging.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@lodging.errors.count, "error") %> prohibited this lodging from being saved:</h2>
+<%= simple_form_for @lodging, :html => { :class => 'form-horizontal' } do |f| %>
 
-      <ul>
-      <% @lodging.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
+  <%= f.input :event_id, :as => :hidden unless @lodging.event.nil? %>
+  <%= f.input :request, :as => :hidden %>
 
-  <%= hidden_field(:lodging, :event_id) unless @lodging.event.nil? %>
-  <%= hidden_field(:lodging, :request) %>
-<p>
-  <b>
+<div class="control-group">
+  <label class="control-label">
     <%= t('event')+':' %>
-  </b>
-  <%= link_to @lodging.event.name, event_path(@lodging.event) unless @lodging.event.nil? %>
-</p>
-
-  <div class="field">
-    <%= f.label :start_at %><br />
-    <%= f.datetime_picker :start_at %>
+  </label>
+  <div class="controls">
+    <%= link_to @lodging.event.name, event_path(@lodging.event) unless @lodging.event.nil? %>
   </div>
-  <div class="field">
-    <%= f.label :end_at %><br />
-    <%= f.datetime_picker :end_at %>
-  </div>
-  <div class="field">
-    <%= f.label :max_people %><br />
-    <%= f.number_field :max_people %>
-  </div>
-  <div class="field">
-    <%= f.label :accessible %><br />
-    <%= f.check_box :accessible %>
-  </div>
-  <div class="field">
-    <%= f.label :description %><br />
-    <%= f.text_area :description %>
-  </div>
-  <div class="field">
-    <%= f.label :location %><br />
-    <%= f.text_area :location %>
-  </div>
-  <div class="field">
-    <%= f.label :maplink %><br />
-    <%= f.text_field :maplink %>
-  </div>
-  <div class="actions">
-    <%= f.submit %>
+</div>
+  <%= f.input :anonymous, :hint => t('lodging_anonymous_hint') if can? :manage, @lodging %>
+  <%= f.input :start_at %>
+  <%= f.input :end_at %>
+  <%= f.input :max_people %>
+  <%= f.input :accessible %>
+  <%= f.input :description %>
+  <%= f.input :location %>
+  <%= f.input :maplink, :as => :string %>
+  <div class="form-actions">
+    <%= f.button :submit, :class => 'btn-primary' %>
+    <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
+                lodgings_path, :class => 'btn' %>
   </div>
 <% end %>

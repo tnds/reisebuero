@@ -1,30 +1,64 @@
-<p id="notice"><%= notice %></p>
+<%- model_class = User -%>
+<div class="page-header">
+  <h1><%=t '.title', :default => model_class.model_name.human %></h1>
+</div>
+<div class="row">
+  <div class="span6">
+    <dl>
+      <dt><strong><%= model_class.human_attribute_name(:name) %>:</strong></dt>
+      <dd><%= @user.name %></dd>
+      <dt><strong><%= model_class.human_attribute_name(:first_name) %>:</strong></dt>
+      <dd><%= @user.first_name %></dd>
+      <dt><strong><%= model_class.human_attribute_name(:username) %>:</strong></dt>
+      <dd><%= @user.username %></dd>
+      <dt><strong><%= model_class.human_attribute_name(:email) %>:</strong></dt>
+      <dd><%= @user.email %></dd>
+      <dt><strong><%= model_class.human_attribute_name(:reset_password_token) %>:</strong></dt>
+      <dd><%= @user.reset_password_token %></dd>
+      <dt><strong><%= model_class.human_attribute_name(:reset_password_sent_at) %>:</strong></dt>
+      <dd><%= @user.reset_password_sent_at %></dd>
+      <dt><strong><%= model_class.human_attribute_name(:remember_created_at) %>:</strong></dt>
+      <dd><%= @user.remember_created_at %></dd>
+      <dt><strong><%= model_class.human_attribute_name(:sign_in_count) %>:</strong></dt>
+      <dd><%= @user.sign_in_count %></dd>
+      <dt><strong><%= model_class.human_attribute_name(:current_sign_in_at) %>:</strong></dt>
+      <dd><%= @user.current_sign_in_at %></dd>
+      <dt><strong><%= model_class.human_attribute_name(:last_sign_in_at) %>:</strong></dt>
+      <dd><%= @user.last_sign_in_at %></dd>
+      <dt><strong><%= model_class.human_attribute_name(:current_sign_in_ip) %>:</strong></dt>
+      <dd><%= @user.confirmation_token %></dd>
+      <dt><strong><%= model_class.human_attribute_name(:confirmed_at) %>:</strong></dt>
+      <dd><%= @user.confirmed_at %></dd>
+      <dt><strong><%= model_class.human_attribute_name(:confirmation_sent_at) %>:</strong></dt>
+      <dd><%= @user.confirmation_sent_at %></dd>
+      <dt><strong><%= model_class.human_attribute_name(:unconfirmed_email) %>:</strong></dt>
+      <dd><%= @user.unconfirmed_email %></dd>
+      <dt><strong><%= model_class.human_attribute_name(:failed_attempts) %>:</strong></dt>
+      <dd><%= @user.failed_attempts %></dd>
+      <dt><strong><%= model_class.human_attribute_name(:unlock_token) %>:</strong></dt>
+      <dd><%= @user.unlock_token %></dd>
+      <dt><strong><%= model_class.human_attribute_name(:locked_at) %>:</strong></dt>
+      <dd><%= @user.locked_at %></dd>
+      <dt><strong><%= model_class.human_attribute_name(:role_id) %>:</strong></dt>
+      <dd><%= @user.role.name %></dd>
+    </dl>
+  </div>
 
-<h2>Username: <%= @user.username %></h2>
+  <div class="span6">
+    <h3>
+      <%= t('contact') %>
+    </h3>
+    <%= render :partial => 'contacts/contact', :collection => @contacts %>
+    <%= link_to t('new_contact', :default => t("helpers.links.new")),
+            new_user_contact_path(@user),
+            :class => 'btn btn-primary' %>
+  </div>
 
-<p>
-  <b>Name:</b>
-  <%= @user.name %>
-</p>
+</div>
 
-<p>
-  <b>First name:</b>
-  <%= @user.first_name %>
-</p>
-
-<p>
-  <b>Email:</b>
-  <%= @user.email %>
-</p>
-
-<%= link_to t('edit'), edit_user_path(@user) if can? :update, @user %>
-
-<h2>
-  <%= t('contact') %>
-</h2>
-
-<% if can? :read, @contacts %>
-  <%= render :partial => 'contacts/contact', :collection => @contacts, :locals => {:readonly => false} %>
-<% elsif can? :read, @public_contacts %>
-  <%= render :partial => 'contacts/contacts', :locals => { :contacts => @public_contacts, :user => @user, :readonly => false} %>
-<% end %>
+<div class="span12">
+  <div class="form-actions">
+    <%= button_edit(edit_user_path(@user), 'btn') if can? :update, @user %>
+    <%= button_destroy(user_path(@user), 'btn btn-danger') if can? :destroy, @user %>
+  </div>
+</div>

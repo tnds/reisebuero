@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120811124851) do
+ActiveRecord::Schema.define(:version => 20120912123837) do
 
   create_table "bookings", :force => true do |t|
     t.integer  "lodging_id"
@@ -98,6 +98,7 @@ ActiveRecord::Schema.define(:version => 20120811124851) do
     t.boolean  "request"
     t.datetime "created_at",  :null => false
     t.datetime "updated_at",  :null => false
+    t.boolean  "anonymous"
   end
 
   add_index "lodgings", ["event_id"], :name => "index_lodgings_on_event_id"
@@ -134,6 +135,7 @@ ActiveRecord::Schema.define(:version => 20120811124851) do
     t.string   "unlock_token"
     t.datetime "locked_at"
     t.integer  "role_id"
+    t.boolean  "disabled"
   end
 
   add_index "users", ["confirmation_token"], :name => "index_users_on_confirmation_token", :unique => true

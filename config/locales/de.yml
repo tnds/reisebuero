@@ -151,7 +151,7 @@ de:
         start_at: Beginn
         end_at: Ende
         accessible: Behindertengerecht
-        max_people: "Maximale Anzahl Personen"
+        max_people: "Max. Personen"
         maplink: "Map-Link"
         description: Beschreibung
         location: Ort
@@ -180,8 +180,14 @@ de:
               invalid: ""
       messages:
         record_invalid: "Der Eintrag ist ungültig"
-
-
+  
+  helpers:
+    links:
+      confirm: Bist du sicher?
+      view: Anzeigen
+      new: Hinzufügen
+      edit: Bearbeiten
+      destroy: Löschen
 
   calendar: Kalender
   events: Events
@@ -226,6 +232,8 @@ de:
   lodging_requests: "Unterkunfts-Gesuche"
   lodging_request: "Unterkunfts-Gesuch"
   lodging_request_html: "Unterkunfts-<span class='red'>Gesuch</span>"
+  lodging_created: Unterkunft wurde angelegt
+  lodging_anonymous_hint: Statt dem anlegenden Benutzer werden Username und Kontaktdaten des Users "anon" angezeigt.
   edit_lodging: "Unterkunft bearbeiten"
   edit_lodging_request: "Unterkunfts-Gesuch bearbeiten"
   edit_lodging_request_html: "Unterkunfts-<span class='red'>Gesuch</span> bearbeiten"

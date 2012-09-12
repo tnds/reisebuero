@@ -5,6 +5,7 @@ class Ability
     # Define abilities for the passed in user here. For example:
     #
     user ||= User.new # guest user (not logged in)
+    anon = User.find_by_username("anon")
     if !user.role.nil?
 			if user.role.name == "Admin"
 	      can :manage, :all
@@ -14,7 +15,9 @@ class Ability
         can :manage, EventHelper
         can :manage, Lodging
         can :read, Contacttype
-        can :read, Contact, :public => true
+        can :read, Contact#, :public => true
+        can [:read, :update], User, :username => "anon"
+        can :manage, Contact, :user_id => anon.id
 			end
 			if user.role.name == "User"
 				can :create, Event
@@ -30,14 +33,15 @@ class Ability
           EventHelper.where(:event_id => event.id, :user_id => user.id, :orga => true).exists? unless event.nil?
         end
         can :read, Lodging
+        can :index, Lodging
         can :read, Booking
         can :manage, Lodging, :user_id => user.id
         can :manage, Booking, :user_id => user.id
         can :destroy, Booking do |booking|
           Lodging.where(:id => booking.lodging_id, :user_id => user.id).exists?
         end
-        cannot :index, Lodging
         cannot :index, Booking
+        cannot :index, Contact
         can :manage, Contact, :user_id => user.id
         can :read, Contact, :public => true
         can :read, Contacttype

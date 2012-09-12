@@ -1,6 +1,13 @@
-<h1><%=t('event') %></h1>
+<%- model_class = Event -%>
+<div class="page-header">
+  <h1><%=t '.title', :default => model_class.model_name.human %></h1>
+</div>
 
-<h2><%= @event.name %></h2>
+<h2>
+  <%= @event.name %>
+  <%= button_edit(edit_event_path(@event)) if can? :edit, @event %>
+  <%= button_destroy(event_path(@event)) if can? :destroy, @event %>
+</h2>
 <p>
 	<%= raw(display_time_event(@event)) %> 
 	<% if @event.all_day %>
@@ -40,28 +47,28 @@
   <% end %>
 </div>
 <% end %>
-<p>
-  <%= link_to t('edit'), edit_event_path(@event) if can? :update, @event %> <br/>
-  <%= link_to t('ical_export_single'), params.merge(:format => :ics)  %>
-</p>
-<% if can? :read, Lodging %>
-<div id="lodgings" class="two-column column-1">
-  <h3><%= t('lodgings') %></h3>
-  <ul>
-    <%= render :partial => 'lodgings/lodging', :collection => @lodgings %>
-  </ul>
-  <p>
-    <%= link_to t('new_lodging'), new_lodging_path(:event => @event.id, :request => false, :start_at => @event.start_at, :end_at => @event.end_at) %>
-  </p>
-</div>
 
-<div id="lodging_requests" class="two-column column-2">
-  <h3><%= t('lodging_requests') %></h3>
-  <ul>
-    <%= render :partial => 'lodgings/lodging', :collection => @lodging_requests %>
-  </ul>
-  <p>
-    <%= link_to t('new_lodging_request'), new_lodging_path(:event => @event.id, :request => true, :start_at => @event.start_at, :end_at => @event.end_at) %>
-  </p>
+<div class="row">
+  <% if can? :read, Lodging %>
+
+  <div id="lodgings" class="span6">
+    <h3><%= t('lodgings') %></h3>
+    <ul>
+      <%= render :partial => 'lodgings/lodging', :collection => @lodgings %>
+    </ul>
+    <p>
+      <%= button_new(new_lodging_path(:event => @event.id, :request => false, :start_at => @event.start_at, :end_at => @event.end_at), 'btn btn-primary', t('new_lodging')) %>
+    </p>
+  </div>
+
+  <div id="lodging_requests" class="span6">
+    <h3><%= t('lodging_requests') %></h3>
+    <ul>
+      <%= render :partial => 'lodgings/lodging', :collection => @lodging_requests %>
+    </ul>
+    <p>
+      <%= button_new(new_lodging_path(:event => @event.id, :request => true, :start_at => @event.start_at, :end_at => @event.end_at), 'btn btn-primary', t('new_lodging_request')) %>
+    </p>
+  </div>
 </div>
 <% end %>

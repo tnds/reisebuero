@@ -1,3 +1,5 @@
+<%- model_class = Lodging -%>
+<div class="page-header">
 <h1>
   <% if @lodging.request.nil? or @lodging.request == false  %>
     <%= t('edit_lodging') %>
@@ -5,7 +7,5 @@
     <%= t('edit_lodging_request_html') %>
   <% end %>
 </h1>
-
-<%= render 'form' %>
-
-<%= link_to t('show'), @lodging %>
+</div>
+<%= render :partial => 'form' %>

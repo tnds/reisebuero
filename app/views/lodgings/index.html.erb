@@ -1,41 +1,51 @@
-<h1>Listing lodgings</h1>
-
-<table>
-  <tr>
-    <th>Event</th>
-    <th>User</th>
-    <th>Start at</th>
-    <th>End at</th>
-    <th>Max people</th>
-    <th>Accessible</th>
-    <th>Description</th>
-    <th>Location</th>
-    <th>Maplink</th>
-    <th>Request</th>
-    <th></th>
-    <th></th>
-    <th></th>
-  </tr>
-
-<% @lodgings.each do |lodging| %>
-  <tr>
-    <td><%= lodging.event %></td>
-    <td><%= lodging.user %></td>
-    <td><%= lodging.start_at %></td>
-    <td><%= lodging.end_at %></td>
-    <td><%= lodging.max_people %></td>
-    <td><%= lodging.accessible %></td>
-    <td><%= lodging.description %></td>
-    <td><%= lodging.location %></td>
-    <td><%= lodging.maplink %></td>
-    <td><%= lodging.request %></td>
-    <td><%#= link_to 'Show', lodging %></td>
-    <td><%#= link_to 'Edit', edit_lodging_path(lodging) %></td>
-    <td><%#= link_to 'Destroy', lodging, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-  </tr>
-<% end %>
+<%- model_class = Lodging -%>
+<div class="page-header">
+  <h1><%=t 'lodgings' %></h1>
+</div>
+<table class="table table-striped table-centered">
+  <thead>
+    <tr>
+      <th><%= model_class.human_attribute_name(:event_id) %></th>
+      <th><%= model_class.human_attribute_name(:user_id) %></th>
+      <th><%= model_class.human_attribute_name(:start_at) %></th>
+      <th><%= model_class.human_attribute_name(:end_at) %></th>
+      <th><%= model_class.human_attribute_name(:max_people) %></th>
+      <th><%= model_class.human_attribute_name(:accessible) %></th>
+      <th><%= model_class.human_attribute_name(:request) %></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @lodgings.each do |lodging| %>
+      <tr>
+        <td>
+          <% unless lodging.event.nil? %>
+            <%= lodging.event_id %> - <%= link_to lodging.event.name, lodging.event %>
+          <% end %>
+        </td>
+        <td>
+          <% unless lodging.user.nil? %>
+            <% if can? :read, lodging.user %>
+              <%= link_to lodging.user.username, lodging.user %>
+            <% else %>
+              <%= lodging.user.username %>
+            <% end %>
+          <% end %>
+        </td>
+        <td><%= lodging.start_at %></td>
+        <td><%= lodging.end_at %></td>
+        <td><%= lodging.max_people %></td>
+        <td><%= icon_bool(lodging.accessible) %></td>
+        <td><%= icon_bool(lodging.request) %></td>
+        <td>
+          <%= button_view(lodging) %>
+          <%= button_edit(edit_lodging_path(lodging)) if can? :edit, lodging %>
+          <%= button_destroy(lodging_path(lodging)) if can? :destroy, lodging %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
 </table>
 
-<br />
-
-<%#= link_to 'New Lodging', new_lodging_path %>
+<%= link_to t('.new', :default => t("helpers.links.new")),
+            new_lodging_path,
+            :class => 'btn btn-primary' %>
