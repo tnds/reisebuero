@@ -58,7 +58,6 @@ class LodgingsController < ApplicationController
 
   # PUT /lodgings/1
   def update
-    @event = Event.find(params[:event_id])
     @lodging = Lodging.find(params[:id])
 
     respond_to do |format|
