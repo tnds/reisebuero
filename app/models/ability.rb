@@ -15,7 +15,7 @@ class Ability
         can :manage, EventHelper
         can :manage, Lodging
         can :read, Contacttype
-        can :read, Contact#, :public => true
+        can :read, Contact
         can [:read, :update], User, :username => "anon"
         can :manage, Contact, :user_id => anon.id
 			end
@@ -35,7 +35,7 @@ class Ability
         can :read, Lodging
         can :index, Lodging
         can :read, Booking
-        can :manage, Lodging, :user_id => user.id
+        can [:update, :destroy], Lodging, :user_id => user.id
         can :manage, Booking, :user_id => user.id
         can :destroy, Booking do |booking|
           Lodging.where(:id => booking.lodging_id, :user_id => user.id).exists?
