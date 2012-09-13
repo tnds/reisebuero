@@ -19,6 +19,7 @@
   <%= f.input :description %>
   <%= f.input :location %>
   <%= f.input :maplink, :as => :string %>
+  <%= f.input :mod_comment if can? :manage, @lodging %>
   <div class="form-actions">
     <%= f.button :submit, :class => 'btn-primary' %>
     <%= link_to t('.cancel', :default => t("helpers.links.cancel")),

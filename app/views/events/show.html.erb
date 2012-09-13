@@ -17,12 +17,12 @@
 
 <p>
   <b><%=t('location')%>:</b>
-  <%= @event.location %>
+  <%= simple_format(@event.location) %>
 </p>
 
 <p>
   <b><%=t('description')%>:</b>
-  <%= @event.description %>
+  <%= simple_format(@event.description) %>
 </p>
 
 <% if can? :read, EventHelper %>
