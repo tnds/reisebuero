@@ -65,14 +65,14 @@
     </b>
     <%= link_to @lodging.maplink, @lodging.maplink %>
   </p>
-
+<% if can? :manage, @lodging %>
   <p>
     <b>
       <%= Lodging.human_attribute_name('mod_comment')+':' %>
     </b>
     <%= simple_format(@lodging.mod_comment) %>
   </p>
-
+<% end %>
   </div>
 
   <div class="span6">

@@ -1,0 +1,35 @@
+<%- model_class = HelperCandidate -%>
+<div class="page-header">
+  <h1><%=t 'helper_candidates' %></h1>
+</div>
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th><%= model_class.human_attribute_name(:id) %></th>
+      <th><%= model_class.human_attribute_name(:user_id) %></th>
+      <th><%= model_class.human_attribute_name(:start_at) %></th>
+      <th><%= model_class.human_attribute_name(:end_at) %></th>
+      <th><%= model_class.human_attribute_name(:comment) %></th>
+      <th><%= model_class.human_attribute_name(:created_at) %></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @helper_candidates.each do |helper_candidate| %>
+      <tr>
+        <td><%= link_to helper_candidate.id, helper_candidate_path(helper_candidate) %></td>
+        <td><%= helper_candidate.user.name unless helper_candidate.user.nil? %></td>
+        <td><%= helper_candidate.start_at %></td>
+        <td><%= helper_candidate.end_at %></td>
+        <td><%= helper_candidate.comment %></td>
+        <td><%=l helper_candidate.created_at %></td>
+        <td>
+          <%= button_edit(edit_helper_candidate_path(helper_candidate)) %>
+          <%= button_destroy(helper_candidate_path(helper_candidate)) %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<%= button_new(new_helper_candidate_path, 'btn btn-primary') %>
