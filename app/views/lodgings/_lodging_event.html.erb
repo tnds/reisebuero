@@ -1,5 +1,7 @@
 <%= link_to(lodging_event) do %>
-  <%= lodging_event.event.name unless lodging_event.event.nil? %>:
+  <% unless lodging_event.event.nil? %>
+    <%= lodging_event.event.name %>:
+  <% end %>
   <%= lodging_event.max_people %>
   <%= t('people') %>
   <br/>
