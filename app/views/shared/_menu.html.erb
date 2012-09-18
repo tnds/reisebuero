@@ -1,11 +1,14 @@
 <ul class="nav">
-	<li><%= link_to t('calendar'), calendar_path %></li>
-	<li><%= link_to t('events'), events_path %></li>
         <li>
           <%= link_to t('my_page'), :controller => '/my_page', :action => 'index' unless current_user.nil? %>
         </li>
+	<li><%= link_to t('calendar'), calendar_path %></li>
+	<li><%= link_to t('events'), events_path %></li>
         <li>
-          <%= link_to t('lodgings'), lodgings_path if can? :index, Lodging %>
+          <%= link_to t('helper_candidates'), helper_candidates_path if can? :manage, HelperCandidate %>
+        </li>
+        <li>
+          <%= link_to t('lodgings'), lodgings_path if can? :manage, Lodging %>
         </li>
 	<li><%= link_to t('users'), users_path if can? :manage, User %></li>
 </ul>

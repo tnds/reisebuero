@@ -1,0 +1,19 @@
+<%- model_class = HelperCandidate -%>
+<div class="page-header">
+  <h1><%=t '.title', :default => model_class.model_name.human %></h1>
+</div>
+
+<dl class="dl-horizontal">
+  <dt></dt>
+  <dd><%= raw(display_time_lodging(@helper_candidate)) %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:comment) %>:</strong></dt>
+  <dd><%= simple_format(@helper_candidate.comment) %></dd>
+  <% if can? :manage, @helper_candidate %>
+    <dd><%= simple_format(@helper_candidate.mod_comment) %></dd>
+  <% end %>
+</dl>
+
+<div class="form-actions">
+  <%= button_edit(edit_helper_candidate_path(@helper_candidate), 'btn') %>
+  <%= button_destroy(helper_candidate_path(@helper_candidate), 'btn btn-danger') %>
+</div>

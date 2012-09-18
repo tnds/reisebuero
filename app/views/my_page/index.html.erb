@@ -8,12 +8,21 @@
         <%= render :partial => 'events/event', :locals => {:event => event_helper.event} %>
       <% end %>
     </div>
+    
+    <div id="helper_candidates">
+      <h3>
+        <%= t('helper_candidates') %>
+      </h3>
+      <%= render @helper_candidates %>
+      <%= button_new(new_helper_candidate_path) %>
+    </div>
 
     <div id="lodgings">
       <h3><%= t('lodgings') %></h3>
       <ul>
         <%= render :partial => 'lodgings/lodging_event', :collection => @lodgings %>
       </ul>
+      <%= button_new(new_lodging_path(:request => false)) %>
     </div>
 
     <div id="lodging_requests">
@@ -21,6 +30,7 @@
       <ul>
         <%= render :partial => 'lodgings/lodging_event', :collection => @lodging_requests %>
       </ul>
+      <%= button_new(new_lodging_path(:request => true)) %>
     </div>
   </div>
   <div class="span6">

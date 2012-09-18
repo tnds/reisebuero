@@ -3,6 +3,10 @@ module ApplicationHelper
     display_time(event.start_at, event.end_at, event.all_day)
   end
   
+  def display_time_candidate(candidate)
+    display_time(candidate.start_at.to_time, candidate.end_at.to_time, true)
+  end
+  
   def display_time_lodging(lodging)
     display_time(lodging.start_at.to_time, lodging.end_at.to_time, true)
   end
