@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120913164432) do
+ActiveRecord::Schema.define(:version => 20120927142603) do
 
   create_table "bookings", :force => true do |t|
     t.integer  "lodging_id"
@@ -34,10 +34,10 @@ ActiveRecord::Schema.define(:version => 20120913164432) do
   create_table "contacts", :force => true do |t|
     t.integer  "user_id"
     t.integer  "contacttype_id"
-    t.string   "address"
+    t.text     "address",        :limit => 255
     t.boolean  "public"
-    t.datetime "created_at",     :null => false
-    t.datetime "updated_at",     :null => false
+    t.datetime "created_at",                    :null => false
+    t.datetime "updated_at",                    :null => false
   end
 
   add_index "contacts", ["contacttype_id"], :name => "index_contacts_on_contacttype_id"
@@ -47,6 +47,7 @@ ActiveRecord::Schema.define(:version => 20120913164432) do
     t.string   "name"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
+    t.boolean  "text"
   end
 
   create_table "event_categories", :force => true do |t|
