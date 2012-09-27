@@ -1,11 +1,13 @@
-<span class="event_name">
-  <%= link_to event.name, event %>
-</span>
-<span class="event_orga">
-  <% if event.event_helpers.find_by_user_id(current_user.id).orga? %>
-  (<%= t('event_orga') %>)
-  <% else  %>
-  (<%= t('event_helper') %>)
-  <% end %>
-</span><br/>
-<%= raw  display_time_event(event) %><br/>
+<li>
+  <span class="event_name">
+    <%= link_to event.name, event %>
+  </span>
+  <span class="event_orga">
+    <% if event.event_helpers.find_by_user_id(current_user.id).orga? %>
+    (<%= t('event_orga') %>)
+    <% else  %>
+    (<%= t('event_helper') %>)
+    <% end %>
+  </span><br/>
+  <%= raw  display_time_event(event) %><br/>
+</li>
