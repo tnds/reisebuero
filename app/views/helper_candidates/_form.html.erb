@@ -3,7 +3,18 @@
   <%= f.input :start_at %>
   <%= f.input :end_at %>
   <%= f.input :comment %>
-  <%= f.input :mod_comment if can? :manage, @helper_candidate %>
+<% if can? :manage, @helper_candidate %>
+  <%= f.input :mod_comment %>
+<% elsif @helper_candidate.user == current_user and not @helper_candidate.mod_comment.nil? %>
+<div class="control-group">
+  <label class="control-label">
+    <%= t('mod_comment')+':' %>
+  </label>
+  <div class="controls">
+    <%= simple_format(@helper_candidate.mod_comment) %>
+  </div>
+</div>
+<% end %>
   <div class="form-actions">
     <%= f.button :submit, :class => 'btn-primary' %>
     <%= link_to t('.cancel', :default => t("helpers.links.cancel")),

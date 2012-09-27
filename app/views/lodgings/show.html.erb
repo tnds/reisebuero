@@ -11,11 +11,12 @@
 
 <div class="row">
   <div class="span6">
-  <h2>
-    <%= Lodging.human_attribute_name('event')+':' %>
-    <%= link_to @lodging.event.name, event_path(@lodging.event) unless @lodging.event.nil? %>
-  </h2>
-
+  <% unless @lodging.event.nil? %>
+    <h2>
+      <%= Lodging.human_attribute_name('event')+':' %>
+      <%= link_to @lodging.event.name, event_path(@lodging.event) unless @lodging.event.nil? %>
+    </h2>
+  <% end %>
   <p>
           <%= raw(display_time_lodging(@lodging)) %> 
   </p>
@@ -65,7 +66,7 @@
     </b>
     <%= link_to @lodging.maplink, @lodging.maplink %>
   </p>
-<% if can? :manage, @lodging %>
+<% if @lodging.user == current_user or can? :manage, @lodging %>
   <p>
     <b>
       <%= Lodging.human_attribute_name('mod_comment')+':' %>

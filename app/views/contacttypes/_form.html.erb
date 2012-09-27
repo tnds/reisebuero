@@ -1,21 +1,9 @@
-<%= form_for(@contacttype) do |f| %>
-  <% if @contacttype.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@contacttype.errors.count, "error") %> prohibited this contacttype from being saved:</h2>
-
-      <ul>
-      <% @contacttype.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
-
-  <div class="field">
-    <%= f.label :name %><br />
-    <%= f.text_field :name %>
-  </div>
-  <div class="actions">
-    <%= f.submit %>
+<%= simple_form_for @contacttype, :html => { :class => 'form-horizontal' } do |f| %>
+  <%= f.input :name %>
+  <%= f.input :text %>
+  <div class="form-actions">
+    <%= f.button :submit, :class => 'btn-primary' %>
+    <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
+                contacttypes_path, :class => 'btn' %>
   </div>
 <% end %>

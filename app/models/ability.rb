@@ -17,6 +17,7 @@ class Ability
         can :read, Contacttype
         can :read, Contact
         can [:read, :update], User, :username => "anon"
+        can :read, User
         can :manage, Contact, :user_id => anon.id
         can :manage, HelperCandidate
 			end

@@ -1,4 +1,5 @@
 class ContacttypesController < ApplicationController
+  load_and_authorize_resource
   # GET /contacttypes
   # GET /contacttypes.json
   def index

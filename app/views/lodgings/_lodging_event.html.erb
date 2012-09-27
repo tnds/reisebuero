@@ -1,9 +1,9 @@
-<%= link_to(lodging_event) do %>
-  <% unless lodging_event.event.nil? %>
-    <%= lodging_event.event.name %>:
-  <% end %>
+<li>
+  <%= raw(display_time_lodging(lodging_event)) %>, 
+  <%= lodging_event.event.name unless lodging_event.event.nil? %>
   <%= lodging_event.max_people %>
   <%= t('people') %>
-  <br/>
-<% end %>
-<%= raw(display_time_lodging(lodging_event)) %> 
+  <%= button_view(lodging_path(lodging_event)) if can? :read, lodging_event %>
+  <%= button_edit(edit_lodging_path(lodging_event)) if can? :update, lodging_event %>
+  <%= button_destroy(lodging_path(lodging_event)) if can? :destroy, lodging_event %>
+</li>
