@@ -4,22 +4,26 @@
       <h3>
         <%= t('events') %>
       </h3>
-      <% @event_helpers.each do |event_helper| %>
-        <%= render :partial => 'events/event', :locals => {:event => event_helper.event} %>
-      <% end %>
+      <ul class="unstyled">
+        <% @event_helpers.each do |event_helper| %>
+          <%= render :partial => 'events/event', :locals => {:event => event_helper.event} %>
+        <% end %>
+      </ul>
     </div>
     
     <div id="helper_candidates">
       <h3>
         <%= t('helper_candidates') %>
       </h3>
-      <%= render @helper_candidates %>
+      <ul class="unstyled">
+        <%= render @helper_candidates %>
+      </ul>
       <%= button_new(new_helper_candidate_path) %>
     </div>
 
     <div id="lodgings">
       <h3><%= t('lodgings') %></h3>
-      <ul>
+      <ul class="unstyled">
         <%= render :partial => 'lodgings/lodging_event', :collection => @lodgings %>
       </ul>
       <%= button_new(new_lodging_path(:request => false)) %>
@@ -27,7 +31,7 @@
 
     <div id="lodging_requests">
       <h3><%= t('lodging_requests') %></h3>
-      <ul>
+      <ul class="unstyled">
         <%= render :partial => 'lodgings/lodging_event', :collection => @lodging_requests %>
       </ul>
       <%= button_new(new_lodging_path(:request => true)) %>

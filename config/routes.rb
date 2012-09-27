@@ -6,7 +6,7 @@ Reisebuero::Application.routes.draw do
     resources :bookings
   end
 
-  resources :categories
+  resources :contacttypes
 
   resources :events do
     resources :event_helpers do

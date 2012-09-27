@@ -8,7 +8,7 @@
   <dd><%= raw(display_time_lodging(@helper_candidate)) %></dd>
   <dt><strong><%= model_class.human_attribute_name(:comment) %>:</strong></dt>
   <dd><%= simple_format(@helper_candidate.comment) %></dd>
-  <% if can? :manage, @helper_candidate %>
+  <% if @helper_candidate.user == current_user or can? :manage, @helper_candidate %>
     <dd><%= simple_format(@helper_candidate.mod_comment) %></dd>
   <% end %>
 </dl>

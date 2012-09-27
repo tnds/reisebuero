@@ -19,7 +19,18 @@
   <%= f.input :description %>
   <%= f.input :location %>
   <%= f.input :maplink, :as => :string %>
-  <%= f.input :mod_comment if can? :manage, @lodging %>
+<% if can? :manage, @lodging %>
+  <%= f.input :mod_comment %>
+<% elsif @lodging.user == current_user and not @lodging.mod_comment.nil? %>
+<div class="control-group">
+  <label class="control-label">
+    <%= t('mod_comment')+':' %>
+  </label>
+  <div class="controls">
+    <%= simple_format(@lodging.mod_comment) %>
+  </div>
+</div>
+<% end %>
   <div class="form-actions">
     <%= f.button :submit, :class => 'btn-primary' %>
     <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
