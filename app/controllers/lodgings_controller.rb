@@ -81,7 +81,7 @@ class LodgingsController < ApplicationController
     @lodging.destroy
 
     respond_to do |format|
-      format.html { redirect_to lodgings_url }
+      format.html { redirect_to :controller => 'my_page', :action => 'index' }
     end
   end
 end
