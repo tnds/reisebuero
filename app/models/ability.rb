@@ -35,7 +35,6 @@ class Ability
           EventHelper.where(:event_id => event.id, :user_id => user.id, :orga => true).exists? unless event.nil?
         end
         can :read, Lodging
-        can :index, Lodging
         can :read, Booking
         can [:create, :update, :destroy], Lodging, :user_id => user.id
         can :manage, Booking, :user_id => user.id
