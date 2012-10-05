@@ -6,7 +6,7 @@ Reisebuero::Application.routes.draw do
     resources :bookings
   end
 
-  resources :categories
+  resources :contacttypes
 
   resources :events do
     resources :event_helpers do
@@ -15,11 +15,11 @@ Reisebuero::Application.routes.draw do
     end
   end
 
+  resources :helper_candidates
+  
 #  resources :users
   resources :users do
-    resources :contacts #do
-#      resources :contacttypes
-#    end
+    resources :contacts
   end
   
   match '/my_page' => 'my_page#index'

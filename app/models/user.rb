@@ -12,6 +12,7 @@ class User < ActiveRecord::Base
 	belongs_to :role
   has_many :lodgings, :dependent => :destroy
   has_many :contacts, :dependent => :destroy
+  has_many :helper_candidates, :dependent => :destroy
   
   validates :username, :presence => true, :uniqueness => true
   

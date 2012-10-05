@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120913114610) do
+ActiveRecord::Schema.define(:version => 20120927142603) do
 
   create_table "bookings", :force => true do |t|
     t.integer  "lodging_id"
@@ -34,10 +34,10 @@ ActiveRecord::Schema.define(:version => 20120913114610) do
   create_table "contacts", :force => true do |t|
     t.integer  "user_id"
     t.integer  "contacttype_id"
-    t.string   "address"
+    t.text     "address",        :limit => 255
     t.boolean  "public"
-    t.datetime "created_at",     :null => false
-    t.datetime "updated_at",     :null => false
+    t.datetime "created_at",                    :null => false
+    t.datetime "updated_at",                    :null => false
   end
 
   add_index "contacts", ["contacttype_id"], :name => "index_contacts_on_contacttype_id"
@@ -47,6 +47,7 @@ ActiveRecord::Schema.define(:version => 20120913114610) do
     t.string   "name"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
+    t.boolean  "text"
   end
 
   create_table "event_categories", :force => true do |t|
@@ -84,6 +85,19 @@ ActiveRecord::Schema.define(:version => 20120913114610) do
     t.datetime "updated_at",  :null => false
     t.string   "uid"
   end
+
+  create_table "helper_candidates", :force => true do |t|
+    t.integer  "user_id"
+    t.date     "start_at"
+    t.date     "end_at"
+    t.string   "comment"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
+    t.boolean  "anonymous"
+    t.text     "mod_comment"
+  end
+
+  add_index "helper_candidates", ["user_id"], :name => "index_helper_candidates_on_user_id"
 
   create_table "lodgings", :force => true do |t|
     t.integer  "event_id"

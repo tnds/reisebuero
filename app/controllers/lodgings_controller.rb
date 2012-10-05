@@ -59,6 +59,12 @@ class LodgingsController < ApplicationController
   # PUT /lodgings/1
   def update
     @lodging = Lodging.find(params[:id])
+    @anon = User.find_by_username("anon")
+    if @lodging.anonymous and can? :manage, Lodging
+      @lodging.user_id = @anon.id
+    else
+      @lodging.user_id = current_user.id
+    end
 
     respond_to do |format|
       if @lodging.update_attributes(params[:lodging])
@@ -75,7 +81,7 @@ class LodgingsController < ApplicationController
     @lodging.destroy
 
     respond_to do |format|
-      format.html { redirect_to lodgings_url }
+      format.html { redirect_to :controller => 'my_page', :action => 'index' }
     end
   end
 end

@@ -17,7 +17,9 @@ class Ability
         can :read, Contacttype
         can :read, Contact
         can [:read, :update], User, :username => "anon"
+        can :read, User
         can :manage, Contact, :user_id => anon.id
+        can :manage, HelperCandidate
 			end
 			if user.role.name == "User"
 				can :create, Event
@@ -33,9 +35,8 @@ class Ability
           EventHelper.where(:event_id => event.id, :user_id => user.id, :orga => true).exists? unless event.nil?
         end
         can :read, Lodging
-        can :index, Lodging
         can :read, Booking
-        can [:update, :destroy], Lodging, :user_id => user.id
+        can [:create, :update, :destroy], Lodging, :user_id => user.id
         can :manage, Booking, :user_id => user.id
         can :destroy, Booking do |booking|
           Lodging.where(:id => booking.lodging_id, :user_id => user.id).exists?
@@ -45,6 +46,8 @@ class Ability
         can :manage, Contact, :user_id => user.id
         can :read, Contact, :public => true
         can :read, Contacttype
+        can :read, HelperCandidate
+        can [:create, :update, :destroy], HelperCandidate, :user_id => user.id
 			end
     else
 #      can :read, [Event, EventHelper]

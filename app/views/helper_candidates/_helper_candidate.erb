@@ -1,0 +1,10 @@
+<li>
+  <%= raw(display_time_lodging(helper_candidate)) %>
+  <% unless helper_candidate.comment.nil? or helper_candidate.comment.length == 0 %>
+    <i><%= helper_candidate.comment %></i>
+  <% end %>
+
+<%= button_view(helper_candidate_path(helper_candidate)) if can? :read, helper_candidate %>
+  <%= button_edit(edit_helper_candidate_path(helper_candidate)) if can? :update, helper_candidate %>
+  <%= button_destroy(helper_candidate_path(helper_candidate)) if can? :destroy, helper_candidate %>
+</li>
