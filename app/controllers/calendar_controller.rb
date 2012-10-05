@@ -1,7 +1,7 @@
 class CalendarController < ApplicationController
   
   def index
-    @first_day_of_week = 0
+    @first_day_of_week = 1
     @month = (params[:month] || (Time.zone || Time).now.month).to_i
     @year = (params[:year] || (Time.zone || Time).now.year).to_i
 
