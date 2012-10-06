@@ -5,7 +5,6 @@
 <table class="table table-striped">
   <thead>
     <tr>
-      <th><%= model_class.human_attribute_name(:id) %></th>
       <th><%= model_class.human_attribute_name(:user_id) %></th>
       <th><%= model_class.human_attribute_name(:start_at) %></th>
       <th><%= model_class.human_attribute_name(:end_at) %></th>
@@ -17,8 +16,18 @@
   <tbody>
     <% @helper_candidates.each do |helper_candidate| %>
       <tr>
-        <td><%= link_to helper_candidate.id, helper_candidate_path(helper_candidate) %></td>
-        <td><%= helper_candidate.user.name unless helper_candidate.user.nil? %></td>
+        <td>
+          <% unless helper_candidate.user.nil? %>
+            <% if can? :read, helper_candidate.user %>
+              <%= link_to helper_candidate.user.username, helper_candidate.user %>
+            <% else %>
+              <%= helper_candidate.user.username %>
+            <% end %>
+            <% if helper_candidate.anonymous and can? :manage, helper_candidate %>
+              (<%= link_to @anon.username, @anon %>)
+            <% end%>
+          <% end %>
+        </td>
         <td><%= helper_candidate.start_at %></td>
         <td><%= helper_candidate.end_at %></td>
         <td><%= helper_candidate.comment %></td>

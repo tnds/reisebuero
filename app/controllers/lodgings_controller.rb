@@ -3,6 +3,15 @@ class LodgingsController < ApplicationController
   # GET /lodgings
   def index
     @lodgings = Lodging.all
+    @anon = User.find_by_username("anon")
+    
+    @lodgings.each do |lodging|
+      if cannot? :manage, lodging
+        if lodging.anonymous
+          lodging.user_id = @anon.id
+        end
+      end
+    end
 
     respond_to do |format|
       format.html # index.html.erb
@@ -13,7 +22,12 @@ class LodgingsController < ApplicationController
   def show
     @lodging = Lodging.find(params[:id])
     @contacts = Contact.find_all_by_user_id_and_public(@lodging.user_id, true)
+    @anon = User.find_by_username("anon")
 
+    if @lodging.anonymous? and cannot? :manage, @lodging
+      @lodging.user_id = @anon.id
+    end
+    
     respond_to do |format|
       format.html # show.html.erb
     end
@@ -26,6 +40,7 @@ class LodgingsController < ApplicationController
     @lodging.request = params[:request] || false
     @lodging.start_at = params[:start_at] unless params[:start_at].nil?
     @lodging.end_at = params[:end_at] unless params[:end_at].nil?
+    @lodging.user_id = current_user.id
 
     respond_to do |format|
       format.html # new.html.erb
@@ -40,12 +55,7 @@ class LodgingsController < ApplicationController
   # POST /lodgings
   def create
     @lodging = Lodging.create(params[:lodging])
-    @anon = User.find_by_username("anon")
-    if @lodging.anonymous and can? :manage, Lodging
-      @lodging.user_id = @anon.id
-    else
-      @lodging.user_id = current_user.id
-    end
+    @lodging.user_id = current_user.id
 
     respond_to do |format|
       if @lodging.save
@@ -59,12 +69,6 @@ class LodgingsController < ApplicationController
   # PUT /lodgings/1
   def update
     @lodging = Lodging.find(params[:id])
-    @anon = User.find_by_username("anon")
-    if @lodging.anonymous and can? :manage, Lodging
-      @lodging.user_id = @anon.id
-    else
-      @lodging.user_id = current_user.id
-    end
 
     respond_to do |format|
       if @lodging.update_attributes(params[:lodging])
