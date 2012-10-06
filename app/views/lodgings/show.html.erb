@@ -30,6 +30,9 @@
     <% else %>
       <%= @lodging.user.username %>
     <% end %>
+    <% if @lodging.anonymous and can? :manage, @lodging %>
+      (<%= link_to @anon.username, @anon %>)
+    <% end%>
   </p>
 
   <p>

@@ -3,6 +3,15 @@ class HelperCandidatesController < ApplicationController
   # GET /helper_candidates.json
   def index
     @helper_candidates = HelperCandidate.all
+    @anon = User.find_by_username("anon")
+    
+    @helper_candidates.each do |helper_candidate|
+      if cannot? :manage, helper_candidate
+        if helper_candidate.anonymous
+          helper_candidate.user_id = @anon.id
+        end
+      end
+    end
 
     respond_to do |format|
       format.html # index.html.erb
@@ -14,6 +23,11 @@ class HelperCandidatesController < ApplicationController
   # GET /helper_candidates/1.json
   def show
     @helper_candidate = HelperCandidate.find(params[:id])
+    @anon = User.find_by_username("anon")
+
+    if @helper_candidate.anonymous and cannot? :manage, @helper_candidate
+      @helper_candidate.user_id = @anon.id
+    end
 
     respond_to do |format|
       format.html # show.html.erb
@@ -25,6 +39,7 @@ class HelperCandidatesController < ApplicationController
   # GET /helper_candidates/new.json
   def new
     @helper_candidate = HelperCandidate.new
+    @helper_candidate.user_id = current_user.id
 
     respond_to do |format|
       format.html # new.html.erb
@@ -40,13 +55,8 @@ class HelperCandidatesController < ApplicationController
   # POST /helper_candidates
   # POST /helper_candidates.json
   def create
-    @helper_candidate = current_user.helper_candidates.build(params[:helper_candidate])
-    @anon = User.find_by_username("anon")
-    if @helper_candidate.anonymous and can? :manage, Lodging
-      @helper_candidate.user_id = @anon.id
-    else
-      @helper_candidate.user_id = current_user.id
-    end
+    @helper_candidate = HelperCandidate.create(params[:helper_candidate])
+    @helper_candidate.user_id = current_user.id
 
     respond_to do |format|
       if @helper_candidate.save
@@ -63,12 +73,6 @@ class HelperCandidatesController < ApplicationController
   # PUT /helper_candidates/1.json
   def update
     @helper_candidate = HelperCandidate.find(params[:id])
-    @anon = User.find_by_username("anon")
-    if @helper_candidate.anonymous and can? :manage, Lodging
-      @helper_candidate.user_id = @anon.id
-    else
-      @helper_candidate.user_id = current_user.id
-    end
 
     respond_to do |format|
       if @helper_candidate.update_attributes(params[:helper_candidate])
