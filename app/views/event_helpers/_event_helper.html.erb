@@ -1,6 +1,10 @@
 <% if event_helper.user %>
   <li>
-    <%= event_helper.user.username %>
+    <% if can? :read, event_helper.user %>
+      <%= link_to event_helper.user.username, event_helper.user %>
+    <% else %>
+      <%= event_helper.user.username %>
+    <% end %>
     <%= button(promote_event_event_helper_path(event_helper.event, event_helper), 'btn btn-mini', t('promote_helper'), 'chevron-up') if can? :promote, event_helper and not event_helper.orga? %>
     <%= button(demote_event_event_helper_path(event_helper.event, event_helper), 'btn btn-mini', t('demote_orga'), 'chevron-down') if can? :demote, event_helper and event_helper.orga? %>
     <%= button_destroy(event_event_helper_path(event_helper.event, event_helper)) if can? :destroy, event_helper %>
