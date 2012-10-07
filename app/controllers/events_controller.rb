@@ -42,6 +42,7 @@ class EventsController < ApplicationController
     @user_is_helper = EventHelper.where(:event_id => @event , :user_id => current_user).exists?
     @lodgings = @event.lodgings.find_all_by_request(false,nil)
     @lodging_requests = @event.lodgings.find_all_by_request(true)
+    @contacts = Contact.find_all_by_user_id_and_public(@orgas.first.user_id, true)
 
     respond_to do |format|
       format.html # show.html.erb

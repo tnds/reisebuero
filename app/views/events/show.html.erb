@@ -3,49 +3,61 @@
   <h1><%=t '.title', :default => model_class.model_name.human %></h1>
 </div>
 
-<h2>
-  <%= @event.name %>
-  <%= button_edit(edit_event_path(@event)) if can? :edit, @event %>
-  <%= button_destroy(event_path(@event)) if can? :destroy, @event %>
-</h2>
-<p>
-	<%= raw(display_time_event(@event)) %> 
-	<% if @event.all_day %>
-          (<%=t('all_day')%>)
-	<% end %>
-</p>
+<div class="row">
+  <div class="span6">
+    <h2>
+      <%= @event.name %>
+      <%= button_edit(edit_event_path(@event)) if can? :edit, @event %>
+      <%= button_destroy(event_path(@event)) if can? :destroy, @event %>
+    </h2>
+    <p>
+            <%= raw(display_time_event(@event)) %> 
+            <% if @event.all_day %>
+              (<%=t('all_day')%>)
+            <% end %>
+    </p>
 
-<p>
-  <b><%=t('location')%>:</b>
-  <%= simple_format(@event.location) %>
-</p>
+    <p>
+      <b><%=t('location')%>:</b>
+      <%= simple_format(@event.location) %>
+    </p>
 
-<p>
-  <b><%=t('description')%>:</b>
-  <%= simple_format(@event.description) %>
-</p>
+    <p>
+      <b><%=t('description')%>:</b>
+      <%= simple_format(@event.description) %>
+    </p>
 
-<% if can? :read, EventHelper %>
-<div id="event_orgas">
-  <h3><%= t('event_orgas') %></h3>
-  <ul>
-    <%= render :partial => 'event_helpers/event_helper', :collection => @orgas, :locals => { :user_is_orga => @user_is_orga} %>
-  </ul>
+    <% if can? :read, EventHelper %>
+    <div id="event_orgas">
+      <h3><%= t('event_orgas') %></h3>
+      <ul>
+        <%= render :partial => 'event_helpers/event_helper', :collection => @orgas, :locals => { :user_is_orga => @user_is_orga} %>
+      </ul>
+    </div>
+
+    <div id="event_helpers">
+      <h3><%= t('event_helpers') %></h3>
+      <ul>
+        <%= render :partial => 'event_helpers/event_helper', :collection => @helpers, :locals => { :user_is_orga => @user_is_orga} %>
+      </ul>
+      <% if can? :create, EventHelper and not @user_is_helper %>
+        <%= form_for([@event, @event.event_helpers.build]) do |helper_form| %>
+          <div class="action">
+            <%= helper_form.submit t('helper_submit') %>
+          </div>
+        <% end %>
+      <% end %>
+    </div>
+  </div>
+    <div class="span6">
+    <h2>
+      <%= t('contact') %>
+    </h2>
+    <%= render :partial => 'contacts/contact', :collection => @contacts %>
+    </div>
+  
 </div>
 
-<div id="event_helpers">
-  <h3><%= t('event_helpers') %></h3>
-  <ul>
-    <%= render :partial => 'event_helpers/event_helper', :collection => @helpers, :locals => { :user_is_orga => @user_is_orga} %>
-  </ul>
-  <% if can? :create, EventHelper and not @user_is_helper %>
-    <%= form_for([@event, @event.event_helpers.build]) do |helper_form| %>
-      <div class="action">
-        <%= helper_form.submit t('helper_submit') %>
-      </div>
-    <% end %>
-  <% end %>
-</div>
 <% end %>
 
 <div class="row">
