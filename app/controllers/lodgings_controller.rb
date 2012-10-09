@@ -23,6 +23,8 @@ class LodgingsController < ApplicationController
     @lodging = Lodging.find(params[:id])
     @contacts = Contact.find_all_by_user_id_and_public(@lodging.user_id, true)
     @anon = User.find_by_username("anon")
+    @bookings = @lodging.bookings
+    @booking = @lodging.bookings.build
 
     if @lodging.anonymous? and cannot? :manage, @lodging
       @lodging.user_id = @anon.id

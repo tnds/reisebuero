@@ -86,6 +86,17 @@
   <%= render :partial => 'contacts/contact', :collection => @contacts %>
   </div>
 </div>
+<div class="row">
+  <div class="span6">
+    <h2>
+      <%= t('bookings') %>
+    </h2>
+    <ul>
+      <%= render :partial => 'bookings/booking', :collection => @lodging.bookings %>
+    </ul>
+    <%= render :partial => 'bookings/inlineform' %>
+  </div>
+</div>
 
 <div class="form-actions">
   <%= button_edit(edit_lodging_path(@lodging), 'btn') if can? :edit, @lodging %>

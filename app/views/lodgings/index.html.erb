@@ -9,7 +9,9 @@
       <th><%= model_class.human_attribute_name(:user_id) %></th>
       <th><%= model_class.human_attribute_name(:start_at) %></th>
       <th><%= model_class.human_attribute_name(:end_at) %></th>
+      <th><%= model_class.human_attribute_name(:location) %></th>
       <th><%= model_class.human_attribute_name(:max_people) %></th>
+      <th><%= model_class.human_attribute_name(:booked) %></th>
       <th><%= model_class.human_attribute_name(:accessible) %></th>
       <th><%= model_class.human_attribute_name(:request) %></th>
     </tr>
@@ -19,7 +21,7 @@
       <tr>
         <td>
           <% unless lodging.event.nil? %>
-            <%= lodging.event_id %> - <%= link_to lodging.event.name, lodging.event %>
+            <%= link_to lodging.event.name, lodging.event %>
           <% end %>
         </td>
         <td>
@@ -36,7 +38,9 @@
         </td>
         <td><%= lodging.start_at %></td>
         <td><%= lodging.end_at %></td>
+        <td><%= lodging.location %></td>
         <td><%= lodging.max_people %></td>
+        <td><%= lodging.booked %></td>
         <td><%= icon_bool(lodging.accessible) %></td>
         <td><%= icon_bool(lodging.request) %></td>
         <td>

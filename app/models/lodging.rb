@@ -5,4 +5,8 @@ class Lodging < ActiveRecord::Base
   attr_accessible :accessible, :event_id, :description, :end_at, :location, :maplink, :max_people, :request, :start_at, :anonymous, :mod_comment
   
   validates :start_at, :end_at, :max_people, :presence => true
+  
+  def booked
+    self.bookings.sum(:people)
+  end
 end

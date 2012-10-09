@@ -152,6 +152,7 @@ de:
         end_at: Ende
         accessible: Behindertengerecht
         max_people: "Max. Personen"
+        booked: "gebucht"
         maplink: "Map-Link"
         description: Beschreibung
         location: Ort
@@ -256,4 +257,6 @@ de:
   helper_candidates: Hilfsangebote
   helper_candidate: Hilfsangebot
   new_helper_candidate: Neues Hilfsangebot
-  
+  lodging_overbooked: Die Unterkunft hat nicht genügend Plätze frei.
+  booking: Buchung
+  bookings: Buchungen

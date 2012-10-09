@@ -1,6 +1,7 @@
 <li>
   <%= link_to(lodging) do %>
     <%= lodging.user.username %>:
+    <%= lodging.booked %> /
     <%= lodging.max_people %>
     <%= t('people') %>
   <% end %>

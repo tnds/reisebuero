@@ -23,7 +23,10 @@ group :development, :test do
 	gem "rack-livereload"
 end
 
-gem "rails-erd", :group => :development
+group :development do
+  gem "rails-erd"
+  gem 'copycopter_client'
+end
 
 group :test do
   gem "factory_girl_rails"
