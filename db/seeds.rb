@@ -8,7 +8,7 @@
 admin = Role.create(name: 'Admin')
 role = Role.create(name: 'User')
 moderator = Role.create(name: 'Moderator')
-User.create(username: 'admin', password: 'password',password_confirmation: 'password' , email: 'reisebuero@piraten-nds.de', role_id: admin.id)
+User.create(username: 'admin', password: 'password',password_confirmation: 'password' , email: 'benjamin.richter@piraten-nom.de', role_id: admin.id)
 Contacttype.create(name: 'email')
 Contacttype.create(name: 'twitter')
 Contacttype.create(name: 'mobilephone')
