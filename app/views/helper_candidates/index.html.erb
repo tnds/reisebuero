@@ -19,7 +19,7 @@
       <tr>
         <td>
           <% unless helper_candidate.user.nil? %>
-            <% if can? :read, helper_candidate.user %>
+            <% if can? :show, helper_candidate.user %>
               <%= link_to helper_candidate.user.username, helper_candidate.user %>
             <% else %>
               <%= helper_candidate.user.username %>

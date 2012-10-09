@@ -28,7 +28,7 @@
           <% end %>
         </td>
         <td><%= booking.people %></td>
-        <td><%= link_to booking.user.username, booking.user if can? :read, booking.user %></td>
+        <td><%= link_to booking.user.username, booking.user if can? :show, booking.user %></td>
         <td><%=l booking.created_at %></td>
         <td>
           <%= link_to t('.edit', :default => t("helpers.links.edit")),

@@ -21,10 +21,10 @@ class Ability
         can :manage, HelperCandidate
         can :manage, Booking
         can :read_more, User
-        can :read, User
+        can :show, User
 			end
 			if user.role.name == "User"
-        can :read, User
+        can :show, User
 				can :create, Event
 				can :read, Event
         can :read, EventHelper
@@ -44,8 +44,6 @@ class Ability
         can :destroy, Booking do |booking|
           Lodging.where(:id => booking.lodging_id, :user_id => user.id).exists?
         end
-        cannot :index, Booking
-        cannot :index, Contact
         can :manage, Contact, :user_id => user.id
         can :read, Contact, :public => true
         can :read, Contacttype
