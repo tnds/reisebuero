@@ -1,7 +1,7 @@
 <% unless booking.nil? or booking.id.nil? %>
 <li>
   <% unless booking.user.nil? %>
-    <% if can? :read, booking.user %>
+    <% if can? :show, booking.user %>
       <%= link_to booking.user.username, booking.user %>:
     <% else %>
       <%= booking.user.username %>:

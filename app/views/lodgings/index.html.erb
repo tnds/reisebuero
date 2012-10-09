@@ -26,7 +26,7 @@
         </td>
         <td>
           <% unless lodging.user.nil? %>
-            <% if can? :read, lodging.user %>
+            <% if can? :show, lodging.user %>
               <%= link_to lodging.user.username, lodging.user %>
             <% else %>
               <%= lodging.user.username %>

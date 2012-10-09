@@ -1,6 +1,6 @@
 <% if event_helper.user %>
   <li>
-    <% if can? :read, event_helper.user %>
+    <% if can? :show, event_helper.user %>
       <%= link_to event_helper.user.username, event_helper.user %>
     <% else %>
       <%= event_helper.user.username %>
