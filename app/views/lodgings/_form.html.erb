@@ -12,15 +12,15 @@
   </div>
 </div>
   <%= f.input :anonymous, :hint => t('lodging_anonymous_hint') if can? :manage, @lodging %>
-  <%= f.input :start_at %>
-  <%= f.input :end_at %>
+  <%= f.input :start_at, :input_html => {:class => 'input-small'} %>
+  <%= f.input :end_at, :input_html => {:class => 'input-small'} %>
   <%= f.input :max_people %>
   <%= f.input :accessible %>
-  <%= f.input :description %>
-  <%= f.input :location %>
+  <%= f.input :description, :input_html => {:rows => '5', :class => 'input-xxlarge'} %>
+  <%= f.input :location, :input_html => {:rows => '5', :class => 'input-xxlarge'} %>
   <%= f.input :maplink, :as => :string %>
 <% if can? :manage, @lodging %>
-  <%= f.input :mod_comment %>
+  <%= f.input :mod_comment, :input_html => {:rows => '5', :class => 'input-xxlarge'} %>
 <% elsif @lodging.user == current_user and not @lodging.mod_comment.nil? %>
 <div class="control-group">
   <label class="control-label">

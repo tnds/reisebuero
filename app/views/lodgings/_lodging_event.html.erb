@@ -1,6 +1,7 @@
 <li>
   <%= raw(display_time_lodging(lodging_event)) %>, 
   <%= lodging_event.event.name unless lodging_event.event.nil? %>
+  <%= lodging_event.booked %> /
   <%= lodging_event.max_people %>
   <%= t('people') %>
   <%= button_view(lodging_path(lodging_event)) if can? :read, lodging_event %>

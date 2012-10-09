@@ -11,14 +11,15 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120927142603) do
+ActiveRecord::Schema.define(:version => 20121009162916) do
 
   create_table "bookings", :force => true do |t|
     t.integer  "lodging_id"
-    t.integer  "persons"
+    t.integer  "people"
     t.integer  "user_id"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
+    t.string   "comment"
   end
 
   add_index "bookings", ["lodging_id"], :name => "index_bookings_on_lodging_id"
@@ -95,6 +96,7 @@ ActiveRecord::Schema.define(:version => 20120927142603) do
     t.datetime "updated_at",  :null => false
     t.boolean  "anonymous"
     t.text     "mod_comment"
+    t.text     "location"
   end
 
   add_index "helper_candidates", ["user_id"], :name => "index_helper_candidates_on_user_id"

@@ -1,10 +1,11 @@
 <%= simple_form_for @helper_candidate, :html => { :class => 'form-horizontal' } do |f| %>
   <%= f.input :anonymous if can? :manage, @helper_candidate %>
-  <%= f.input :start_at %>
-  <%= f.input :end_at %>
-  <%= f.input :comment %>
+  <%= f.input :start_at, :input_html => {:class => 'input-small'} %>
+  <%= f.input :end_at, :input_html => {:class => 'input-small'} %>
+  <%= f.input :location, :input_html => {:rows => '5', :class => 'input-xxlarge'} %>
+  <%= f.input :comment, :input_html => {:rows => '5', :class => 'input-xxlarge'} %>
 <% if can? :manage, @helper_candidate %>
-  <%= f.input :mod_comment %>
+  <%= f.input :mod_comment, :input_html => {:rows => '5', :class => 'input-xxlarge'} %>
 <% elsif @helper_candidate.user == current_user and not @helper_candidate.mod_comment.nil? %>
 <div class="control-group">
   <label class="control-label">

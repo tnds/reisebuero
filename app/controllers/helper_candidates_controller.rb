@@ -1,4 +1,5 @@
 class HelperCandidatesController < ApplicationController
+  load_and_authorize_resource
   # GET /helper_candidates
   # GET /helper_candidates.json
   def index

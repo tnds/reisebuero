@@ -17,11 +17,13 @@ class Ability
         can :read, Contacttype
         can :read, Contact
         can [:read, :update], User, :username => "anon"
-        can :read, User
         can :manage, Contact, :user_id => anon.id
         can :manage, HelperCandidate
+        can :manage, Booking
+        can :read_more, User
 			end
 			if user.role.name == "User"
+        can :read, User
 				can :create, Event
 				can :read, Event
         can :read, EventHelper
@@ -48,6 +50,8 @@ class Ability
         can :read, Contacttype
         can :read, HelperCandidate
         can [:create, :update, :destroy], HelperCandidate, :user_id => user.id
+        can :create, Booking
+        can [:update, :destroy], Booking, :user_id => user.id
 			end
     else
 #      can :read, [Event, EventHelper]
