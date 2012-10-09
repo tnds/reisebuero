@@ -21,6 +21,7 @@ class Ability
         can :manage, HelperCandidate
         can :manage, Booking
         can :read_more, User
+        can :read, User
 			end
 			if user.role.name == "User"
         can :read, User
