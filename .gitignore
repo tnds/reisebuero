@@ -21,3 +21,4 @@ ERD.png
 ERD.pdf
 /.settings/
 /config/database.yml
+/config/initializers/copycopter.rb
