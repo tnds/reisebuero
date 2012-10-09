@@ -6,6 +6,8 @@
 <dl class="dl-horizontal">
   <dt></dt>
   <dd><%= raw(display_time_lodging(@helper_candidate)) %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:location) %>:</strong></dt>
+  <dd><%= simple_format(@helper_candidate.location) %></dd>
   <dt><strong><%= model_class.human_attribute_name(:comment) %>:</strong></dt>
   <dd><%= simple_format(@helper_candidate.comment) %></dd>
   <% if @helper_candidate.user == current_user or can? :manage, @helper_candidate %>

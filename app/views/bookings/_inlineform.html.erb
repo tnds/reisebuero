@@ -1,0 +1,6 @@
+<%= simple_form_for [@lodging,@booking], :html => { :class => 'form-inline'} do |f| %>
+<div class="input-append">
+  <%= f.input_field :people, :placeholder => t('people'), :class => 'input-small' %>
+  <%= f.button :submit, :class => 'btn-primary'%>
+</div>
+<% end %>

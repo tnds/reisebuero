@@ -1,0 +1,19 @@
+<% unless booking.nil? or booking.id.nil? %>
+<li>
+  <% unless booking.user.nil? %>
+    <% if can? :read, booking.user %>
+      <%= link_to booking.user.username, booking.user %>:
+    <% else %>
+      <%= booking.user.username %>:
+    <% end %>
+  <% end %>
+  <%= booking.people %>
+  <%= t('people') %>
+
+  <%= button_view(lodging_booking_path(booking.lodging, booking)) if can? :read, booking %>
+  <%= button_edit(edit_lodging_booking_path(booking.lodging, booking)) if can? :update, booking %>
+  <%= button_destroy(lodging_booking_path(booking.lodging, booking)) if can? :destroy, booking %>
+  <br/>
+  <i><%= booking.comment %></i>
+</li>
+<% end %>

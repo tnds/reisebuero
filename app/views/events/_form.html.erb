@@ -1,9 +1,9 @@
 <%= simple_form_for @event, :html => { :class => 'form-horizontal' } do |f| %>
   <%= f.input :name %>
-  <%= f.input :start_at %>
-  <%= f.input :end_at %>
-  <%= f.input :location %>
-  <%= f.input :description %>
+  <%= f.input :start_at, :input_html => {:class => 'input-small'} %>
+  <%= f.input :end_at, :input_html => {:class => 'input-small'} %>
+  <%= f.input :location, :input_html => {:rows => '5', :class => 'input-xxlarge'} %>
+  <%= f.input :description, :input_html => {:rows => '5', :class => 'input-xxlarge'} %>
   <%= f.input :all_day %>
   <%= f.button :submit, :class => 'btn-primary' %>
   <%= link_to t('.cancel', :default => t("helpers.links.cancel")),

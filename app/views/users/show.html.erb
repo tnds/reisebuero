@@ -1,21 +1,24 @@
 <%- model_class = User -%>
 <div class="page-header">
-  <h1><%=t '.title', :default => model_class.model_name.human %></h1>
+  <h1>
+    <%=t 'user'%>:
+    <%= @user.username %>
+  </h1>
 </div>
 <div class="row">
   <div class="span6">
     <dl>
+      <dt><strong><%= model_class.human_attribute_name(:role_id) %>:</strong></dt>
+      <dd><%= @user.role.name %></dd>
+      <% if can? :read_more, @user  %>
+      <dt><strong><%= model_class.human_attribute_name(:email) %>:</strong></dt>
+      <dd><%= @user.email %></dd>
+      <% end %>
+      <% if can? :manage, @user %>
       <dt><strong><%= model_class.human_attribute_name(:name) %>:</strong></dt>
       <dd><%= @user.name %></dd>
       <dt><strong><%= model_class.human_attribute_name(:first_name) %>:</strong></dt>
       <dd><%= @user.first_name %></dd>
-      <dt><strong><%= model_class.human_attribute_name(:username) %>:</strong></dt>
-      <dd><%= @user.username %></dd>
-      <dt><strong><%= model_class.human_attribute_name(:email) %>:</strong></dt>
-      <dd><%= @user.email %></dd>
-      <dt><strong><%= model_class.human_attribute_name(:role_id) %>:</strong></dt>
-      <dd><%= @user.role.name %></dd>
-      <% if can? :manage, @user %>
       <dt><strong><%= model_class.human_attribute_name(:reset_password_token) %>:</strong></dt>
       <dd><%= @user.reset_password_token %></dd>
       <dt><strong><%= model_class.human_attribute_name(:reset_password_sent_at) %>:</strong></dt>

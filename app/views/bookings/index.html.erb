@@ -1,0 +1,49 @@
+<%- model_class = Booking -%>
+<div class="page-header">
+  <h1><%=t '.title', :default => model_class.model_name.human.pluralize %></h1>
+</div>
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th><%= model_class.human_attribute_name(:lodging_id) %></th>
+      <th><%= model_class.human_attribute_name(:people) %></th>
+      <th><%= model_class.human_attribute_name(:user_id) %></th>
+      <th><%= model_class.human_attribute_name(:created_at) %></th>
+      <th><%=t '.actions', :default => t("helpers.actions") %></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @bookings.each do |booking| %>
+      <tr>
+        <td>
+          <%= link_to @lodging do %>
+            <% unless @lodging.event.nil? %>
+              <%= @lodging.event.name %> -
+            <% end %>
+            <% if @lodging.anonymous?  %>
+              <%= @anon.username %>
+            <% else %>
+              <%= @lodging.user.username %>
+            <% end %>
+          <% end %>
+        </td>
+        <td><%= booking.people %></td>
+        <td><%= link_to booking.user.username, booking.user if can? :read, booking.user %></td>
+        <td><%=l booking.created_at %></td>
+        <td>
+          <%= link_to t('.edit', :default => t("helpers.links.edit")),
+                      edit_lodging_booking_path(@lodging, booking), :class => 'btn btn-mini' %>
+          <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
+                      lodging_booking_path(@lodging, booking),
+                      :method => :delete,
+                      :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
+                      :class => 'btn btn-mini btn-danger' %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<%= link_to t('.new', :default => t("helpers.links.new")),
+            new_lodging_booking_path(@lodging),
+            :class => 'btn btn-primary' %>
