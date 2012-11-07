@@ -54,3 +54,5 @@ gem "therubyracer"
   gem 'capistrano'
 	gem "rvm-capistrano", :require => false
 	gem 'capistrano-unicorn', :require => false
+
+gem "high_voltage"
