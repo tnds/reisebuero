@@ -21,7 +21,8 @@ module CalendarHelper
       :month_name_text => I18n.localize(@shown_month, :format => "%B %Y"),
       :previous_month_text => '<ul class="pager"><li class="previous">' + prev_month_link(@shown_month.prev_month) +'</li></ul>',
       :next_month_text =>  '<ul class="pager"><li class="next">' + next_month_link(@shown_month.next_month) +'</li></ul>',
-      :use_all_day => true
+      :use_all_day => true,
+      :link_to_day_action => 'index'
     }
   end
 

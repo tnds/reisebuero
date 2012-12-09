@@ -8,17 +8,27 @@
   </div>
   <div class="span6">
     <center>
-      <h3><%= raw(I18n.localize(@shown_month, :format => "%B %Y")) %></h3>
-    </center>
+      <% if @day > 0 then %>
+        <h3><%= raw(I18n.localize(@shown_day, :format => "%A, %d.%m.%Y")) %></h3>
+      <% else %>
+        <h3><%= raw(I18n.localize(@shown_month, :format => "%B %Y")) %></h3>
+      <% end %>
+  </center>
   </div>
   <div class="span3">
     <ul class="pager"><li class="next"> <%=  next_month_link(@shown_month.next_month) %></li></ul>
   </div>
 </div>
 
-<ul>
-  <%= render :partial => "list", :collection => @events, :as => :event %>
-</ul>
+<% if @day > 0 then %>
+  <ul>
+    <%= render :partial => "list", :collection => @events_day, :as => :event %>
+  </ul>
+<% else %>
+  <ul>
+    <%= render :partial => "list", :collection => @events, :as => :event %>
+  </ul>
+<% end %>
 
 <%= link_to t('new_event', :default => t("helpers.links.new")),
             new_event_path,

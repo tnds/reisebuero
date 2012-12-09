@@ -10,7 +10,7 @@ class EventsController < ApplicationController
     @year_now = (Time.zone || Time).now.year.to_i
     @month = (params[:month] || (Time.zone || Time).now.month).to_i
     @year = (params[:year] || (Time.zone || Time).now.year).to_i
-    @day = (params[:day] || (Time.zone || Time).now.day).to_i
+    @day = params[:day].to_i || 0
     @last_month_start = Date.new(@year_now, @month_now-1).to_time
     @month_start = Date.new(@year, @month).to_time
     if @month < 12 then
@@ -18,11 +18,20 @@ class EventsController < ApplicationController
     else
       @month_end = Date.new(@year+1, 1).to_time
     end
+    if @day > 0 then
+      @day_start = Date.new(@year, @month, @day).to_time
+      @day_end = Date.new(@year, @month, @day+1).to_time
+      @shown_day = Date.civil(@year, @month, @day)
+    end
     @next_year_end = Date.new(@year_now+2, 1).to_time
 
     @shown_month = Date.civil(@year, @month)
 
-    @events = Event.where("end_at BETWEEN :month_start AND :month_end OR start_at BETWEEN :month_start AND :month_end", {:month_start => @month_start, :month_end => @month_end})
+    if @day > 0 then
+      @events_day = Event.where("end_at BETWEEN :day_start AND :day_end OR start_at BETWEEN :day_start AND :day_end", {:day_start => @day_start, :day_end => @day_end})
+    else
+      @events = Event.where("end_at BETWEEN :month_start AND :month_end OR start_at BETWEEN :month_start AND :month_end", {:month_start => @month_start, :month_end => @month_end})
+    end
 
     respond_to do |format|
       format.html # index.html.erb
