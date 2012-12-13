@@ -100,6 +100,10 @@ GEM
       railties (>= 3.0.0)
     ffi (1.2.0)
     ffi (1.2.0-x86-mingw32)
+    font-awesome-sass-rails (2.0.0.0)
+      railties (>= 3.1.1)
+      sass-rails (>= 3.1.1)
+    geocoder (1.1.5)
     gherkin (2.11.5)
       json (>= 1.4.6)
     gherkin (2.11.5-x86-mingw32)
@@ -275,6 +279,8 @@ DEPENDENCIES
   event-calendar
   eventmachine (~> 1.0.0.rc.4)
   factory_girl_rails
+  font-awesome-sass-rails
+  geocoder
   guard-cucumber
   guard-livereload
   high_voltage
