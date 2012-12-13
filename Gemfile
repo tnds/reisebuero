@@ -6,7 +6,7 @@ group :assets do
   gem 'sass-rails',   '~> 3.2.3'
   gem 'coffee-rails', '~> 3.2.1'
   gem 'uglifier', '>= 1.0.3'
-  gem 'twitter-bootstrap-rails'
+  gem 'bootstrap-sass'
 end
 
 gem 'jquery-rails'
@@ -29,6 +29,7 @@ group :development do
 end
 
 group :test do
+  gem "eventmachine", "~> 1.0.0.rc.4"
   gem "factory_girl_rails"
 	gem 'guard-cucumber'
 	gem 'guard-livereload'
@@ -49,7 +50,7 @@ group :production do
   gem 'unicorn'
 end
 
-gem "therubyracer"
+#gem "therubyracer"
 
   gem 'capistrano'
 	gem "rvm-capistrano", :require => false
