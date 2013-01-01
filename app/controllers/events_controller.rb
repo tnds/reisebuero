@@ -11,7 +11,11 @@ class EventsController < ApplicationController
     @month = (params[:month] || (Time.zone || Time).now.month).to_i
     @year = (params[:year] || (Time.zone || Time).now.year).to_i
     @day = params[:day].to_i || 0
-    @last_month_start = Date.new(@year_now, @month_now-1).to_time
+    if @month_now >1 then
+      @last_month_start = Date.new(@year_now, @month_now-1).to_time
+    else
+      @last_month_start = Date.new(@year_now-1, 12).to_time
+    end
     @month_start = Date.new(@year, @month).to_time
     if @month < 12 then
       @month_end = Date.new(@year, @month+1).to_time
