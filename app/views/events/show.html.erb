@@ -20,7 +20,21 @@
     <p>
       <b><%=t('location')%>:</b>
       <%= simple_format(@event.location) %>
+        <a class="accordion-toggle" data-toggle="collapse" href="#collapseOne">
+          <i class="icon-chevron-down"></i> <small><%= t('coordinates') %></small>
+        </a>
     </p>
+
+      <div id="collapseOne" class="accordion-body collapse">
+          <p>
+            <small>
+              <%= link_to "http://www.openstreetmap.de/karte.html?zoom=15&lat=#{@event.latitude}&lon=#{@event.longitude}&layers=B000" do %>
+                (<%= @event.longitude %>,
+                <%= @event.latitude %>)
+              <% end %>
+            </small>
+          </p>
+      </div>
 
     <p>
       <b><%=t('description')%>:</b>
