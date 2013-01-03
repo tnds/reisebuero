@@ -9,6 +9,7 @@
           <%= render :partial => 'events/event', :locals => {:event => event_helper.event} %>
         <% end %>
       </ul>
+      <%= button_new(new_event_path) %>
     </div>
     
     <div id="helper_candidates">
@@ -51,6 +52,9 @@
       <h3>
         <%= t('contact') %>
       </h3>
+      <% unless @contacts.any? %>
+        <p class="text-error"><%= t('please_add_contacts') %></p>
+      <% end %>
       <%= render :partial => 'contacts/contact', :collection => @contacts %>
     <p>
       <%= button_new(new_user_contact_path(@user)) %>
