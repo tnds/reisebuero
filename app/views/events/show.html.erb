@@ -67,7 +67,13 @@
     <h2>
       <%= t('contact') %>
     </h2>
+      <% if @orgas.first.user == current_user and not @contacts.any? %>
+        <p class="text-error"><%= t('please_add_contacts') %></p>
+      <% end %>
     <%= render :partial => 'contacts/contact', :collection => @contacts %>
+    <p>
+      <%= button_new(new_user_contact_path(@current_user)) %>
+    </p>
     </div>
   
 </div>
