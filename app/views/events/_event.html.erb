@@ -3,7 +3,7 @@
     <%= link_to event.name, event %>
   </span>
   <span class="event_orga">
-    <% if event.event_helpers.find_by_user_id(current_user.id).orga? %>
+    <% if not event.event_helpers.find_by_user_id(current_user.id).nil? and event.event_helpers.find_by_user_id(current_user.id).orga? %>
     (<%= t('event_orga') %>)
     <% else  %>
     (<%= t('event_helper') %>)
