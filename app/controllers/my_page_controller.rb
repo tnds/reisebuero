@@ -1,4 +1,5 @@
 class MyPageController < ApplicationController
+  before_filter :authenticate_user!
   def index
     @month_now = (Time.zone || Time).now.month.to_i
     @year_now = (Time.zone || Time).now.year.to_i
