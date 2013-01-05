@@ -1,5 +1,5 @@
 class EventsController < ApplicationController
-#  before_filter :authenticate_user!, :except => [:show, :index]
+  before_filter :authenticate_user!, :except => [:show, :index]
 #  before_filter :orga_filter, :except => [:show,:index,:new,:create]
   load_and_authorize_resource
   
