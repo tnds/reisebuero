@@ -103,7 +103,7 @@ GEM
     font-awesome-sass-rails (3.0.0.1)
       railties (>= 3.1.1)
       sass-rails (>= 3.1.1)
-    geocoder (1.1.6)
+    geocoder (1.1.5)
     gherkin (2.11.5)
       json (>= 1.4.6)
     gherkin (2.11.5-x86-mingw32)
@@ -280,7 +280,7 @@ DEPENDENCIES
   eventmachine (~> 1.0.0.rc.4)
   factory_girl_rails
   font-awesome-sass-rails
-  geocoder
+  geocoder (= 1.1.5)
   guard-cucumber
   guard-livereload
   high_voltage
