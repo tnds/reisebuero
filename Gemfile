@@ -59,4 +59,4 @@ end
 
 gem "high_voltage"
 
-gem "geocoder"
+gem "geocoder", '1.1.5'
